@@ -1,0 +1,70 @@
+; .gitconfig
+; vim: set filetype=gitconfig :
+
+; William Stark (william.stark.5000@gmail.com)
+
+
+; http://git-scm.com/book/en/Customizing-Git-Git-Configuration
+; man git config
+
+[user]
+    ; full name
+    ;name = William Stark
+    ; email address
+    ;email = william.stark.5000@gmail.com
+    ; GPG signing key ID
+    ;signingkey = E5626F35249754BE
+
+[core]
+    ; the text editor to use for commits and tag messages
+    editor = vim
+    ; the command that git will use to paginate output
+    pager = less -FRX
+    excludesfile = ~/dotfiles/data/.gitignore
+
+[color]
+    ; turn on all the default terminal coloring
+    ;ui = true
+    ui = auto
+[color "diff"]
+    meta = yellow bold
+    commit = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
+[color "status"]
+    untracked = cyan
+
+[log]
+    ; Print out the ref names of any commits that are shown.
+    decorate = true
+
+[diff]
+    ; http://stackoverflow.com/questions/777949/can-i-make-git-recognize-a-utf-16-file-as-text
+    ; diff tool to be used by git-difftool
+    tool = vimdiff
+
+;[ui]
+;    ui = auto
+
+;[merge]
+;    tool = vimdiff
+
+[push]
+    default = simple
+
+; diff-so-fancy
+; https://github.com/so-fancy/diff-so-fancy
+[pager]
+    diff = diff-so-fancy | less --tabs=4 -RFX
+    show = diff-so-fancy | less --tabs=4 -RFX
+[color "diff-highlight"]
+    oldNormal = "red bold"
+    oldHighlight = "red bold 52"
+    newNormal = "green bold"
+    newHighlight = "green bold 22"
+
+[commit]
+    ; GPG sign all commits
+    ;gpgSign = true

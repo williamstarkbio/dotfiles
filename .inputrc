@@ -1,0 +1,59 @@
+### .inputrc
+
+# William Stark (william.stark.5000@gmail.com)
+
+
+# readline init file
+# http://www.gnu.org/software/bash/manual/html_node/Readline-Init-File.html
+
+# http://www.gnu.org/software/bash/manual/html_node/Readline-Init-File-Syntax.html
+# http://www.gnu.org/software/bash/manual/html_node/Conditional-Init-Constructs.html
+# http://www.gnu.org/software/bash/manual/html_node/Sample-Init-File.html
+
+$include /etc/inputrc
+
+
+set editing-mode vi
+
+# retain CTRL-L behavior (clear screen) in bash vi-mode insert mode
+# https://unix.stackexchange.com/a/104101
+$if mode=vi
+set keymap vi-command
+Control-l: clear-screen
+Control-p: previous-history
+Control-n: next-history
+
+set keymap vi-insert
+Control-l: clear-screen
+Control-p: previous-history
+Control-n: next-history
+$endif
+
+
+set completion-query-items 128
+
+# case-insensitive filename matching and completion
+set completion-ignore-case on
+
+# append slash to completed names that are symbolic links to directories
+set mark-symlinked-directories on
+
+# list partial matches immediately
+#set show-all-if-ambiguous on
+
+# An old-style binding.  This happens to be the default.
+TAB: complete
+
+$if Bash
+### expand aliases with a shortcut in Bash
+# http://superuser.com/questions/247770/how-to-expand-aliases-inline-in-bash
+# http://www.gnu.org/software/bash/manual/html_node/Miscellaneous-Commands.html
+# use Control-Alt-e
+#"\e\C-e": alias-expand-line
+"\C-\M-e": alias-expand-line
+
+### shortcut to reload .inputrc in the terminal
+# Read in the contents of the inputrc file, and incorporate any bindings or
+# variable assignments found there.
+"\C-\M-r": re-read-init-file
+$endif
