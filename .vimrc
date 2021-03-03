@@ -314,6 +314,11 @@ autocmd FileType make setlocal noexpandtab
 
 " Markdown
 autocmd BufNewFile,BufRead *.md set filetype=markdown
+" override vim-markdown adding +, -, : to word ranges
+" https://github.com/gabrielelana/vim-markdown/blob/master/ftplugin/markdown.vim#L71
+autocmd FileType markdown set iskeyword-=+
+autocmd FileType markdown set iskeyword-=-
+autocmd FileType markdown set iskeyword-=:
 
 " Perl
 " don't autocomplete from included files
