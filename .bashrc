@@ -184,6 +184,20 @@ fi
 ### pipx
 eval "$(register-python-argcomplete pipx)"
 
+### variables
+# use pudb for debugging globally
+export PYTHONBREAKPOINT=pudb.set_trace
+# disable or configure cache directory
+python_major_version=$(python -c 'import sys; print(sys.version_info.major)')
+python_minor_version=$(python -c 'import sys; print(sys.version_info.minor)')
+if [[ "$python_major_version" -ge 3 ]] && [[ "$python_minor_version" -ge 8 ]];then
+    # write .pyc files in a mirror directory tree at this path
+    export PYTHONPYCACHEPREFIX="$(pyenv prefix)/pycache"
+else
+    # don't write bytecode on disk
+    export PYTHONDONTWRITEBYTECODE=1
+fi
+
 
 ## Rust
 # https://rustup.rs/

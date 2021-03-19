@@ -22,23 +22,9 @@
 [[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
 
 
-### Python
-# don't write bytecode on disk
-export PYTHONDONTWRITEBYTECODE=1
-# use pudb for debugging globally
-export PYTHONBREAKPOINT=pudb.set_trace
-
-
-### pipenv
-# generate virtual environments in project directories
-export PIPENV_VENV_IN_PROJECT=true
-
-
 ### load SSH keys to the authentication agent
 eval `ssh-agent -s` &> /dev/null
 [[ -e "$HOME/.ssh/id_rsa_github" ]] && ssh-add "$HOME/.ssh/id_rsa_github" &> /dev/null
-[[ -e "$HOME/.ssh/id_rsa_gitlab" ]] && ssh-add "$HOME/.ssh/id_rsa_gitlab" &> /dev/null
-[[ -e "$HOME/.ssh/id_rsa_bitbucket" ]] && ssh-add "$HOME/.ssh/id_rsa_bitbucket" &> /dev/null
 
 
 ### NVIDIA CUDA
