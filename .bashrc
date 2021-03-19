@@ -184,16 +184,11 @@ fi
 ### pipx
 eval "$(register-python-argcomplete pipx)"
 
-### variables
+### environment variables
 # use pudb for debugging globally
 export PYTHONBREAKPOINT=pudb.set_trace
-# disable or configure cache directory
-python_version_string=$(pyenv version)
-python_version_array=(${python_version_string//./ })
-python_major_version=${python_version_array[0]}
-python_minor_version=${python_version_array[1]}
-if [[ "$python_major_version" -ge 3 ]] && [[ "$python_minor_version" -ge 8 ]];then
-    # write .pyc files in a mirror directory tree at this path
+# specify pycache directory
+if command -v pyenv &> /dev/null; then
     export PYTHONPYCACHEPREFIX="$(pyenv prefix)/pycache"
 else
     # don't write bytecode on disk
