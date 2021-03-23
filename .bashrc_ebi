@@ -1,0 +1,96 @@
+### .bashrc_genebuild
+# vim: set filetype=sh :
+
+# William Stark (william.stark.5000@gmail.com)
+
+
+# (try to) fix EBI cluster / brew / tmux issue:
+# """
+# Package bash-completion was not found in the pkg-config search path.
+# Perhaps you should add the directory containing `bash-completion.pc'
+# to the PKG_CONFIG_PATH environment variable
+# No package 'bash-completion' found
+# -bash: /yum: No such file or directory
+# """
+# https://github.com/Linuxbrew/legacy-linuxbrew/issues/46
+export PKG_CONFIG_PATH="/usr/share/pkgconfig/"
+
+
+# fix git plus pyenv issue
+# https://github.com/pyenv/pyenv/issues/688
+export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
+
+
+export HPS_ROOT="/hps/nobackup2/production/ensembl/$USER"
+export NFS_ROOT="/nfs/production/panda/ensembl/$USER"
+
+export ENSCODE="${HPS_ROOT}/ENSCODE"
+
+
+alias hps="cd $HPS_ROOT"
+alias nfs="cd $NFS_ROOT"
+
+
+### Perl
+alias perltidy="perltidy -b -bext='/' -i=2"
+
+
+# load my version of the genebuild.sh configuration script
+source "$HOME/dotfiles/ebi/genebuild.sh"
+
+
+### Ensembl
+########
+# ENSEMBL_API_ROOT="$ENSCODE/ensembl_api"
+# export PATH="$ENSEMBL_API_ROOT/ensembl-git-tools/bin:$PATH"
+#
+# PERL5LIB="$ENSEMBL_API_ROOT/bioperl-live"
+# PERL5LIB="$PERL5LIB:$ENSEMBL_API_ROOT/ensembl/modules"
+# PERL5LIB="$PERL5LIB:$ENSEMBL_API_ROOT/ensembl-compara/modules"
+# PERL5LIB="$PERL5LIB:$ENSEMBL_API_ROOT/ensembl-variation/modules"
+# PERL5LIB="$PERL5LIB:$ENSEMBL_API_ROOT/ensembl-funcgen/modules"
+# PERL5LIB="$PERL5LIB:$ENSEMBL_API_ROOT/Bio-DB-HTS/lib:$ENSEMBL_API_ROOT/Bio-DB-HTS/blib/arch/auto/Bio/DB/HTS:$ENSEMBL_API_ROOT/Bio-DB-HTS/blib/arch/auto/Bio/DB/HTS/Faidx"
+# export PERL5LIB
+#
+# export HTSLIB_DIR="$ENSEMBL_API_ROOT/htslib"
+########
+
+### Genebuild
+########
+# PERL5LIB="$PERL5LIB:$ENSCODE/ensembl-analysis/modules"
+# export PERL5LIB
+########
+
+### eHive
+########
+# PERL5LIB="$PERL5LIB:$ENSCODE/ensembl-hive/modules"
+# export PERL5LIB
+#
+# export PATH="$ENSCODE/ensembl-hive/scripts:$PATH"
+########
+
+
+### Java jenv
+# https://www.jenv.be/
+# https://github.com/jenv/jenv
+if [[ -d "$HOME/.jenv" ]]; then
+    export PATH="$HOME/.jenv/bin:$PATH"
+    eval "$(jenv init -)"
+fi
+
+
+### Perl plenv
+# https://github.com/tokuhirom/plenv
+if [[ -d "$HOME/.plenv" ]]; then
+    export PATH="$HOME/.plenv/bin:$PATH"
+    eval "$(plenv init -)"
+fi
+
+
+### pyenv
+if [[ -d "${HPS_ROOT}/.pyenv" ]]; then
+    export PYENV_ROOT="${HPS_ROOT}/.pyenv"
+    export PATH="${PYENV_ROOT}/bin:${PATH}"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi

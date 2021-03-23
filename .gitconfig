@@ -1,25 +1,26 @@
 ; .gitconfig
 ; vim: set filetype=gitconfig :
 
+
 ; William Stark (william.stark.5000@gmail.com)
 
 
 ; http://git-scm.com/book/en/Customizing-Git-Git-Configuration
 ; man git config
 
+
 [user]
     ; full name
     ;name = William Stark
     ; email address
     ;email = william.stark.5000@gmail.com
+    ;email = william@ebi.ac.uk
     ; GPG signing key ID
     ;signingkey = E5626F35249754BE
 
 [core]
     ; the text editor to use for commits and tag messages
     editor = vim
-    ; the command that git will use to paginate output
-    pager = less -FRX
     excludesfile = ~/dotfiles/data/.gitignore
 
 [color]
@@ -40,10 +41,10 @@
     ; Print out the ref names of any commits that are shown.
     decorate = true
 
-[diff]
-    ; http://stackoverflow.com/questions/777949/can-i-make-git-recognize-a-utf-16-file-as-text
-    ; diff tool to be used by git-difftool
-    tool = vimdiff
+;[diff]
+;    ; http://stackoverflow.com/questions/777949/can-i-make-git-recognize-a-utf-16-file-as-text
+;    ; diff tool to be used by git-difftool
+;    tool = vimdiff
 
 ;[ui]
 ;    ui = auto
@@ -54,17 +55,50 @@
 [push]
     default = simple
 
-; diff-so-fancy
-; https://github.com/so-fancy/diff-so-fancy
-[pager]
-    diff = diff-so-fancy | less --tabs=4 -RFX
-    show = diff-so-fancy | less --tabs=4 -RFX
-[color "diff-highlight"]
-    oldNormal = "red bold"
-    oldHighlight = "red bold 52"
-    newNormal = "green bold"
-    newHighlight = "green bold 22"
 
-[commit]
-    ; GPG sign all commits
-    ;gpgSign = true
+; ; diff-so-fancy
+; ; https://github.com/so-fancy/diff-so-fancy
+; [pager]
+;     diff = diff-so-fancy | less --tabs=4 -RFX
+;     show = diff-so-fancy | less --tabs=4 -RFX
+; [color "diff-highlight"]
+;     oldNormal = "red bold"
+;     oldHighlight = "red bold 52"
+;     newNormal = "green bold"
+;     newHighlight = "green bold 22"
+
+
+; delta
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; https://github.com/dandavison/delta
+[core]
+    ; the command that git will use to paginate output
+    ;pager = less -FRX
+    ;pager = delta
+    pager = delta --diff-so-fancy
+    ;pager = delta --light
+;[delta]
+;    syntax-theme = GitHub
+;    ;syntax-theme = Monokai Extended Light
+;    ;syntax-theme = OneHalfLight
+;    ;syntax-theme = Solarized (light)
+;    ;syntax-theme = ansi-light
+;    ;syntax-theme = gruvbox-light
+;    ;syntax-theme = gruvbox-white
+[interactive]
+    ;diffFilter = delta --color-only
+    ;diffFilter = delta --light --color-only
+    diffFilter = delta --diff-so-fancy --color-only
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+; [commit]
+;     ; GPG sign all commits
+;     gpgSign = true
+
+
+[includeIf "gitdir:/data/EMBL-EBI/"]
+    path = /data/code/dotfiles/ebi/.gitconfig
+
+[includeIf "gitdir:/d/EMBL-EBI/"]
+    path = /d/code/dotfiles/ebi/.gitconfig

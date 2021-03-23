@@ -1,0 +1,15 @@
+#!/bin/bash
+
+
+# setopt shwordsplit
+
+
+name=$1
+
+servers=(mysql-ens-genebuild-prod-1 mysql-ens-genebuild-prod-2 mysql-ens-genebuild-prod-3 mysql-ens-genebuild-prod-4 mysql-ens-genebuild-prod-5 mysql-ens-genebuild-prod-6 mysql-ens-genebuild-prod-7 stva m1 st1 st2)
+
+for id in "${servers[@]}"; do
+    echo "$id"
+    $id -e "SHOW DATABASES LIKE '%${name}%'"
+    echo
+done

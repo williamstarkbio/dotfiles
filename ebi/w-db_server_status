@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+/hps/nobackup2/production/ensembl/william/more/carla-git/dbc_processlist -g genebuild

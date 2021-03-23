@@ -1,0 +1,18 @@
+; .gitconfig
+; vim: set filetype=gitconfig :
+
+
+; William Stark (william@ebi.ac.uk)
+
+
+; http://git-scm.com/book/en/Customizing-Git-Git-Configuration
+; man git config
+
+
+[user]
+    ; full name
+    name = William Stark
+    ; email address
+    email = william@ebi.ac.uk
+    ; GPG signing key ID
+    signingkey = E5626F35249754BE
