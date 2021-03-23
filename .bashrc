@@ -18,6 +18,7 @@ case $- in
       *) return;;
 esac
 
+
 # don't save lines starting with space and duplicate lines in the history
 HISTCONTROL=ignorespace:ignoredups:erasedups
 
@@ -35,6 +36,7 @@ shopt -s checkwinsize
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar
+
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -98,7 +100,7 @@ PROMPT_COMMAND="update_prompt"
 
 # set better colors for ls in the LS_COLORS environment variable
 if [[ -x /usr/bin/dircolors ]]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    test -r $HOME/.dircolors && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
 fi
 
 
@@ -106,11 +108,11 @@ fi
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-  if [[ -f /usr/share/bash-completion/bash_completion ]]; then
-    source /usr/share/bash-completion/bash_completion
-  elif [[ -f /etc/bash_completion ]]; then
-    source /etc/bash_completion
-  fi
+    if [[ -f /usr/share/bash-completion/bash_completion ]]; then
+        source /usr/share/bash-completion/bash_completion
+    elif [[ -f /etc/bash_completion ]]; then
+        source /etc/bash_completion
+    fi
 fi
 set completion-ignore-case on
 
@@ -153,30 +155,17 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
 
-# fix git plus pyenv issue
-# https://github.com/pyenv/pyenv/issues/688
-export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
-
-
 ### z
 # jump around
 # https://github.com/rupa/z
-if [[ -f ~/programs/z/z.sh ]]; then
-    source ~/programs/z/z.sh
+if [[ -f $HOME/data/programs/z/z.sh ]]; then
+    source $HOME/data/programs/z/z.sh
 
     _Z_NO_RESOLVE_SYMLINKS=1
 fi
 
 
 ## Python
-
-### pyenv
-if [[ -d "$HOME/.pyenv" ]]; then
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-fi
 
 ### Poetry
 [[ -d "$HOME/.poetry/bin" ]] && export PATH="$HOME/.poetry/bin:$PATH"
@@ -212,17 +201,6 @@ fi
 if command -v go &> /dev/null; then
     export GOPATH="$HOME/go"
     export PATH="$HOME/go/bin:$PATH"
-fi
-
-
-## Java
-
-### jenv
-# https://www.jenv.be/
-# https://github.com/jenv/jenv
-if [[ -d "$HOME/.jenv" ]]; then
-    export PATH="$HOME/.jenv/bin:$PATH"
-    eval "$(jenv init -)"
 fi
 
 
@@ -1024,19 +1002,6 @@ aliased_d_c_compile() {
 alias d-c-compile='aliased_d_c_compile'
 
 
-### compile a C++ program
-aliased_d_cpp_compile() {
-    arg="$1"
-    if [[ -z "$arg" ]]; then
-        echo "d-cpp-compile requires a C++ source file as an argument"
-    else
-        #g++ -Wall -g -ansi -pedantic-errors "$arg" -o "${arg%.cpp}"
-        g++ "$arg" -o "${arg%.cpp}"
-    fi
-}
-alias d-cpp-compile='aliased_d_cpp_compile'
-
-
 ### find
 # search for files in a directory hierarchy
 # -name <pattern>
@@ -1158,8 +1123,20 @@ __get_directories_color() {
 
 
 ### local settings
-if [[ -f ~/.bashrc_local ]]; then
-    source ~/.bashrc_local
+if [[ -f $HOME/.bashrc_local ]]; then
+    source $HOME/.bashrc_local
+fi
+
+
+### EMBL-EBI
+if [[ -f $HOME/.bashrc_ebi ]]; then
+    source $HOME/.bashrc_ebi
+fi
+
+
+### ws computer
+if [[ -f $HOME/.bashrc_ws ]]; then
+    source $HOME/.bashrc_ws
 fi
 
 

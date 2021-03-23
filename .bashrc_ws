@@ -1,0 +1,22 @@
+### .bashrc_ws
+# vim: set filetype=sh :
+
+# William Stark (william.stark.5000@gmail.com)
+
+
+### Java jenv
+# https://www.jenv.be/
+# https://github.com/jenv/jenv
+if [[ -d "$HOME/.jenv" ]]; then
+    export PATH="$HOME/.jenv/bin:$PATH"
+    eval "$(jenv init -)"
+fi
+
+
+### pyenv
+if [[ -d "$HOME/.pyenv" ]]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
