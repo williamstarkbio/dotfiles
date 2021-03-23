@@ -176,13 +176,6 @@ eval "$(register-python-argcomplete pipx)"
 ### environment variables
 # use pudb for debugging globally
 export PYTHONBREAKPOINT=pudb.set_trace
-# specify pycache directory
-if command -v pyenv &> /dev/null; then
-    export PYTHONPYCACHEPREFIX="$(pyenv prefix)/pycache"
-else
-    # don't write bytecode on disk
-    export PYTHONDONTWRITEBYTECODE=1
-fi
 
 
 ## Rust
@@ -1128,6 +1121,15 @@ if [[ -f $HOME/.bashrc_local ]]; then
 fi
 
 
+### Java jenv
+# https://www.jenv.be/
+# https://github.com/jenv/jenv
+if [[ -d "$HOME/.jenv" ]]; then
+    export PATH="$HOME/.jenv/bin:$PATH"
+    eval "$(jenv init -)"
+fi
+
+
 ### EMBL-EBI
 if [[ -f $HOME/.bashrc_ebi ]]; then
     source $HOME/.bashrc_ebi
@@ -1137,6 +1139,16 @@ fi
 ### ws computer
 if [[ -f $HOME/.bashrc_ws ]]; then
     source $HOME/.bashrc_ws
+fi
+
+
+## specify Python pycache directory
+if command -v pyenv &> /dev/null; then
+    unset PYTHONDONTWRITEBYTECODE
+    export PYTHONPYCACHEPREFIX="$(pyenv prefix)/pycache"
+else
+    # don't write bytecode on disk
+    export PYTHONDONTWRITEBYTECODE=1
 fi
 
 

@@ -70,15 +70,6 @@ source "$HOME/dotfiles/ebi/genebuild.sh"
 ########
 
 
-### Java jenv
-# https://www.jenv.be/
-# https://github.com/jenv/jenv
-if [[ -d "$HOME/.jenv" ]]; then
-    export PATH="$HOME/.jenv/bin:$PATH"
-    eval "$(jenv init -)"
-fi
-
-
 ### Perl plenv
 # https://github.com/tokuhirom/plenv
 if [[ -d "$HOME/.plenv" ]]; then
