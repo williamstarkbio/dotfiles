@@ -193,9 +193,13 @@ create_data_directory() {
 
 setup_python() {
     # install pyenv
-    PYENV_ROOT="$HOME/.pyenv"
-    backup_datetime $PYENV_ROOT
-    export $PYENV_ROOT
+    if [[ -n "$PYENV_ROOT" ]]; then
+        backup_datetime "$PYENV_ROOT"
+    else
+        #PYENV_ROOT="$HOME/.pyenv"
+        #PYENV_ROOT="/nfs/production/panda/ensembl/$USER/.pyenv"
+        export "$PYENV_ROOT"
+    fi
     curl https://pyenv.run | bash
 
     # enable pyenv
@@ -342,9 +346,9 @@ main() {
         # use my own fork that supports smart case sensitivity by merging ericbn's
         # pull request https://github.com/rupa/z/pull/221
         # https://github.com/williamstark01/z
-        mkdir -p -v $HOME/programs
+        mkdir -p -v $HOME/data/programs
 
-        Z_ROOT_DIRECTORY="$HOME/programs/z"
+        Z_ROOT_DIRECTORY="$HOME/data/programs/z"
         [[ -d "$Z_ROOT_DIRECTORY" ]] && backup_datetime "$Z_ROOT_DIRECTORY"
         git clone https://github.com/williamstark01/z.git "$Z_ROOT_DIRECTORY"
 

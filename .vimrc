@@ -37,6 +37,11 @@ Plug 'dense-analysis/ale'
 " https://github.com/rlue/vim-barbaric
 Plug 'rlue/vim-barbaric'
 
+" Colorizer
+" A plugin to color colornames and codes
+" https://github.com/chrisbra/Colorizer
+Plug 'chrisbra/Colorizer'
+
 " EasyMotion
 " improved motion shortcuts
 " https://github.com/easymotion/vim-easymotion
@@ -106,7 +111,7 @@ Plug 'powerman/vim-plugin-viewdoc'
 " pip install python-slugify
 " sudo apt install xdotool
 " run "GhostInstall" in Neovim
-Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+"Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 
 " vim-gitgutter
 " show a git diff in the gutter

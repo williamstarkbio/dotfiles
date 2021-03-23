@@ -24,7 +24,7 @@
 
 ### load SSH keys to the authentication agent
 eval `ssh-agent -s` &> /dev/null
-[[ -e "$HOME/.ssh/id_rsa_github" ]] && ssh-add "$HOME/.ssh/id_rsa_github" &> /dev/null
+[[ -f "$HOME/.ssh/id_rsa_github" ]] && ssh-add "$HOME/.ssh/id_rsa_github" &> /dev/null
 
 
 ### NVIDIA CUDA
