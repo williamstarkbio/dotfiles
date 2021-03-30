@@ -23,19 +23,41 @@ export GIT_INTERNAL_GETTEXT_TEST_FALLBACKS=1
 export HPS_ROOT="/hps/nobackup2/production/ensembl/$USER"
 export NFS_ROOT="/nfs/production/panda/ensembl/$USER"
 
-export ENSCODE="${HPS_ROOT}/ENSCODE"
-
-
 alias hps="cd $HPS_ROOT"
 alias nfs="cd $NFS_ROOT"
+
+
+export ENSCODE="${HPS_ROOT}/ENSCODE"
 
 
 ### Perl
 #alias perltidy="perltidy -b -bext='/' -i=2"
 
 
+# genebuild.sh
+# https://www.ebi.ac.uk/seqdb/confluence/display/ENSGBD/Genebuild+virtual+user%2C+shared+environment+and+shared+data
+################################################################################
 # load my version of the genebuild.sh configuration script
-source "$HOME/dotfiles/ebi/genebuild.sh"
+#source "$HOME/dotfiles/ebi/genebuild.sh"
+
+#export ENSEMBL_SOFTWARE_HOME=/nfs/software/ensembl/RHEL7-JUL2017-core2
+ENSEMBL_SOFTWARE_HOME=/nfs/software/ensembl/RHEL7-JUL2017-core2
+
+# Homebrew (Linuxbrew)
+# https://www.ebi.ac.uk/seqdb/confluence/display/ENS/Linuxbrew
+if [[ -f "${ENSEMBL_SOFTWARE_HOME}/envs/linuxbrew.sh" ]]; then
+    source "${ENSEMBL_SOFTWARE_HOME}/envs/linuxbrew.sh"
+fi
+
+# MySQL commands
+# https://www.ebi.ac.uk/seqdb/confluence/display/ENS/MySQL+commands
+if [[ -d /nfs/software/ensembl/mysql-cmds/ensembl/bin ]]; then
+    export PATH="/nfs/software/ensembl/mysql-cmds/ensembl/bin:$PATH"
+fi
+
+export HIVE_EMAIL="${USER}@ebi.ac.uk"
+export GENEBUILDER_ID=50
+################################################################################
 
 
 ### Perl plenv
