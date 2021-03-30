@@ -2,9 +2,6 @@
 ; vim: set filetype=gitconfig :
 
 
-; William Stark (william@ebi.ac.uk)
-
-
 ; http://git-scm.com/book/en/Customizing-Git-Git-Configuration
 ; man git config
 

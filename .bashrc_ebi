@@ -1,7 +1,6 @@
-### .bashrc_genebuild
 # vim: set filetype=sh :
 
-# William Stark (william.stark.5000@gmail.com)
+# William Stark (william@ebi.ac.uk)
 
 
 # (try to) fix EBI cluster / brew / tmux issue:
@@ -32,7 +31,7 @@ alias nfs="cd $NFS_ROOT"
 
 
 ### Perl
-alias perltidy="perltidy -b -bext='/' -i=2"
+#alias perltidy="perltidy -b -bext='/' -i=2"
 
 
 # load my version of the genebuild.sh configuration script

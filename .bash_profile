@@ -4,8 +4,8 @@
 # William Stark (william.stark.5000@gmail.com)
 
 
-### load ~/.profile
+### load $HOME/.profile
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile"
 
-### load ~/.bashrc
+### load $HOME/.bashrc
 [[ -s "$HOME/.bashrc" ]] && source "$HOME/.bashrc"
