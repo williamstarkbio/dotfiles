@@ -34,6 +34,11 @@ export ENSCODE="${HPS_ROOT}/ENSCODE"
 #alias perltidy="perltidy -b -bext='/' -i=2"
 
 
+if [[ -d $HOME/dotfiles/ebi/bin ]]; then
+    export PATH="$HOME/dotfiles/ebi/bin:$PATH"
+fi
+
+
 # genebuild.sh
 # https://www.ebi.ac.uk/seqdb/confluence/display/ENSGBD/Genebuild+virtual+user%2C+shared+environment+and+shared+data
 ################################################################################
