@@ -1,14 +1,46 @@
-# docs
 # https://www.ebi.ac.uk/seqdb/confluence/display/ENSGBD/Genebuild+virtual+user%2C+shared+environment+and+shared+data
 
 export GB_HOME=/nfs/production/panda/ensembl/genebuild
 
+# basic.sh
+################################################################################
+# if [ -z "$ENSEMBL_SOFTWARE_HOME" ] && [ -e "/nfs/software/ensembl/latest/envs/basic.sh" ]; then
+#   source /nfs/software/ensembl/latest/envs/basic.sh
+# fi
 # ws
 # use my version of basic.sh
-# if [ -z "$ENSEMBL_SOFTWARE_HOME" ] && [ -e "/nfs/software/ensembl/latest/envs/basic.sh" ]; then
-#   . /nfs/software/ensembl/latest/envs/basic.sh
+#[[ -f "$HOME/dotfiles/ebi/basic.sh" ]] && source "$HOME/dotfiles/ebi/basic.sh"
+
+#export ENSEMBL_SOFTWARE_HOME=/nfs/software/ensembl/RHEL7-JUL2017-core2
+ENSEMBL_SOFTWARE_HOME=/nfs/software/ensembl/RHEL7-JUL2017-core2
+
+# Homebrew (Linuxbrew)
+if [ -f /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/linuxbrew.sh ]; then
+  source /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/linuxbrew.sh
+fi
+
+# plenv
+# if [ -f /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/plenv.sh ]; then
+#   source /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/plenv.sh
 # fi
-[[ -f "$HOME/dotfiles/ebi/basic.sh" ]] && source "$HOME/dotfiles/ebi/basic.sh"
+
+# pyenv
+# if [ -f /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/pyenv.sh ]; then
+#   source /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/pyenv.sh
+# fi
+
+# MySQL commands
+# https://www.ebi.ac.uk/seqdb/confluence/display/ENS/MySQL+commands
+# if [ -f /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/mysql-cmds.sh ]; then
+#   source /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/mysql-cmds.sh
+# fi
+mysql_cmd_dir=/nfs/software/ensembl/mysql-cmds
+if [ -d $mysql_cmd_dir ]; then
+  PATH=${mysql_cmd_dir}/ensembl/bin:${mysql_cmd_dir}/ensemblgenomes/bin:$PATH
+  export PATH
+fi
+################################################################################
+
 
 export GB_SCRATCH=/hps/nobackup2/production/ensembl/genebuild
 export REPEATMASKER_CACHE=$GB_SCRATCH
