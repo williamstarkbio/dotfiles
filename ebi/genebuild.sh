@@ -4,7 +4,7 @@ export GB_HOME=/nfs/production/panda/ensembl/genebuild
 
 # basic.sh
 ################################################################################
-# if [ -z "$ENSEMBL_SOFTWARE_HOME" ] && [ -e "/nfs/software/ensembl/latest/envs/basic.sh" ]; then
+# if [[ -z "$ENSEMBL_SOFTWARE_HOME" ]] && [[ -e "/nfs/software/ensembl/latest/envs/basic.sh" ]]; then
 #   source /nfs/software/ensembl/latest/envs/basic.sh
 # fi
 # ws
@@ -15,29 +15,28 @@ export GB_HOME=/nfs/production/panda/ensembl/genebuild
 ENSEMBL_SOFTWARE_HOME=/nfs/software/ensembl/RHEL7-JUL2017-core2
 
 # Homebrew (Linuxbrew)
-if [ -f /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/linuxbrew.sh ]; then
+if [[ -f /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/linuxbrew.sh ]]; then
   source /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/linuxbrew.sh
 fi
 
 # plenv
-# if [ -f /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/plenv.sh ]; then
+# if [[ -f /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/plenv.sh ]]; then
 #   source /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/plenv.sh
 # fi
 
 # pyenv
-# if [ -f /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/pyenv.sh ]; then
+# if [[ -f /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/pyenv.sh ]]; then
 #   source /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/pyenv.sh
 # fi
 
 # MySQL commands
 # https://www.ebi.ac.uk/seqdb/confluence/display/ENS/MySQL+commands
-# if [ -f /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/mysql-cmds.sh ]; then
+# if [[ -f /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/mysql-cmds.sh ]]; then
 #   source /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/mysql-cmds.sh
 # fi
 mysql_cmd_dir=/nfs/software/ensembl/mysql-cmds
-if [ -d $mysql_cmd_dir ]; then
-  PATH=${mysql_cmd_dir}/ensembl/bin:${mysql_cmd_dir}/ensemblgenomes/bin:$PATH
-  export PATH
+if [[ -d $mysql_cmd_dir ]]; then
+    export PATH="${mysql_cmd_dir}/ensembl/bin:${mysql_cmd_dir}/ensemblgenomes/bin:$PATH"
 fi
 ################################################################################
 
@@ -48,16 +47,16 @@ export BLASTDB_DIR=$GB_SCRATCH/blastdb
 export REPEATMODELER_DIR=$GB_SCRATCH/custom_repeat_libraries/repeatmodeler
 export LSB_DEFAULTQUEUE="production-rh74"
 
-if [ -n "$LINUXBREW_HOME" ];then
-  if [ -z "$WISECONFIGDIR" ]; then
-    export PATH="$PATH":"$($LINUXBREW_HOME/bin/brew --prefix ensembl/external/exonerate09)/bin":"$($LINUXBREW_HOME/bin/brew --prefix ensembl/external/bwa-051mt)/bin"
-  fi
-  export BIOPERL_LIB="$($LINUXBREW_HOME/bin/brew --prefix ensembl/ensembl/bioperl-169)/libexec"
-  export WISECONFIGDIR="$($LINUXBREW_HOME/bin/brew --prefix ensembl/external/genewise)/share/genewise"
-  export GBLAST_PATH="$($LINUXBREW_HOME/bin/brew --prefix)/bin"
+if [[ -n "$LINUXBREW_HOME" ]];then
+    if [[ -z "$WISECONFIGDIR" ]]; then
+        export PATH="$($LINUXBREW_HOME/bin/brew --prefix ensembl/external/exonerate09)/bin":"$($LINUXBREW_HOME/bin/brew --prefix ensembl/external/bwa-051mt)/bin:$PATH"
+    fi
+    export BIOPERL_LIB="$($LINUXBREW_HOME/bin/brew --prefix ensembl/ensembl/bioperl-169)/libexec"
+    export WISECONFIGDIR="$($LINUXBREW_HOME/bin/brew --prefix ensembl/external/genewise)/share/genewise"
+    export GBLAST_PATH="$($LINUXBREW_HOME/bin/brew --prefix)/bin"
 fi
 
-if [ -d "/nfs/production/panda/ensembl/production/ensemblftp/data_files" ];then
+if [[ -d "/nfs/production/panda/ensembl/production/ensemblftp/data_files" ]];then
   export FTP_DIR="/nfs/production/panda/ensembl/production/ensemblftp/data_files"
 fi
 
@@ -80,13 +79,13 @@ shopt -s direxpand
 #alias mkgbdir="mkdir -m 2775"
 
 reload_ensembl_release() {
-  EVERSION=`mysql-ens-meta-prod-1 ensembl_metadata -NB -e "SELECT ensembL_version FROM data_release WHERE is_current = 1"`
-  if [ $EVERSION -gt ${ENSEMBL_RELEASE:-0} ]; then
-    export ENSEMBL_RELEASE=$EVERSION
-  elif [ $EVERSION -lt $ENSEMBL_RELEASE ];then
-    echo "Something is wrong: ENSEMBL_RELEASE=$ENSEMBL_RELEASE and ensembl_production_$EVERSION"
-    return 1
-  fi
+    EVERSION=$(mysql-ens-meta-prod-1 ensembl_metadata -NB -e "SELECT ensembl_version FROM data_release WHERE is_current = 1;")
+    if [[ $EVERSION -gt ${ENSEMBL_RELEASE:-0} ]]; then
+        export ENSEMBL_RELEASE=$EVERSION
+    elif [[ $EVERSION -lt $ENSEMBL_RELEASE ]];then
+        echo "Something is wrong: ENSEMBL_RELEASE=$ENSEMBL_RELEASE and ensembl_production_$EVERSION"
+        return 1
+    fi
 }
 
 reload_ensembl_release
