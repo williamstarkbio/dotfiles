@@ -12,7 +12,7 @@
     ; email address
     ;email = william.stark.5000@gmail.com
     ; GPG signing key ID
-    ;signingkey = E5626F35249754BE
+    ;signingkey =
 
 [core]
     ; the text editor to use for commits and tag messages
