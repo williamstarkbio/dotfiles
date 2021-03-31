@@ -27,7 +27,7 @@ alias hps="cd $HPS_ROOT"
 alias nfs="cd $NFS_ROOT"
 
 
-export ENSCODE="${HPS_ROOT}/ENSCODE"
+export ENSCODE="${HPS_ROOT}/enscode"
 
 
 ### Perl
