@@ -203,16 +203,18 @@ endfunction
 
 """ convert MediaWiki text format to MarkDown
 function! MediaWiki_to_Markdown()
-%s/=====$//g
-%s/====$//g
-%s/===$//g
-%s/==$//g
-%s/=$//g
-%s/^=====/##### /g
-%s/^====/#### /g
-%s/^===/### /g
-%s/^==/## /g
-%s/^=/# /g
+    %s/=====$//g
+    %s/====$//g
+    %s/===$//g
+    %s/==$//g
+    %s/=$//g
+    %s/^=====/##### /g
+    %s/^====/#### /g
+    %s/^===/### /g
+    %s/^==/## /g
+    %s/^=/# /g
+    %s/^<pre>/```/g
+    %s/^<\/pre>/```/g
 endfunction
 command! MediaWikiToMarkdown call MediaWiki_to_Markdown()
 
