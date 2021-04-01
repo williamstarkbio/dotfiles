@@ -68,11 +68,9 @@ ENSEMBL_RELEASE="104"
 ################################################################################
 
 
-### Perl plenv
-# https://github.com/tokuhirom/plenv
-if [[ -d "$HOME/.plenv" ]]; then
-    export PATH="$HOME/.plenv/bin:$PATH"
-    eval "$(plenv init -)"
+### plenv
+if [[ -f "${ENSEMBL_SOFTWARE_HOME}/envs/plenv.sh" ]]; then
+    source "${ENSEMBL_SOFTWARE_HOME}/envs/plenv.sh"
 fi
 
 

@@ -15,14 +15,15 @@ export GB_HOME=/nfs/production/panda/ensembl/genebuild
 ENSEMBL_SOFTWARE_HOME=/nfs/software/ensembl/RHEL7-JUL2017-core2
 
 # Homebrew (Linuxbrew)
-if [[ -f /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/linuxbrew.sh ]]; then
-    source /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/linuxbrew.sh
+# https://www.ebi.ac.uk/seqdb/confluence/display/ENS/Linuxbrew
+if [[ -f "${ENSEMBL_SOFTWARE_HOME}/envs/linuxbrew.sh" ]]; then
+    source "${ENSEMBL_SOFTWARE_HOME}/envs/linuxbrew.sh"
 fi
 
 # plenv
-# if [[ -f /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/plenv.sh ]]; then
-#     source /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/plenv.sh
-# fi
+if [[ -f "${ENSEMBL_SOFTWARE_HOME}/envs/plenv.sh"]]; then
+    source "${ENSEMBL_SOFTWARE_HOME}/envs/plenv.sh"
+fi
 
 # pyenv
 # if [[ -f /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/pyenv.sh ]]; then

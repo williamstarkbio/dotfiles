@@ -8,11 +8,9 @@ export ENSEMBL_SOFTWARE_HOME=/nfs/software/ensembl/RHEL7-JUL2017-core2
 if [ -f /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/linuxbrew.sh ]; then
   . /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/linuxbrew.sh
 fi
-# ws
-# disable
-# if [ -f /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/plenv.sh ]; then
-#   . /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/plenv.sh
-# fi
+if [ -f /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/plenv.sh ]; then
+  . /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/plenv.sh
+fi
 # ws
 # disable
 # if [ -f /nfs/software/ensembl/RHEL7-JUL2017-core2/envs/pyenv.sh ]; then
