@@ -62,6 +62,9 @@ fi
 
 export HIVE_EMAIL="${USER}@ebi.ac.uk"
 export GENEBUILDER_ID=50
+
+#ensembl_version=$(mysql-ens-meta-prod-1 ensembl_metadata --skip-column-names --execute="SELECT ensembl_version FROM data_release WHERE is_current = 1;")
+ENSEMBL_RELEASE="104"
 ################################################################################
 
 
