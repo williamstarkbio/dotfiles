@@ -1061,7 +1061,7 @@ __get_directories_color() {
 [[ -d "$HOME/.poetry/bin" ]] && export PATH="$HOME/.poetry/bin:$PATH"
 
 ### pipx
-eval "$(register-python-argcomplete pipx)"
+#eval "$(register-python-argcomplete pipx)"
 
 ### environment variables
 # use pudb for debugging globally
@@ -1103,7 +1103,7 @@ fi
 
 ## AWS
 # enable AWS CLI command completion
-complete -C aws_completer aws
+#complete -C aws_completer aws
 
 
 ## Node.js
