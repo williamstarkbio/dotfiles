@@ -4,6 +4,25 @@
 # William Stark (william.stark.5000@gmail.com)
 
 
+## specify Python pycache directory
+if command -v pyenv &> /dev/null; then
+    unset PYTHONDONTWRITEBYTECODE
+    export PYTHONPYCACHEPREFIX="$(pyenv prefix)/pycache"
+else
+    # don't write bytecode on disk
+    export PYTHONDONTWRITEBYTECODE=1
+fi
+
+
+### Java jenv
+# https://www.jenv.be/
+# https://github.com/jenv/jenv
+if [[ -d "$HOME/.jenv" ]]; then
+    export PATH="$HOME/.jenv/bin:$PATH"
+    eval "$(jenv init -)"
+fi
+
+
 ### pyenv
 if [[ -d "$HOME/.pyenv" ]]; then
     export PYENV_ROOT="$HOME/.pyenv"

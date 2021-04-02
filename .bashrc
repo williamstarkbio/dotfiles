@@ -165,68 +165,6 @@ if [[ -f $HOME/data/programs/z/z.sh ]]; then
 fi
 
 
-## Python
-
-### Poetry
-[[ -d "$HOME/.poetry/bin" ]] && export PATH="$HOME/.poetry/bin:$PATH"
-
-### pipx
-eval "$(register-python-argcomplete pipx)"
-
-### environment variables
-# use pudb for debugging globally
-export PYTHONBREAKPOINT=pudb.set_trace
-
-
-## Rust
-# https://rustup.rs/
-[[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
-
-
-## Deno
-if [[ -d "$HOME/.deno" ]]; then
-    export DENO_INSTALL="$HOME/.deno"
-    export PATH="$DENO_INSTALL/bin:$PATH"
-fi
-
-
-## Go
-if command -v go &> /dev/null; then
-    export GOPATH="$HOME/go"
-    export PATH="$HOME/go/bin:$PATH"
-fi
-
-
-## Ruby
-# http://rvm.io/
-[[ -s "$HOME/.rvm/bin" ]] && export PATH="$PATH:$HOME/.rvm/bin"
-# set ~/gems as Ruby Gems installation directory
-export GEM_HOME=$HOME/gems
-export PATH=$HOME/gems/bin:$PATH
-
-
-## Haskell
-[[ -s "$HOME/.cabal/bin" ]] && export PATH="$PATH:$HOME/.cabal/bin"
-
-
-## AWS
-# enable AWS CLI command completion
-complete -C aws_completer aws
-
-
-## Node.js
-# https://github.com/nvm-sh/nvm
-[[ -d "$HOME/.nvm" ]] && export NVM_DIR="$HOME/.nvm"
-# load nvm
-[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
-# load nvm bash_completion
-[[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
-
-
-### add GPG key
-export GPG_TTY=$(tty)
-
-
 ### make aliases work with sudo commands
 alias sudo='sudo '
 
@@ -1115,18 +1053,76 @@ __get_directories_color() {
 ################################################################################
 
 
-### local settings
-if [[ -f $HOME/.bashrc_local ]]; then
-    source $HOME/.bashrc_local
+## executable settings
+################################################################################
+## Python
+
+### Poetry
+[[ -d "$HOME/.poetry/bin" ]] && export PATH="$HOME/.poetry/bin:$PATH"
+
+### pipx
+eval "$(register-python-argcomplete pipx)"
+
+### environment variables
+# use pudb for debugging globally
+export PYTHONBREAKPOINT="pudb.set_trace"
+
+
+## Rust
+# https://rustup.rs/
+[[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
+
+
+## Deno
+if [[ -d "$HOME/.deno" ]]; then
+    export DENO_INSTALL="$HOME/.deno"
+    export PATH="$DENO_INSTALL/bin:$PATH"
 fi
 
 
-### Java jenv
-# https://www.jenv.be/
-# https://github.com/jenv/jenv
-if [[ -d "$HOME/.jenv" ]]; then
-    export PATH="$HOME/.jenv/bin:$PATH"
-    eval "$(jenv init -)"
+## Go
+if command -v go &> /dev/null; then
+    export GOPATH="$HOME/go"
+    export PATH="$HOME/go/bin:$PATH"
+fi
+
+
+## Ruby
+# http://rvm.io/
+if [[ -s "$HOME/.rvm/bin" ]]; then
+    export PATH="$PATH:$HOME/.rvm/bin"
+    # set ~/gems as Ruby Gems installation directory
+    export GEM_HOME=$HOME/gems
+    export PATH=$HOME/gems/bin:$PATH
+fi
+
+
+## Haskell
+[[ -s "$HOME/.cabal/bin" ]] && export PATH="$PATH:$HOME/.cabal/bin"
+
+
+## AWS
+# enable AWS CLI command completion
+complete -C aws_completer aws
+
+
+## Node.js
+# https://github.com/nvm-sh/nvm
+[[ -d "$HOME/.nvm" ]] && export NVM_DIR="$HOME/.nvm"
+# load nvm
+[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
+# load nvm bash_completion
+[[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+
+
+### add GPG key
+export GPG_TTY=$(tty)
+################################################################################
+
+
+### local settings
+if [[ -f $HOME/.bashrc_local ]]; then
+    source $HOME/.bashrc_local
 fi
 
 
@@ -1139,16 +1135,6 @@ fi
 ### ws computer
 if [[ -f $HOME/.bashrc_ws ]]; then
     source $HOME/.bashrc_ws
-fi
-
-
-## specify Python pycache directory
-if command -v pyenv &> /dev/null; then
-    unset PYTHONDONTWRITEBYTECODE
-    export PYTHONPYCACHEPREFIX="$(pyenv prefix)/pycache"
-else
-    # don't write bytecode on disk
-    export PYTHONDONTWRITEBYTECODE=1
 fi
 
 
