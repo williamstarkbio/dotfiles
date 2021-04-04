@@ -469,6 +469,7 @@ alias subs-youtube-dl="youtube-dl --no-mtime --format 'bestvideo[ext=mp4][height
 ################################################################################
 alias ..='cd ..'
 alias ...='cd ../..'
+alias wi='z wiki'
 
 alias clipboard='xclip -sel clip'
 alias py='python'
