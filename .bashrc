@@ -849,7 +849,9 @@ aliased_d_extract() {
                 tar -x -v -f "$arg"
             ;;
             *.gz)
-                gunzip -k "$arg"
+                #gunzip -k "$arg"
+                # use shell redirections that work in versions lower than 1.6
+                gunzip < "$arg" > "${arg%.*}"
             ;;
             *.rar)
                 unrar x "$arg"
