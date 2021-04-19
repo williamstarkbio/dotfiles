@@ -468,10 +468,8 @@ alias subs-youtube-dl="youtube-dl --no-mtime --format 'bestvideo[ext=mp4][height
 ### custom commands and shortcuts
 ################################################################################
 alias ..='cd ..'
-alias ...='cd ../..'
-alias wi='z wiki'
 
-alias clipboard='xclip -sel clip'
+alias clip='xclip -sel clip'
 alias py='python'
 alias spyder='spyder3 --workdir=. &'
 ################################################################################
