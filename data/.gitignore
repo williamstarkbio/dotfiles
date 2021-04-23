@@ -21,3 +21,6 @@
 *.mkv
 *.jpg
 *.jpeg
+
+# other file formats
+*.html
