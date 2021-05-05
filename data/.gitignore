@@ -21,6 +21,7 @@
 *.mkv
 *.jpg
 *.jpeg
+*.pickle
 
 # other file formats
 *.html
