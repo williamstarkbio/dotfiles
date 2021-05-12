@@ -223,16 +223,6 @@ alias du='du -h -s'
 alias googler='googler --noua'
 
 
-### grep, egrep, fgrep, rgrep
-# print lines matching a pattern
-# --color[=WHEN], --colour[=WHEN]
-# Surround the matched (non-empty) strings, matching lines, context lines,
-# file names, line numbers, byte offsets, and separators (for fields and
-# groups of context lines) with escape sequences to display them in color on
-# the terminal.
-alias grep='grep --color=auto'
-
-
 ### info
 # read Info documents
 # --vi-keys
@@ -380,7 +370,7 @@ alias rclone='rclone --verbose --retries 17 --retries-sleep=17s'
 # Search hidden files and directories.
 # -g, --glob GLOB ...
 # Include or exclude files and directories for searching that match the given glob.
-alias rg='rg --smart-case --no-ignore-vcs --hidden --glob "!.git/*" --glob "!.venv/*"'
+alias rg='rg --smart-case --no-ignore-vcs --hidden --glob "!.git" --glob "!.ipynb_checkpoints" --glob "!.venv"'
 
 
 ### rm
