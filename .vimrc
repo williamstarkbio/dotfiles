@@ -73,8 +73,14 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 
 " vim-perl
+" support for Perl 5
 " https://github.com/vim-perl/vim-perl
 Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
+
+" repeat.vim
+" enable repeating supported plugin maps with "."
+" https://github.com/tpope/vim-repeat
+Plug 'tpope/vim-repeat'
 
 " rust.vim
 " Vim configuration for Rust
