@@ -55,8 +55,11 @@ ENSEMBL_SOFTWARE_HOME=/nfs/software/ensembl/RHEL7-JUL2017-core2
 
 # Homebrew (Linuxbrew)
 # https://www.ebi.ac.uk/seqdb/confluence/display/ENS/Linuxbrew
-if [[ -f "${ENSEMBL_SOFTWARE_HOME}/envs/linuxbrew.sh" ]]; then
-    source "${ENSEMBL_SOFTWARE_HOME}/envs/linuxbrew.sh"
+#if [[ -f "${ENSEMBL_SOFTWARE_HOME}/envs/linuxbrew.sh" ]]; then
+#    source "${ENSEMBL_SOFTWARE_HOME}/envs/linuxbrew.sh"
+#fi
+if [[ -f "$HOME/dotfiles/ebi/linuxbrew.sh" ]]; then
+    source "$HOME/dotfiles/ebi/linuxbrew.sh"
 fi
 
 # MySQL commands
@@ -80,7 +83,6 @@ fi
 
 
 ### pyenv
-
 PYENV_ROOT="${NFS_ROOT}/.pyenv"
 if [[ -d "$PYENV_ROOT" ]]; then
     export PYENV_ROOT
