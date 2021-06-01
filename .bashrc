@@ -320,10 +320,12 @@ aliased_lla() {
 ### exa
 # a modern replacement for ls
 # https://github.com/ogham/exa
-
-# make timestamps black
+# specify timestamps color
 # https://the.exa.website/docs/colour-themes
-export EXA_COLORS="da=1;30"
+# black
+#export EXA_COLORS="da=1;90"
+# cyan
+export EXA_COLORS="da=1;36"
 aliased_exa() {
     clear -x
     if [[ -z "$1" ]]; then
