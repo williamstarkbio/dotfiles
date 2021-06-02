@@ -329,10 +329,10 @@ export EXA_COLORS="da=1;36"
 aliased_exa() {
     clear -x
     if [[ -z "$1" ]]; then
-        exa --oneline --long --group --header --time-style=long-iso --all --sort=extension
+        exa --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first
     else
         for arg in "$@"; do
-            exa --oneline --long --group --header --time-style=long-iso --all --sort=extension "$arg"
+            exa --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first "$arg"
         done
     fi
 }
@@ -340,7 +340,7 @@ alias la='aliased_exa'
 
 aliased_exa_paged() {
     clear -x
-    exa --oneline --long --group --header --time-style=long-iso --all --sort=extension --color=always | less -FRX
+    exa --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --color=always | less -FRX
 }
 alias lla='aliased_exa_paged'
 
