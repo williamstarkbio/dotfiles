@@ -340,7 +340,15 @@ alias la='aliased_exa'
 
 aliased_exa_paged() {
     clear -x
-    exa --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --color=always | less -FRX
+    if [[ -z "$1" ]]; then
+        exa --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --color=always | less -FRX
+    else
+        (
+        for arg in "$@"; do
+            exa --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --color=always "$arg"
+        done
+        ) | less -FRX
+    fi
 }
 alias lla='aliased_exa_paged'
 
