@@ -505,6 +505,10 @@ alias spyder='spyder3 --workdir=. &'
 # the standard version control system
 ################################################################################
 
+# set up git completion
+# https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
+#[[ -f "$HOME/dotfiles/git-completion.sh" ]] && source "$HOME/dotfiles/git-completion.sh"
+
 ### initialize a git repo, add and commit my default .gitignore
 aliased_gi() {
     git init
@@ -1162,6 +1166,33 @@ fi
 ### ws computer
 if [[ -f $HOME/.bashrc_ws ]]; then
     source $HOME/.bashrc_ws
+fi
+
+
+### Java jenv
+# https://www.jenv.be/
+# https://github.com/jenv/jenv
+if [[ -d "$JENV_ROOT" ]]; then
+    export PATH="${JENV_ROOT}/bin:${PATH}"
+    eval "$(jenv init -)"
+fi
+
+
+### plenv
+if [[ -d "$PLENV_ROOT" ]]; then
+    export PLENV_ROOT
+    export PATH="${PLENV_ROOT}/bin:${PATH}"
+    eval "$(plenv init -)"
+fi
+
+
+### pyenv
+if [[ -d "$PYENV_ROOT" ]]; then
+    export PYENV_ROOT
+    export PATH="${PYENV_ROOT}/bin:${PATH}"
+    eval "$(pyenv init --path)"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
 fi
 
 

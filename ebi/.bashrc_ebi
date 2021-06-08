@@ -58,9 +58,9 @@ ENSEMBL_SOFTWARE_HOME=/nfs/software/ensembl/RHEL7-JUL2017-core2
 #if [[ -f "${ENSEMBL_SOFTWARE_HOME}/envs/linuxbrew.sh" ]]; then
 #    source "${ENSEMBL_SOFTWARE_HOME}/envs/linuxbrew.sh"
 #fi
-if [[ -f "$HOME/dotfiles/ebi/linuxbrew.sh" ]]; then
-    source "$HOME/dotfiles/ebi/linuxbrew.sh"
-fi
+#if [[ -f "$HOME/dotfiles/ebi/linuxbrew.sh" ]]; then
+#    source "$HOME/dotfiles/ebi/linuxbrew.sh"
+#fi
 
 # MySQL commands
 # https://www.ebi.ac.uk/seqdb/confluence/display/ENS/MySQL+commands
@@ -77,17 +77,10 @@ ENSEMBL_RELEASE="104"
 
 
 ### plenv
-if [[ -f "${ENSEMBL_SOFTWARE_HOME}/envs/plenv.sh" ]]; then
-    source "${ENSEMBL_SOFTWARE_HOME}/envs/plenv.sh"
-fi
-
+#if [[ -f "${ENSEMBL_SOFTWARE_HOME}/envs/plenv.sh" ]]; then
+#    source "${ENSEMBL_SOFTWARE_HOME}/envs/plenv.sh"
+#fi
+PLENV_ROOT="/nfs/software/ensembl/RHEL7-JUL2017-core2/plenv"
 
 ### pyenv
 PYENV_ROOT="${NFS_ROOT}/.pyenv"
-if [[ -d "$PYENV_ROOT" ]]; then
-    export PYENV_ROOT
-    export PATH="${PYENV_ROOT}/bin:${PATH}"
-    eval "$(pyenv init --path)"
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-fi
