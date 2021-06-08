@@ -771,26 +771,26 @@ aliased_d_hash_generate() {
         shopt -s extglob
         # NOTE
         # use ">|" instead of ">" to temporarily override the noclobber option enabled in Bash
-        hashdeep -j0 -r -e -l !(file_hashes.txt) > file_hashes.txt
+        #hashdeep -j0 -r -e -l !(file_hashes.txt) > file_hashes.txt
         shopt -u extglob
     else
         hashdeep -j0 -r -e -l "$@" > file_hashes.txt
     fi
 }
-alias d-hash_generate='aliased_d_hash_generate'
+#alias d-hash_generate='aliased_d_hash_generate'
 
 
 ### read and verify hashes of files
 aliased_d_hash_verify() {
     if [[ -z "$1" ]]; then
         shopt -s extglob
-        hashdeep -j0 -r -e -l -a -v -k file_hashes.txt !(file_hashes.txt)
+        #hashdeep -j0 -r -e -l -a -v -k file_hashes.txt !(file_hashes.txt)
         shopt -u extglob
     else
         hashdeep -j0 -r -e -l -a -v -k file_hashes.txt "$@"
     fi
 }
-alias d-hash_verify='aliased_d_hash_verify'
+#alias d-hash_verify='aliased_d_hash_verify'
 
 
 ### zip
