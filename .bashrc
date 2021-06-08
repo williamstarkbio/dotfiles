@@ -505,10 +505,6 @@ alias spyder='spyder3 --workdir=. &'
 # the standard version control system
 ################################################################################
 
-# set up git completion
-# https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
-#[[ -f "$HOME/dotfiles/git-completion.sh" ]] && source "$HOME/dotfiles/git-completion.sh"
-
 ### initialize a git repo, add and commit my default .gitignore
 aliased_gi() {
     git init
@@ -1167,6 +1163,11 @@ fi
 if [[ -f $HOME/.bashrc_ws ]]; then
     source $HOME/.bashrc_ws
 fi
+
+
+# set up git completion
+# https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
+[[ -f "$HOME/dotfiles/git-completion.bash" ]] && source "$HOME/dotfiles/git-completion.bash"
 
 
 ### Java jenv

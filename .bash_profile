@@ -5,7 +5,7 @@
 
 
 ### load $HOME/.profile
-[[ -s "$HOME/.profile" ]] && source "$HOME/.profile"
+[[ -s "${HOME}/.profile" ]] && source "${HOME}/.profile"
 
 ### load $HOME/.bashrc
-[[ -s "$HOME/.bashrc" ]] && source "$HOME/.bashrc"
+[[ -s "${HOME}/.bashrc" ]] && source "${HOME}/.bashrc"

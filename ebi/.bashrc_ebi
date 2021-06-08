@@ -75,6 +75,9 @@ export GENEBUILDER_ID=50
 ENSEMBL_RELEASE="104"
 ################################################################################
 
+LINUXBREW_BIN="${ENSEMBL_SOFTWARE_HOME}/linuxbrew/bin"
+alias git="${LINUXBREW_BIN}/git"
+
 
 ### plenv
 #if [[ -f "${ENSEMBL_SOFTWARE_HOME}/envs/plenv.sh" ]]; then
