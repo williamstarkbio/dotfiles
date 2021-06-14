@@ -22,11 +22,6 @@
 [[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
 
 
-### load SSH keys to the authentication agent
-eval `ssh-agent -s` &> /dev/null
-[[ -f "$HOME/.ssh/id_rsa_github" ]] && ssh-add "$HOME/.ssh/id_rsa_github" &> /dev/null
-
-
 ### NVIDIA CUDA
 #CUDA_ROOT="/usr/local/cuda"
 #[[ -s "$CUDA_ROOT/bin" ]] && export PATH="$CUDA_ROOT/bin:$PATH"
