@@ -711,7 +711,7 @@ alias gsh='aliased_gsh'
 
 ### load GitHub SSH key
 d-github-ssh() {
-    pkill ssh-agent
+    #pkill ssh-agent
     eval "$(ssh-agent -s)"
     ssh-add $HOME/.ssh/id_rsa_github
 }
