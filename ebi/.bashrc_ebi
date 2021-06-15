@@ -35,10 +35,6 @@ export ENSCODE="${NFS_ROOT}/enscode"
 export PYTHONDONTWRITEBYTECODE=1
 
 
-### Perl
-#alias perltidy="perltidy -b -bext='/' -i=2"
-
-
 if [[ -d $HOME/dotfiles/ebi/bin ]]; then
     export PATH="$HOME/dotfiles/ebi/bin:$PATH"
 fi

@@ -1,6 +1,10 @@
 # vim: set filetype=sh :
 
 
+### Perl
+alias perltidy="perltidy -b -bext='/' -i=2"
+
+
 # Ensembl
 ################################################################################
 ENSEMBL_API_ROOT="$ENSCODE/ensembl_api"
