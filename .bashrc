@@ -406,7 +406,7 @@ alias rclone='rclone --verbose --retries 17 --retries-sleep=17s'
 # Search hidden files and directories.
 # -g, --glob GLOB ...
 # Include or exclude files and directories for searching that match the given glob.
-alias rg='rg --smart-case --no-ignore-vcs --hidden --glob "!.git" --glob "!.ipynb_checkpoints" --glob "!.venv"'
+alias rg='rg --smart-case --no-ignore-vcs --hidden --glob "!.git" --glob "!.ipynb_checkpoints" --glob "!.venv" --glob "!*.ipynb"'
 
 
 ### rm
