@@ -336,7 +336,7 @@ autocmd FileType markdown set iskeyword-=:
 " Perl
 " don't autocomplete from included files
 autocmd FileType perl set complete-=i
-autocmd FileType perl setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab autoindent
+autocmd FileType perl setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent
 
 " Python
 autocmd FileType py setlocal textwidth=79 tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent
