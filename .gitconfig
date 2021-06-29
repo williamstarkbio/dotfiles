@@ -19,6 +19,9 @@
     editor = vim
     excludesfile = ~/dotfiles/data/.gitignore
 
+[init]
+    defaultBranch = main
+
 [color]
     ; turn on all the default terminal coloring
     ;ui = true
