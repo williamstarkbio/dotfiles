@@ -187,21 +187,7 @@ autocmd BufReadPost *
     \ endif
 
 
-""" rename current file
-function! RenameFile()
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'), 'file')
-    if new_name != '' && new_name != old_name
-        exec ':saveas ' . new_name
-        exec ':silent !rm ' . old_name
-        redraw!
-    endif
-endfunction
-nnoremap ,r :call RenameFile()<cr>
-
-
 """ make f search case insensitive
-nmap f :call FindChar()<CR>
 function FindChar()
     let c = nr2char(getchar())
     while col('.') < col('$') - 1
@@ -211,6 +197,7 @@ function FindChar()
         endif
     endwhile
 endfunction
+nnoremap f :call FindChar()<CR>
 
 
 """ convert MediaWiki text format to MarkDown
@@ -290,11 +277,15 @@ colorscheme Tomorrow
 
 
 """ visible whitespace
-" http://vimcasts.org/episodes/show-invisibles/
-" Shortcut to rapidly toggle `set list`
-nnoremap <Leader>l :set list!<CR>
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
+"set listchars=tab:▸\ ,eol:$
+" http://vimcasts.org/episodes/show-invisibles/
+" shortcut to rapidly toggle `set list`
+function! ToggleVisibleWhitespace()
+    set list!
+endfunction
+nnoremap <Leader>l :call ToggleVisibleWhitespace()<CR>
 
 
 """ use system-wide directories for swap files
