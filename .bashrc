@@ -143,7 +143,7 @@ VISUAL=vim
 ### set the $TERM to resolve a terminal rendering error with tmux and Neovim
 # https://github.com/neovim/neovim/issues/6403
 # https://github.com/neovim/neovim/wiki/FAQ#nvim-shows-weird-symbols-2-q-when-changing-modes
-export TERM=konsole-256color
+#export TERM=konsole-256color
 
 
 ## safety
