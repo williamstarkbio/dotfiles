@@ -28,8 +28,9 @@ yes_no_question() {
 }
 
 
-# append the suffix .backup and current datetime to a directory or file name
 backup_datetime() {
+    # append the suffix .backup and current datetime to a directory or file name
+
     TARGET="$1"
     DATE_TIME=$(date +%Y-%m-%d_%H:%M:%S%:z)
 
@@ -137,13 +138,13 @@ setup_neovim() {
     sudo add-apt-repository ppa:neovim-ppa/stable
     sudo apt install -y neovim
 
-    ln -s -f -v /usr/bin/nvim $HOME/bin/vim
+    ln --symbolic --force --verbose /usr/bin/nvim $HOME/bin/vim
 
-    cp -r -i -v dotfiles/.vim .vim
-    ln -s -f -v $HOME/dotfiles/.vimrc .
+    cp --recursive --interactive --verbose dotfiles/.vim .vim
+    ln --symbolic --force --verbose $HOME/dotfiles/.vimrc .
 
-    mkdir -p -v $HOME/.config/nvim/
-    cp -p -i -v dotfiles/data/init.vim $HOME/.config/nvim/
+    mkdir --parents --verbose $HOME/.config/nvim/
+    cp --preserve=mode,ownership,timestamps --interactive --verbose dotfiles/data/init.vim $HOME/.config/nvim/
 
     # setup a Python virtual environment for Neovim
     # https://github.com/zchee/deoplete-jedi/wiki/Setting-up-Python-for-Neovim
@@ -176,18 +177,18 @@ setup_nodejs() {
 setup_ripgrep() {
     # https://github.com/BurntSushi/ripgrep
     curl -LO https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_11.0.2_amd64.deb
-    sudo dpkg -i ripgrep_11.0.2_amd64.deb
-    rm -v ripgrep_11.0.2_amd64.deb
+    sudo dpkg --install ripgrep_11.0.2_amd64.deb
+    rm --verbose ripgrep_11.0.2_amd64.deb
 }
 
 
 create_data_directory() {
-    sudo mkdir -p -v /data
+    sudo mkdir --parents --verbose /data
 
-    sudo chown -v $SCRIPT_USER:$SCRIPT_USER /data
+    sudo chown --verbose $SCRIPT_USER:$SCRIPT_USER /data
 
     # create the symbolic link /d
-    sudo ln -s -f -v /data /d
+    sudo ln --symbolic --force --verbose /data /d
 }
 
 
@@ -225,6 +226,9 @@ setup_python() {
 
     # install Poetry
     curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+
+    # link .config/flake8
+    ln --symbolic --force --verbose $HOME/dotfiles/.config/flake8 .config/
 }
 
 
@@ -242,15 +246,13 @@ setup_python_programs() {
 
 
 main() {
-    # check whether the computer is running a Debian derivative
+    # check whether running on a Debian derivative
     if ! command -v dpkg &> /dev/null; then
         echo "This script is meant to be run on a Kubuntu or Ubuntu system, exiting."
         kill -INT $$
     fi
 
-
     cd $HOME
-
 
     # global variables
     SCRIPT_USER=$USER
@@ -276,8 +278,8 @@ main() {
     ################################################################################
 
     # create $HOME directories
-    mkdir -p -v bin
-    mkdir -p -v ".config"
+    mkdir --parents --verbose bin
+    mkdir --parents --verbose ".config"
 
     backup_datetime dotfiles
     git clone https://github.com/williamstark01/dotfiles.git
@@ -297,18 +299,15 @@ main() {
     done
 
     for DOTFILE in "${DOTFILES[@]}"; do
-        ln -s -f -v $HOME/dotfiles/"$DOTFILE" .
+        ln --symbolic --force --verbose $HOME/dotfiles/"$DOTFILE" .
     done
-
-    # link .config/flake8
-    ln -s -f -v $HOME/dotfiles/.config/flake8 .config/
 
 
     backup_datetime .bashrc_local
-    cp -i -v dotfiles/.bashrc_local .bashrc_local
+    cp --interactive --verbose dotfiles/.bashrc_local .bashrc_local
 
     backup_datetime .gitconfig
-    cp -i -v dotfiles/.gitconfig .gitconfig
+    cp --interactive --verbose dotfiles/.gitconfig .gitconfig
 
     setup_diff_so_fancy() {
         # https://github.com/so-fancy/diff-so-fancy
@@ -323,7 +322,7 @@ main() {
     # Konsole Tomorrow theme
     # https://github.com/dram/konsole-tomorrow-theme
     if [[ -d "$HOME/.local/share/konsole/" ]]; then
-        cp -i -v -f dotfiles/data/Tomorrow.colorscheme $HOME/.local/share/konsole/
+        cp --force --interactive --verbose dotfiles/data/Tomorrow.colorscheme $HOME/.local/share/konsole/
     fi
     ################################################################################
 
@@ -345,7 +344,7 @@ main() {
         # use my own fork that supports smart case sensitivity by merging ericbn's
         # pull request https://github.com/rupa/z/pull/221
         # https://github.com/williamstark01/z
-        mkdir -p -v $HOME/data/programs
+        mkdir --parents --verbose $HOME/data/programs
 
         Z_ROOT_DIRECTORY="$HOME/data/programs/z"
         [[ -d "$Z_ROOT_DIRECTORY" ]] && backup_datetime "$Z_ROOT_DIRECTORY"
@@ -376,7 +375,7 @@ main() {
 
     # root customizations
     root_customizations() {
-        echo "not implemented yet"
+        echo "currently not implemented"
     }
     if [[ "$SUPERUSER_RIGHTS" == "y" ]]; then
         YES_NO_ANSWER=$(yes_no_question "Install customizations for the root account?")
