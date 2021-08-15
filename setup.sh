@@ -10,7 +10,7 @@ set -e
 
 yes_no_question() {
     while true; do
-        read -e -p "$1 (y/n): " YES_NO_ANSWER
+        read -e -p "$1 (y/n): " YES_NO_ANSWER < /dev/tty
         case $YES_NO_ANSWER in
             y)
                 break
@@ -244,8 +244,8 @@ setup_python_programs() {
 main() {
     # check whether the computer is running a Debian derivative
     if ! command -v dpkg &> /dev/null; then
-        echo "this script is meant to be run on a Kubuntu or Ubuntu system"
-        exit 1
+        echo "This script is meant to be run on a Kubuntu or Ubuntu system, exiting."
+        kill -INT $$
     fi
 
 
@@ -257,32 +257,12 @@ main() {
     echo "you are logged in as user $SCRIPT_USER"
 
 
-    #YES_NO_ANSWER=$(yes_no_question "Do you have superuser rights on this system?")
-    while true; do
-        #read -e -p "Do you have superuser rights on this system (y/n)? " YES_NO_ANSWER
-        read -e -p "Do you have superuser rights on this system (y/n)? " YES_NO_ANSWER < /dev/tty
-        case $YES_NO_ANSWER in
-            y)
-                break
-                ;;
-            n)
-                break
-                ;;
-            *)
-                echo "Please enter \"y\" for yes or \"n\" for no." >&2
-                ;;
-        esac
-    done
-
+    YES_NO_ANSWER=$(yes_no_question "Do you have superuser rights on this system?")
     if [[ $YES_NO_ANSWER = "y" ]]; then
         SUPERUSER_RIGHTS="y"
     else
         echo "Skipping commands that require superuser rights."
     fi
-
-    echo $SUPERUSER_RIGHTS
-
-    kill -INT $$
 
     if [[ "$SUPERUSER_RIGHTS" == "y" ]]; then
         YES_NO_ANSWER=$(yes_no_question "Update and upgrade the system?")
