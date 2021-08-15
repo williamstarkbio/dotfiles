@@ -82,8 +82,7 @@ update_prompt() {
     # append git repository status
     # git prompt
     # https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
-    # Fix the issue of missing colors by removing the check "[ $pcmode = yes ]"
-    # in git-prompt.sh
+    # missing colors issue fixed in git-prompt.sh
     if [[ -f "$HOME/dotfiles/git-prompt.sh" ]]; then
         source "$HOME/dotfiles/git-prompt.sh"
         GIT_PS1_SHOWDIRTYSTATE=1

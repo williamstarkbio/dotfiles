@@ -557,9 +557,12 @@ __git_ps1 ()
 
 	# NO color option unless in PROMPT_COMMAND mode or it's Zsh
 	if [ -n "${GIT_PS1_SHOWCOLORHINTS-}" ]; then
-		if [ $pcmode = yes ] || [ -n "${ZSH_VERSION-}" ]; then
-			__git_ps1_colorize_gitstring
-		fi
+        # ws
+        # Remove check to fix missing colors issue.
+		#if [ $pcmode = yes ] || [ -n "${ZSH_VERSION-}" ]; then
+		#	__git_ps1_colorize_gitstring
+		#fi
+        __git_ps1_colorize_gitstring
 	fi
 
 	b=${b##refs/heads/}
