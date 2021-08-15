@@ -279,6 +279,9 @@ main() {
         echo "Skipping commands that require superuser rights."
     fi
 
+    echo $SUPERUSER_RIGHTS
+
+    kill -INT $$
 
     if [[ "$SUPERUSER_RIGHTS" == "y" ]]; then
         YES_NO_ANSWER=$(yes_no_question "Update and upgrade the system?")
