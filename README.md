@@ -1,19 +1,30 @@
 # ws dotfiles
 
-Configuration files and a setup script for Kubuntu or Ubuntu server version 18.04 LTS.
+My configuration files and setup script for a Kubuntu desktop or an Ubuntu server. Tested on 18.04 LTS.
 
 Bootstrap a system with:
-```sh
-wget -N https://github.com/williamstark01/dotfiles/raw/master/setup.sh && bash setup.sh && rm -v setup.sh
+```
+curl https://raw.githubusercontent.com/williamstark01/dotfiles/master/setup.sh | bash
 ```
 
-Applications:
+Download the setup script:
 ```
-shell: Bash
+curl -O https://raw.githubusercontent.com/williamstark01/dotfiles/master/setup.sh
+```
 
-editor: Neovim
 
-version control: Git
+## third party files
 
-terminal multiplexer: tmux
+[git-completion.bash](https://github.com/git/git/blob/master/contrib/completion/git-completion.bash) : Bash Git completion support
+
+update:
+```
+curl -O https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+```
+
+[git-prompt.sh](https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh) : Bash Git prompt support
+
+update:
+```
+curl -O https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
 ```
