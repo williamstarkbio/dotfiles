@@ -13,6 +13,7 @@ STANDARD_PACKAGES=(
     hashdeep
     git
     python-argcomplete
+    ripgrep
     ssh
     tmux
     xclip
@@ -69,121 +70,6 @@ create_data_directory() {
 }
 
 
-setup_firewall() {
-    # https://www.digitalocean.com/community/tutorials/how-to-setup-a-firewall-with-ufw-on-an-ubuntu-and-debian-cloud-server
-
-    echo "Setting up the ufw firewall..."
-    # deny all incoming connections except for ssh
-    sudo ufw default deny incoming
-    sudo ufw default allow outgoing
-    sudo ufw allow ssh
-
-    # turn on the firewall
-    sudo ufw enable
-
-    # enable incoming connections for a web server
-    sudo ufw allow http
-    sudo ufw allow https
-
-    # check the status of the firewall
-    sudo ufw status
-}
-
-
-install_google_chrome() {
-    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-
-    sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-
-    sudo apt install -y google-chrome-stable
-}
-
-
-install_desktop_packages() {
-    # CopyQ
-    # https://github.com/hluk/CopyQ
-    sudo add-apt-repository ppa:hluk/copyq
-
-    # Gimp
-    sudo add-apt-repository ppa:otto-kesselgulasch/gimp
-
-    # Grub Customizer
-    sudo add-apt-repository ppa:danielrichter2007/grub-customizer
-
-    DESKTOP_PACKAGES=(
-        copyq
-        evince
-        filelight
-        gimp
-        gnome-disk-utility
-        goldendict
-        gparted
-        grub-customizer
-        kdiff3
-        keepassxc
-        qbittorrent
-        thunderbird
-    )
-
-    sudo apt install -y $DESKTOP_PACKAGES
-
-    install_google_chrome
-}
-
-
-setup_neovim() {
-    # https://github.com/neovim/neovim/wiki/Installing-Neovim#ubuntu
-
-    backup_datetime .vim
-    backup_datetime .vimrc
-
-    sudo add-apt-repository ppa:neovim-ppa/stable
-    sudo apt install -y neovim
-
-    ln --symbolic --force --verbose /usr/bin/nvim $HOME/bin/vim
-
-    cp --recursive --interactive --verbose dotfiles/.vim .
-    ln --symbolic --force --verbose $HOME/dotfiles/.vimrc .
-
-    mkdir --parents --verbose $HOME/.config/nvim/
-    cp --preserve=mode,ownership,timestamps --interactive --verbose dotfiles/data/init.vim $HOME/.config/nvim/
-
-    # setup a Python virtual environment for Neovim
-    # https://github.com/zchee/deoplete-jedi/wiki/Setting-up-Python-for-Neovim
-    pyenv virtualenv neovim
-    pyenv activate neovim
-    pip install neovim
-    pyenv deactivate
-
-    # setup vim-plug
-    # https://github.com/junegunn/vim-plug
-    #curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-    # install configured bundles
-    #vim +PlugInstall +qa
-}
-
-
-setup_nodejs() {
-    # https://github.com/nvm-sh/nvm
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-
-    if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
-        source "$HOME/.nvm/nvm.sh"
-    fi
-
-    nvm install --lts
-}
-
-
-setup_ripgrep() {
-    # https://github.com/BurntSushi/ripgrep
-    curl -LO https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_11.0.2_amd64.deb
-    sudo dpkg --install ripgrep_11.0.2_amd64.deb
-    rm --verbose ripgrep_11.0.2_amd64.deb
-}
-
-
 setup_python() {
     # install pyenv
     if [[ -n "$PYENV_ROOT" ]]; then
@@ -235,6 +121,107 @@ setup_python_programs() {
     export PATH="$PIPX_BIN_DIR:$PATH"
 
     pipx install youtube-dl
+}
+
+
+setup_neovim() {
+    # https://github.com/neovim/neovim/wiki/Installing-Neovim#ubuntu
+
+    backup_datetime .vim
+    backup_datetime .vimrc
+
+    sudo add-apt-repository ppa:neovim-ppa/stable
+    sudo apt install -y neovim
+
+    ln --symbolic --force --verbose /usr/bin/nvim $HOME/bin/vim
+
+    cp --recursive --interactive --verbose dotfiles/.vim .
+    ln --symbolic --force --verbose $HOME/dotfiles/.vimrc .
+
+    mkdir --parents --verbose $HOME/.config/nvim/
+    cp --preserve=mode,ownership,timestamps --interactive --verbose dotfiles/data/init.vim $HOME/.config/nvim/
+
+    # setup a Python virtual environment for Neovim
+    # https://github.com/zchee/deoplete-jedi/wiki/Setting-up-Python-for-Neovim
+    pyenv virtualenv neovim
+    pyenv activate neovim
+    pip install neovim
+    pyenv deactivate
+
+    # setup vim-plug
+    # https://github.com/junegunn/vim-plug
+    #curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+    # install configured bundles
+    #vim +PlugInstall +qa
+}
+
+
+setup_nodejs() {
+    # https://github.com/nvm-sh/nvm
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+
+    if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
+        source "$HOME/.nvm/nvm.sh"
+    fi
+
+    nvm install --lts
+}
+
+
+install_desktop_packages() {
+    # CopyQ
+    # https://github.com/hluk/CopyQ
+    sudo add-apt-repository ppa:hluk/copyq
+
+    # Gimp
+    sudo add-apt-repository ppa:otto-kesselgulasch/gimp
+
+    # Grub Customizer
+    sudo add-apt-repository ppa:danielrichter2007/grub-customizer
+
+    DESKTOP_PACKAGES=(
+        copyq
+        evince
+        filelight
+        gimp
+        gnome-disk-utility
+        goldendict
+        gparted
+        grub-customizer
+        kdiff3
+        keepassxc
+        qbittorrent
+        thunderbird
+    )
+
+    sudo apt install -y $DESKTOP_PACKAGES
+
+    # install Google Chrome
+    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+    sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+    sudo apt install -y google-chrome-stable
+}
+
+
+setup_firewall() {
+    # https://www.digitalocean.com/community/tutorials/how-to-setup-a-firewall-with-ufw-on-an-ubuntu-and-debian-cloud-server
+
+    echo "Setting up the ufw firewall..."
+    # deny all incoming connections except for ssh
+    sudo ufw default deny incoming
+    sudo ufw default allow outgoing
+    sudo ufw allow ssh
+
+    # turn on the firewall
+    sudo ufw enable
+
+    # enable incoming connections for a web server
+    sudo ufw allow http
+    sudo ufw allow https
+
+    # check the status of the firewall
+    sudo ufw status
 }
 
 
@@ -313,9 +300,10 @@ main() {
 
         setup_python
         setup_python_programs
+
         setup_neovim
-        # setup_nodejs
-        setup_ripgrep
+
+        setup_nodejs
 
         # z
         # https://github.com/rupa/z
