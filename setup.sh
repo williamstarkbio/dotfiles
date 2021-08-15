@@ -244,7 +244,7 @@ setup_python_programs() {
 main() {
     # check whether the computer is running a Debian derivative
     if ! command -v dpkg &> /dev/null; then
-        echo "this script is meant to be run on an Kubuntu or Ubuntu system"
+        echo "this script is meant to be run on a Kubuntu or Ubuntu system"
         exit 1
     fi
 
@@ -257,7 +257,22 @@ main() {
     echo "you are logged in as user $SCRIPT_USER"
 
 
-    YES_NO_ANSWER=$(yes_no_question "Do you have superuser rights on this system?")
+    #YES_NO_ANSWER=$(yes_no_question "Do you have superuser rights on this system?")
+    while true; do
+        read -e -p "Do you have superuser rights on this system (y/n)? " YES_NO_ANSWER
+        case $YES_NO_ANSWER in
+            y)
+                break
+                ;;
+            n)
+                break
+                ;;
+            *)
+                echo "Please enter \"y\" for yes or \"n\" for no." >&2
+                ;;
+        esac
+    done
+
     if [[ $YES_NO_ANSWER = "y" ]]; then
         SUPERUSER_RIGHTS="y"
     else
