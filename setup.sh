@@ -91,9 +91,7 @@ install_google_chrome() {
 
     sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 
-    sudo add-apt-repository "deb http://archive.canonical.com/ubuntu $(lsb_release -sc) partner"
-
-    sudo apt install -y google-chrome-stable adobe-flashplugin
+    sudo apt install -y google-chrome-stable
 }
 
 
@@ -140,7 +138,7 @@ setup_neovim() {
 
     ln --symbolic --force --verbose /usr/bin/nvim $HOME/bin/vim
 
-    cp --recursive --interactive --verbose dotfiles/.vim .vim
+    cp --recursive --interactive --verbose dotfiles/.vim .
     ln --symbolic --force --verbose $HOME/dotfiles/.vimrc .
 
     mkdir --parents --verbose $HOME/.config/nvim/
@@ -227,7 +225,8 @@ setup_python() {
     # install Poetry
     curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
 
-    # link .config/flake8
+    # link $HOME/.pylintrc and .config/flake8
+    ln --symbolic --force --verbose $HOME/dotfiles/.pylintrc .
     ln --symbolic --force --verbose $HOME/dotfiles/.config/flake8 .config/
 }
 
@@ -246,27 +245,22 @@ setup_python_programs() {
 
 
 main() {
-    # check whether running on a Debian derivative
-    if ! command -v dpkg &> /dev/null; then
-        echo "This script is meant to be run on a Kubuntu or Ubuntu system, exiting."
-        kill -INT $$
-    fi
-
     cd $HOME
 
     # global variables
     SCRIPT_USER=$USER
-    echo "you are logged in as user $SCRIPT_USER"
+    echo "logged in as user $SCRIPT_USER"
 
 
     YES_NO_ANSWER=$(yes_no_question "Do you have superuser rights on this system?")
     if [[ $YES_NO_ANSWER = "y" ]]; then
-        SUPERUSER_RIGHTS="y"
+        SUPERUSER_RIGHTS=1
     else
+        SUPERUSER_RIGHTS=0
         echo "Skipping commands that require superuser rights."
     fi
 
-    if [[ "$SUPERUSER_RIGHTS" == "y" ]]; then
+    if [[ "$SUPERUSER_RIGHTS" == "1" ]]; then
         YES_NO_ANSWER=$(yes_no_question "Update and upgrade the system?")
         if [[ $YES_NO_ANSWER = "y" ]]; then
             sudo apt update && sudo apt -y upgrade && sudo apt dist-upgrade
@@ -290,7 +284,6 @@ main() {
         .bashrc
         .inputrc
         .profile
-        .pylintrc
         .tmux.conf
     )
 
@@ -304,20 +297,10 @@ main() {
 
 
     backup_datetime .bashrc_local
-    cp --interactive --verbose dotfiles/.bashrc_local .bashrc_local
+    cp --interactive --verbose dotfiles/.bashrc_local .
 
     backup_datetime .gitconfig
-    cp --interactive --verbose dotfiles/.gitconfig .gitconfig
-
-    setup_diff_so_fancy() {
-        # https://github.com/so-fancy/diff-so-fancy
-        cd "$HOME/bin"
-        wget https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
-        chmod +x diff-so-fancy
-        # go to the previous directory
-        cd -
-    }
-    setup_diff_so_fancy
+    cp --interactive --verbose dotfiles/.gitconfig .
 
     # Konsole Tomorrow theme
     # https://github.com/dram/konsole-tomorrow-theme
@@ -327,7 +310,7 @@ main() {
     ################################################################################
 
 
-    if [[ "$SUPERUSER_RIGHTS" == "y" ]]; then
+    if [[ "$SUPERUSER_RIGHTS" == "1" ]]; then
         install_standard_packages
 
         create_data_directory
@@ -365,22 +348,10 @@ main() {
 
 
     # install the linux-headers and build-essential packages
-    if [[ "$SUPERUSER_RIGHTS" == "y" ]]; then
+    if [[ "$SUPERUSER_RIGHTS" == "1" ]]; then
         YES_NO_ANSWER=$(yes_no_question "Install linux-headers and build-essential packages?")
         if [[ $YES_NO_ANSWER = "y" ]]; then
             sudo apt install -y linux-headers-generic build-essential
-        fi
-    fi
-
-
-    # root customizations
-    root_customizations() {
-        echo "currently not implemented"
-    }
-    if [[ "$SUPERUSER_RIGHTS" == "y" ]]; then
-        YES_NO_ANSWER=$(yes_no_question "Install customizations for the root account?")
-        if [[ $YES_NO_ANSWER = "y" ]]; then
-            root_customizations
         fi
     fi
 }
