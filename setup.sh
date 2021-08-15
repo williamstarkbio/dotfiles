@@ -8,6 +8,17 @@
 set -e
 
 
+STANDARD_PACKAGES=(
+    dos2unix
+    hashdeep
+    git
+    python-argcomplete
+    ssh
+    tmux
+    xclip
+)
+
+
 yes_no_question() {
     while true; do
         read -e -p "$1 (y/n): " YES_NO_ANSWER < /dev/tty
@@ -42,6 +53,22 @@ backup_datetime() {
 }
 
 
+setup_unattended_security_upgrades() {
+    sudo apt install unattended-upgrades
+    sudo dpkg-reconfigure unattended-upgrades
+}
+
+
+create_data_directory() {
+    sudo mkdir --parents --verbose /data
+
+    sudo chown --verbose $SCRIPT_USER:$SCRIPT_USER /data
+
+    # create symbolic link /d to /data
+    sudo ln --symbolic --force --verbose /data /d
+}
+
+
 setup_firewall() {
     # https://www.digitalocean.com/community/tutorials/how-to-setup-a-firewall-with-ufw-on-an-ubuntu-and-debian-cloud-server
 
@@ -60,29 +87,6 @@ setup_firewall() {
 
     # check the status of the firewall
     sudo ufw status
-}
-
-
-STANDARD_PACKAGES=(
-    dos2unix
-    hashdeep
-    git
-    p7zip-rar
-    python-argcomplete
-    ssh
-    tmux
-    tree
-    unrar
-    unzip
-    xclip
-    zip
-)
-install_standard_packages() {
-    sudo apt install -y $STANDARD_PACKAGES
-
-    # setup unattended security upgrades
-    sudo apt install unattended-upgrades
-    sudo dpkg-reconfigure unattended-upgrades
 }
 
 
@@ -177,16 +181,6 @@ setup_ripgrep() {
     curl -LO https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_11.0.2_amd64.deb
     sudo dpkg --install ripgrep_11.0.2_amd64.deb
     rm --verbose ripgrep_11.0.2_amd64.deb
-}
-
-
-create_data_directory() {
-    sudo mkdir --parents --verbose /data
-
-    sudo chown --verbose $SCRIPT_USER:$SCRIPT_USER /data
-
-    # create the symbolic link /d
-    sudo ln --symbolic --force --verbose /data /d
 }
 
 
@@ -311,7 +305,9 @@ main() {
 
 
     if [[ "$SUPERUSER_RIGHTS" == "1" ]]; then
-        install_standard_packages
+        sudo apt install -y $STANDARD_PACKAGES
+
+        setup_unattended_security_upgrades
 
         create_data_directory
 
