@@ -259,7 +259,8 @@ main() {
 
     #YES_NO_ANSWER=$(yes_no_question "Do you have superuser rights on this system?")
     while true; do
-        read -e -p "Do you have superuser rights on this system (y/n)? " YES_NO_ANSWER
+        #read -e -p "Do you have superuser rights on this system (y/n)? " YES_NO_ANSWER
+        read -e -p "Do you have superuser rights on this system (y/n)? " YES_NO_ANSWER < /dev/tty
         case $YES_NO_ANSWER in
             y)
                 break
