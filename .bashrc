@@ -351,6 +351,16 @@ aliased_exa_paged() {
 }
 alias lla='aliased_exa_paged'
 
+aliased_exa_tree() {
+    clear -x
+    if [[ -z "$1" ]]; then
+        exa --tree --level=2 --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always | less -FRX
+    else
+        exa --tree --level=2 --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always "$1" | less -FRX
+    fi
+}
+alias lat='aliased_exa_tree'
+
 
 ### mkdir
 # make directories
@@ -459,14 +469,6 @@ aliased_tmux() {
     fi
 }
 alias t='aliased_tmux'
-
-
-### tree
-# list contents of directories in a tree-like format
-# -a : print all files
-# -C : always colorize output
-# -L <level> : limit depth of directory tree to <level>
-alias tree='tree -aC -L 2'
 
 
 ### vim
