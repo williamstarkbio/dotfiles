@@ -471,16 +471,16 @@ aliased_tmux() {
 alias t='aliased_tmux'
 
 
-### vim
+### vim (nvim)
 # -p[N]
-# Open N tab pages. When N is omitted, open one tab page for each file.
+# Open N tab pages. If [N] is not given, one tab page is opened for every file
+# given as argument.
 alias vim='vim -p'
-
-
-### vimdiff
+# -d
+# Start in diff-mode.
 # -R
-# Read-only mode.
-alias vimdiff='vimdiff -R'
+# Readonly mode.
+alias vimdiff='nvim -d -R'
 
 ### youtube-dl
 # download best format available but not better that 1080p

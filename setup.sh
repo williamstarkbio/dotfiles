@@ -143,10 +143,10 @@ setup_neovim() {
     sudo update-alternatives --config editor
 
     mkdir --parents --verbose $HOME/.config/nvim/
-    ln --symbolic --force --verbose $HOME/dotfiles/data/init.vim $HOME/.config/nvim/
+    ln --symbolic --force --verbose $HOME/dotfiles/.config/nvim/init.vim $HOME/.config/nvim/
 
     # setup a Python virtual environment for Neovim
-    # https://github.com/deoplete-plugins/deoplete-jedi/wiki/Setting-up-Python-for-Neovim
+    # https://github.com/deoplete-plugins/deoplete-jedi/wiki/Setting-up-Python-for-Neovim#using-virtual-environments
     pyenv virtualenv neovim
     pyenv activate neovim
     pip install neovim

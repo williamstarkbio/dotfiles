@@ -12,16 +12,11 @@ set nocompatible
 " https://github.com/junegunn/vim-plug
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" install vim-plug automatically
+" install vim-plug and plugins automatically
 " https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
 
 " specify directory for plugins
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin(stdpath('data') . '/plugged')
 
 
 """ plugins
@@ -289,9 +284,9 @@ nnoremap <Leader>l :call ToggleVisibleWhitespace()<CR>
 
 
 """ use system-wide directories for swap files
-set backupdir=~/.vim/tmp/backup/
-set directory=~/.vim/tmp/swap/
-set undodir=~/.vim/tmp/undo/
+"set backupdir=~/.vim/tmp/backup/
+"set directory=~/.vim/tmp/swap/
+"set undodir=~/.vim/tmp/undo/
 
 
 """ filetype specific settings
@@ -449,6 +444,10 @@ if exists(':inccommand')
     "set inccommand=split
     set inccommand=nosplit
 endif
+
+" set Neovim Python path
+" https://github.com/deoplete-plugins/deoplete-jedi/wiki/Setting-up-Python-for-Neovim#using-virtual-environments
+let g:python3_host_prog = $PYENV_ROOT . '/versions/neovim/bin/python'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
