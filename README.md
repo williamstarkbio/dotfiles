@@ -1,6 +1,6 @@
 # ws dotfiles
 
-My configuration files and setup script for a Kubuntu desktop or an Ubuntu server. Tested on 18.04 LTS.
+My configuration files and setup script for a Kubuntu desktop or an Ubuntu server. Tested with version 20.04 LTS.
 
 Bootstrap a system with:
 ```

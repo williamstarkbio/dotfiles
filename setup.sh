@@ -200,13 +200,44 @@ install_z() {
 install_desktop_packages() {
     # CopyQ
     # https://github.com/hluk/CopyQ
-    sudo add-apt-repository ppa:hluk/copyq
+
+    # Evince
+    # https://wiki.gnome.org/Apps/Evince
+
+    # filelight
+    # https://apps.kde.org/filelight/
 
     # Gimp
-    sudo add-apt-repository ppa:otto-kesselgulasch/gimp
+    # https://www.gimp.org/
+    # https://launchpad.net/~ubuntuhandbook1/+archive/ubuntu/gimp
+    #sudo add-apt-repository ppa:ubuntuhandbook1/gimp
+
+    # GNOME Disks
+    # https://wiki.gnome.org/Apps/Disks
+    # https://gitlab.gnome.org/GNOME/gnome-disk-utility
+
+    # GoldenDict
+    # http://goldendict.org/
+
+    # GParted
+    # https://gparted.org/
 
     # Grub Customizer
-    sudo add-apt-repository ppa:danielrichter2007/grub-customizer
+    # https://launchpad.net/grub-customizer
+
+    # KDiff3
+    # https://apps.kde.org/kdiff3/
+
+    # KeePassXC
+    # https://keepassxc.org/
+    # https://github.com/keepassxreboot/keepassxc
+
+    # qBittorrent
+    # https://www.qbittorrent.org/
+    # https://github.com/qbittorrent/qBittorrent
+
+    # Thunderbird
+    # https://www.thunderbird.net/
 
     DESKTOP_PACKAGES=(
         copyq
@@ -224,29 +255,32 @@ install_desktop_packages() {
     )
 
     sudo apt install -y $DESKTOP_PACKAGES
+}
 
-    # install Google Chrome
-    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+
+install_google_chrome() {
+    wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
     sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
     sudo apt install -y google-chrome-stable
 }
 
 
-setup_firewall() {
-    # https://www.digitalocean.com/community/tutorials/how-to-setup-a-firewall-with-ufw-on-an-ubuntu-and-debian-cloud-server
-
+setup_ufw_firewall() {
     echo "Setting up the ufw firewall..."
-    # deny all incoming connections except for ssh
+
+    # deny all incoming connections, allow outgoing connections
     sudo ufw default deny incoming
     sudo ufw default allow outgoing
+
+    # allow incoming SSH connections
     sudo ufw allow ssh
+
+    # allow incoming HTTP and HTTPS connections
+    sudo ufw allow http
+    sudo ufw allow https
 
     # turn on the firewall
     sudo ufw enable
-
-    # enable incoming connections for a web server
-    sudo ufw allow http
-    sudo ufw allow https
 
     # check the status of the firewall
     sudo ufw status
@@ -340,13 +374,21 @@ main() {
         YES_NO_ANSWER=$(yes_no_question "Is this a desktop system?")
         if [[ $YES_NO_ANSWER = "y" ]]; then
             install_desktop_packages
+
+            install_google_chrome
         fi
 
         YES_NO_ANSWER=$(yes_no_question "Is this a server system?")
         if [[ $YES_NO_ANSWER = "y" ]]; then
+            # Fail2ban
+            # https://github.com/fail2ban/fail2ban
+
+            # ufw
+            # https://launchpad.net/ufw
+
             sudo apt install -y fail2ban ufw
 
-            setup_firewall
+            setup_ufw_firewall
         fi
     fi
 
