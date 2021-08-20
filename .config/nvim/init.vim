@@ -1,4 +1,3 @@
-""" .vimrc
 " vim: set filetype=vim :
 
 " William Stark (william.stark.5000@gmail.com)
@@ -384,11 +383,13 @@ nnoremap t :tabedit<Space>
 nnoremap x "_x
 nnoremap X "_X
 vnoremap p "_dP
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+""" spell checking
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set the spell checking language to American English
 set spelllang=en_us
-
 
 " toggle spell checking
 " http://vim.wikia.com/wiki/Toggle_spellcheck_with_function_keys

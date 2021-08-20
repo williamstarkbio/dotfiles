@@ -65,6 +65,8 @@ create_data_directory() {
 
 
 setup_python() {
+    # https://www.python.org/
+
     # install pyenv
     # https://github.com/pyenv/pyenv
     if [[ -n "$PYENV_ROOT" ]]; then
@@ -102,8 +104,8 @@ setup_python() {
     curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -
 
     # link $HOME/.pylintrc and .config/flake8
-    ln --symbolic --force --verbose $HOME/dotfiles/.pylintrc .
-    ln --symbolic --force --verbose $HOME/dotfiles/.config/flake8 .config/
+    ln --symbolic --force --verbose $HOME/dotfiles/.pylintrc $HOME/
+    ln --symbolic --force --verbose $HOME/dotfiles/.config/flake8 $HOME/.config/
 }
 
 
@@ -116,7 +118,10 @@ setup_python_programs() {
     PIPX_BIN_DIR="$HOME/.local/bin"
     export PATH="$PIPX_BIN_DIR:$PATH"
 
+    # https://github.com/psf/black
     pipx install black
+
+    # https://github.com/ytdl-org/youtube-dl
     pipx install youtube-dl
 }
 
@@ -162,14 +167,33 @@ setup_neovim() {
 
 
 setup_nodejs() {
-    # https://github.com/nvm-sh/nvm
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+    # https://nodejs.org/
 
-    if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
-        source "$HOME/.nvm/nvm.sh"
-    fi
+    # https://github.com/nvm-sh/nvm
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+
+    # TODO
+    # verify path is correct
+    # https://superuser.com/questions/365847/where-should-the-xdg-config-home-variable-be-defined/425712#425712
+    export NVM_DIR="$HOME/.nvm"
+    [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
 
     nvm install --lts
+}
+
+
+install_z() {
+    # z
+    # https://github.com/rupa/z
+    # NOTE
+    # check my own fork that supports smart case sensitivity by merging ericbn's
+    # pull request https://github.com/rupa/z/pull/221
+    # https://github.com/williamstark01/z
+    mkdir --parents --verbose $HOME/data/programs
+
+    Z_ROOT_DIRECTORY="$HOME/data/programs/z"
+    [[ -d "$Z_ROOT_DIRECTORY" ]] && backup_datetime "$Z_ROOT_DIRECTORY"
+    git clone https://github.com/rupa/z.git "$Z_ROOT_DIRECTORY"
 }
 
 
@@ -277,20 +301,20 @@ main() {
     done
 
     for DOTFILE in "${DOTFILES[@]}"; do
-        ln --symbolic --force --verbose $HOME/dotfiles/"$DOTFILE" .
+        ln --symbolic --force --verbose $HOME/dotfiles/"$DOTFILE" $HOME/
     done
 
 
     backup_datetime .bashrc_local
-    cp --interactive --verbose dotfiles/.bashrc_local .
+    cp --interactive --verbose $HOME/dotfiles/.bashrc_local $HOME/
 
     backup_datetime .gitconfig
-    cp --interactive --verbose dotfiles/.gitconfig .
+    cp --interactive --verbose $HOME/dotfiles/.gitconfig $HOME/
 
     # Konsole Tomorrow theme
     # https://github.com/dram/konsole-tomorrow-theme
     if [[ -d "$HOME/.local/share/konsole/" ]]; then
-        ln --symbolic --force --verbose dotfiles/.local/share/konsole/Tomorrow.colorscheme $HOME/.local/share/konsole/
+        ln --symbolic --force --verbose $HOME/dotfiles/.local/share/konsole/Tomorrow.colorscheme $HOME/.local/share/konsole/
     fi
     ################################################################################
 
@@ -311,17 +335,7 @@ main() {
 
         setup_nodejs
 
-        # z
-        # https://github.com/rupa/z
-        # NOTE
-        # use my own fork that supports smart case sensitivity by merging ericbn's
-        # pull request https://github.com/rupa/z/pull/221
-        # https://github.com/williamstark01/z
-        mkdir --parents --verbose $HOME/data/programs
-
-        Z_ROOT_DIRECTORY="$HOME/data/programs/z"
-        [[ -d "$Z_ROOT_DIRECTORY" ]] && backup_datetime "$Z_ROOT_DIRECTORY"
-        git clone https://github.com/williamstark01/z.git "$Z_ROOT_DIRECTORY"
+        install_z
 
         YES_NO_ANSWER=$(yes_no_question "Is this a desktop system?")
         if [[ $YES_NO_ANSWER = "y" ]]; then
