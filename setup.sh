@@ -66,17 +66,17 @@ create_data_directory() {
 
 setup_python() {
     # install pyenv
+    # https://github.com/pyenv/pyenv
     if [[ -n "$PYENV_ROOT" ]]; then
         backup_datetime "$PYENV_ROOT"
     else
-        #PYENV_ROOT="$HOME/.pyenv"
-        #PYENV_ROOT="/nfs/production/panda/ensembl/$USER/.pyenv"
+        PYENV_ROOT="$HOME/.pyenv"
         export "$PYENV_ROOT"
     fi
+    # https://github.com/pyenv/pyenv-installer
     curl https://pyenv.run | bash
 
     # enable pyenv
-    #export PYENV_ROOT="$HOME/.pyenv"
     export PATH="$PYENV_ROOT/bin:$PATH"
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
@@ -85,19 +85,21 @@ setup_python() {
     # https://github.com/momo-lab/xxenv-latest
     git clone https://github.com/momo-lab/xxenv-latest.git "$(pyenv root)"/plugins/xxenv-latest
 
-    # install requirements for building Python
-    # https://github.com/pyenv/pyenv/wiki/Common-build-problems
-    sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
+    # install Python build dependencies
+    # https://github.com/pyenv/pyenv/wiki#suggested-build-environment
+    sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 
-    PYTHON_LATEST_VERSION=$(pyenv install-latest --print)
+    PYTHON_LATEST_VERSION=$(pyenv latest --print)
 
     pyenv install $PYTHON_LATEST_VERSION
     pyenv global $PYTHON_LATEST_VERSION
 
+    # upgrade global Python pip
     pip install --upgrade pip
 
     # install Poetry
-    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+    # https://github.com/python-poetry/poetry
+    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -
 
     # link $HOME/.pylintrc and .config/flake8
     ln --symbolic --force --verbose $HOME/dotfiles/.pylintrc .
@@ -107,13 +109,14 @@ setup_python() {
 
 setup_python_programs() {
     # install pipx
-    # https://github.com/pipxproject/pipx
+    # https://github.com/pypa/pipx
     python3 -m pip install --user pipx
     python3 -m pipx ensurepath
 
     PIPX_BIN_DIR="$HOME/.local/bin"
     export PATH="$PIPX_BIN_DIR:$PATH"
 
+    pipx install black
     pipx install youtube-dl
 }
 
