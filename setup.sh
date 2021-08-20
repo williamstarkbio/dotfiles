@@ -54,12 +54,6 @@ backup_datetime() {
 }
 
 
-setup_unattended_security_upgrades() {
-    sudo apt install unattended-upgrades
-    sudo dpkg-reconfigure unattended-upgrades
-}
-
-
 create_data_directory() {
     sudo mkdir --parents --verbose /data
 
@@ -294,7 +288,9 @@ main() {
     if [[ "$SUPERUSER_RIGHTS" == "1" ]]; then
         sudo apt install -y $STANDARD_PACKAGES
 
-        setup_unattended_security_upgrades
+        # setup unattended security upgrades
+        sudo apt install unattended-upgrades
+        sudo dpkg-reconfigure unattended-upgrades
 
         create_data_directory
 
