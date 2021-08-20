@@ -122,24 +122,31 @@ setup_python_programs() {
 
 
 setup_neovim() {
-    # https://github.com/neovim/neovim/wiki/Installing-Neovim#ubuntu
+    # https://github.com/neovim/neovim
 
-    backup_datetime .vim
-    backup_datetime .vimrc
+    backup_datetime $HOME/.config/nvim/init.vim
+
+    # https://github.com/neovim/neovim/wiki/Installing-Neovim#ubuntu
 
     sudo add-apt-repository ppa:neovim-ppa/stable
     sudo apt install -y neovim
 
-    ln --symbolic --force --verbose /usr/bin/nvim $HOME/bin/vim
+    # Python modules prerequisites
+    sudo apt install python-dev python-pip python3-dev python3-pip
 
-    cp --recursive --interactive --verbose dotfiles/.vim .
-    ln --symbolic --force --verbose $HOME/dotfiles/.vimrc .
+    # use Neovim for all editor alternatives
+    sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
+    sudo update-alternatives --config vi
+    sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
+    sudo update-alternatives --config vim
+    sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
+    sudo update-alternatives --config editor
 
     mkdir --parents --verbose $HOME/.config/nvim/
-    cp --preserve=mode,ownership,timestamps --interactive --verbose dotfiles/data/init.vim $HOME/.config/nvim/
+    ln --symbolic --force --verbose $HOME/dotfiles/data/init.vim $HOME/.config/nvim/
 
     # setup a Python virtual environment for Neovim
-    # https://github.com/zchee/deoplete-jedi/wiki/Setting-up-Python-for-Neovim
+    # https://github.com/deoplete-plugins/deoplete-jedi/wiki/Setting-up-Python-for-Neovim
     pyenv virtualenv neovim
     pyenv activate neovim
     pip install neovim
@@ -147,10 +154,10 @@ setup_neovim() {
 
     # setup vim-plug
     # https://github.com/junegunn/vim-plug
-    #curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
-    # install configured bundles
-    #vim +PlugInstall +qa
+    # install packages with vim-plug
+    vim +PlugInstall +qa
 }
 
 

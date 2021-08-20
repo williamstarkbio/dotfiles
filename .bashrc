@@ -472,14 +472,12 @@ alias t='aliased_tmux'
 
 
 ### vim
-# Vi IMproved, a programmers text editor
 # -p[N]
 # Open N tab pages. When N is omitted, open one tab page for each file.
 alias vim='vim -p'
 
 
 ### vimdiff
-# edit two, three or four versions of a file with Vim and show differences
 # -R
 # Read-only mode.
 alias vimdiff='vimdiff -R'
