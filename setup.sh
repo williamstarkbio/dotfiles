@@ -290,7 +290,7 @@ main() {
     # Konsole Tomorrow theme
     # https://github.com/dram/konsole-tomorrow-theme
     if [[ -d "$HOME/.local/share/konsole/" ]]; then
-        cp --force --interactive --verbose dotfiles/data/Tomorrow.colorscheme $HOME/.local/share/konsole/
+        ln --symbolic --force --verbose dotfiles/.local/share/konsole/Tomorrow.colorscheme $HOME/.local/share/konsole/
     fi
     ################################################################################
 
