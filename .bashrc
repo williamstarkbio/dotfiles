@@ -507,7 +507,7 @@ alias spyder='spyder3 --workdir=. &'
 ### initialize a git repo, add and commit my default .gitignore
 aliased_gi() {
     git init
-    cp $HOME/dotfiles/data/.gitignore .
+    cp $HOME/dotfiles/.gitignore .
     git add .gitignore
     git commit -m "add .gitignore"
 }
@@ -517,7 +517,7 @@ alias gi='aliased_gi'
 ### initialize a repo, add and commit all existing files
 aliased_gii() {
     git init
-    cp $HOME/dotfiles/data/.gitignore .
+    cp $HOME/dotfiles/.gitignore .
     git add .gitignore
     git commit -m "add .gitignore"
     git add .
