@@ -186,7 +186,7 @@ install_z() {
     # z
     # https://github.com/rupa/z
     # NOTE
-    # check my own fork that supports smart case sensitivity by merging ericbn's
+    # for smart case sensitivity support check my own fork that merges ericbn's
     # pull request https://github.com/rupa/z/pull/221
     # https://github.com/williamstark01/z
     mkdir --parents --verbose $HOME/data/programs
