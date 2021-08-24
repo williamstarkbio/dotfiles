@@ -6,11 +6,9 @@
 
 ## specify Python pycache directory
 if command -v pyenv &> /dev/null; then
-    unset PYTHONDONTWRITEBYTECODE
     export PYTHONPYCACHEPREFIX="$(pyenv prefix)/pycache"
 else
-    # don't write bytecode on disk
-    export PYTHONDONTWRITEBYTECODE=1
+    export PYTHONPYCACHEPREFIX="$HOME/.cache/pycache"
 fi
 
 
