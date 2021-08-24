@@ -73,7 +73,7 @@ setup_python() {
         backup_datetime "$PYENV_ROOT"
     else
         PYENV_ROOT="$HOME/.pyenv"
-        export "$PYENV_ROOT"
+        export PYENV_ROOT
     fi
     # https://github.com/pyenv/pyenv-installer
     curl https://pyenv.run | bash
@@ -332,9 +332,6 @@ main() {
 
     for DOTFILE in "${DOTFILES[@]}"; do
         backup_datetime "$DOTFILE"
-    done
-
-    for DOTFILE in "${DOTFILES[@]}"; do
         ln --symbolic --force --verbose $HOME/dotfiles/"$DOTFILE" $HOME/
     done
 

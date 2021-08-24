@@ -1146,21 +1146,24 @@ export GPG_TTY=$(tty)
 ################################################################################
 
 
-### local settings
-if [[ -f $HOME/.bashrc_local ]]; then
-    source $HOME/.bashrc_local
+### ws
+if [[ -f $HOME/.bashrc_ws ]]; then
+    source $HOME/.bashrc_ws
 fi
 
 
 ### EMBL-EBI
-if [[ -f $HOME/.bashrc_ebi ]]; then
-    source $HOME/.bashrc_ebi
+if [[ -f $HOME/.bashrc_codon ]]; then
+    source $HOME/.bashrc_codon
+fi
+if [[ -f $HOME/.bashrc_noah ]]; then
+    source $HOME/.bashrc_noah
 fi
 
 
-### ws computer
-if [[ -f $HOME/.bashrc_ws ]]; then
-    source $HOME/.bashrc_ws
+### local settings
+if [[ -f $HOME/.bashrc_local ]]; then
+    source $HOME/.bashrc_local
 fi
 
 
@@ -1173,7 +1176,7 @@ fi
 # https://www.jenv.be/
 # https://github.com/jenv/jenv
 if [[ -d "$JENV_ROOT" ]]; then
-    export PATH="${JENV_ROOT}/bin:${PATH}"
+    export PATH="$JENV_ROOT/bin:$PATH"
     eval "$(jenv init -)"
 fi
 
@@ -1181,7 +1184,7 @@ fi
 ### plenv
 if [[ -d "$PLENV_ROOT" ]]; then
     export PLENV_ROOT
-    export PATH="${PLENV_ROOT}/bin:${PATH}"
+    export PATH="$PLENV_ROOT/bin:$PATH"
     eval "$(plenv init -)"
 fi
 
@@ -1189,7 +1192,7 @@ fi
 ### pyenv
 if [[ -d "$PYENV_ROOT" ]]; then
     export PYENV_ROOT
-    export PATH="${PYENV_ROOT}/bin:${PATH}"
+    export PATH="$PYENV_ROOT/bin:$PATH"
     eval "$(pyenv init --path)"
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
