@@ -129,7 +129,7 @@ setup_python_programs() {
 setup_neovim() {
     # https://github.com/neovim/neovim
 
-    backup_datetime $HOME/.config/nvim/init.vim
+    backup_datetime "$HOME/.config/nvim/init.vim"
 
     # https://github.com/neovim/neovim/wiki/Installing-Neovim#ubuntu
 
@@ -147,8 +147,8 @@ setup_neovim() {
     sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
     sudo update-alternatives --config editor
 
-    mkdir --parents --verbose $HOME/.config/nvim/
-    ln --symbolic --force --verbose $HOME/dotfiles/.config/nvim/init.vim $HOME/.config/nvim/
+    mkdir --parents --verbose "$HOME/.config/nvim"
+    ln --symbolic --force --verbose "$HOME/dotfiles/.config/nvim/init.vim" "$HOME/.config/nvim"
 
     # setup a Python virtual environment for Neovim
     # https://github.com/deoplete-plugins/deoplete-jedi/wiki/Setting-up-Python-for-Neovim#using-virtual-environments

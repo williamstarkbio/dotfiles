@@ -154,16 +154,6 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
 
-### z
-# jump around
-# https://github.com/rupa/z
-if [[ -f $HOME/data/programs/z/z.sh ]]; then
-    source $HOME/data/programs/z/z.sh
-
-    _Z_NO_RESOLVE_SYMLINKS=1
-fi
-
-
 ### make aliases work with sudo commands
 alias sudo='sudo '
 
@@ -1155,6 +1145,16 @@ fi
 ### local settings
 if [[ -f $HOME/.bashrc_local ]]; then
     source $HOME/.bashrc_local
+fi
+
+
+### z
+# jump around
+# https://github.com/rupa/z
+if [[ -f "$Z_ROOT_DIRECTORY/z.sh" ]]; then
+    source "$Z_ROOT_DIRECTORY/z.sh" 
+
+    _Z_NO_RESOLVE_SYMLINKS=1
 fi
 
 
