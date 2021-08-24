@@ -1132,15 +1132,6 @@ fi
 #complete -C aws_completer aws
 
 
-## Node.js
-# https://github.com/nvm-sh/nvm
-[[ -d "$HOME/.nvm" ]] && export NVM_DIR="$HOME/.nvm"
-# load nvm
-[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
-# load nvm bash_completion
-[[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
-
-
 ### add GPG key
 export GPG_TTY=$(tty)
 ################################################################################
@@ -1189,6 +1180,16 @@ if [[ -d "$PLENV_ROOT" ]]; then
 fi
 
 
+## Node.js
+# https://github.com/nvm-sh/nvm
+if [[ -d "$NVM_DIR" ]]; then
+    # load nvm
+    [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
+    # load nvm bash_completion
+    [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+fi
+
+
 ### pyenv
 if [[ -d "$PYENV_ROOT" ]]; then
     export PYENV_ROOT
@@ -1196,6 +1197,14 @@ if [[ -d "$PYENV_ROOT" ]]; then
     eval "$(pyenv init --path)"
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
+fi
+
+
+## specify Python pycache directory
+if command -v pyenv &> /dev/null; then
+    export PYTHONPYCACHEPREFIX="$(pyenv prefix)/pycache"
+else
+    export PYTHONPYCACHEPREFIX="$HOME/.cache/pycache"
 fi
 
 
