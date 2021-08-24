@@ -11,6 +11,7 @@
     ;name = William Stark
     ; email address
     ;email = william.stark.5000@gmail.com
+    ;email = william@ebi.ac.uk
     ; GPG signing key ID
     ;signingkey =
 
@@ -84,8 +85,8 @@
 ;     gpgSign = true
 
 
+; load EBI user details for EBI code
 [includeIf "gitdir:/data/EMBL-EBI/"]
-    path = /data/code/dotfiles/ebi/.gitconfig
-
+    path = /data/EMBL-EBI/code/EBI_config/.gitconfig
 [includeIf "gitdir:/d/EMBL-EBI/"]
-    path = /d/code/dotfiles/ebi/.gitconfig
+    path = /d/EMBL-EBI/code/EBI_config/.gitconfig
