@@ -23,6 +23,12 @@
 [init]
     defaultBranch = main
 
+[pull]
+	rebase = false
+
+[push]
+    default = simple
+
 [color]
     ; turn on all the default terminal coloring
     ;ui = true
@@ -51,9 +57,6 @@
 
 ;[merge]
 ;    tool = vimdiff
-
-[push]
-    default = simple
 
 
 ; delta
