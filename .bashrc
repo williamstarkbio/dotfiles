@@ -1084,11 +1084,6 @@ __get_directories_color() {
 export PYTHONBREAKPOINT="pudb.set_trace"
 
 
-## Rust
-# https://rustup.rs/
-[[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
-
-
 ## Deno
 if [[ -d "$HOME/.deno" ]]; then
     export DENO_INSTALL="$HOME/.deno"

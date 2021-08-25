@@ -17,6 +17,12 @@ Z_ROOT_DIRECTORY="$HOME/data/programs/z"
 ### Python pyenv
 [[ -d "$HOME/.pyenv" ]] && export PYENV_ROOT="$HOME/.pyenv"
 
+### Rust
+# https://www.rust-lang.org/
+[[ -d "$HOME/.rustup" ]] && export RUSTUP_HOME="$HOME/.rustup"
+[[ -d "$HOME/.cargo" ]] && export CARGO_HOME="$HOME/.cargo"
+[[ -d "$CARGO_HOME/bin" ]] && export PATH="$CARGO_HOME/bin:$PATH"
+
 ### Node.js nvm
 [[ -d "$HOME/.nvm" ]] && export NVM_DIR="$HOME/.nvm"
 
