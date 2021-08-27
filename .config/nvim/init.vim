@@ -256,8 +256,8 @@ set nohlsearch
 
 
 """ mark the target width of source code lines
-" set a marker on the 81th text column
-set colorcolumn=81
+" set a marker on the 89th text column (Black's default line length is 88 characters)
+set colorcolumn=89
 
 
 """ folds
@@ -330,7 +330,7 @@ autocmd FileType perl set complete-=i
 autocmd FileType perl setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent
 
 " Python
-autocmd FileType py setlocal textwidth=79 tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent
+autocmd FileType py setlocal textwidth=88 tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent
 autocmd FileType python setlocal completeopt-=preview
 " don't highlight trailing whitespace
 let python_highlight_space_errors = 0
