@@ -470,7 +470,7 @@ alias vim='vim -p'
 # Start in diff-mode.
 # -R
 # Readonly mode.
-alias vimdiff='nvim -d -R'
+alias vimdiff='vim -d -R'
 
 ### youtube-dl
 # download best format available but not better that 1080p
