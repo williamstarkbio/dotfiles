@@ -1147,7 +1147,7 @@ fi
 # jump around
 # https://github.com/rupa/z
 if [[ -f "$Z_ROOT_DIRECTORY/z.sh" ]]; then
-    source "$Z_ROOT_DIRECTORY/z.sh" 
+    source "$Z_ROOT_DIRECTORY/z.sh"
 
     _Z_NO_RESOLVE_SYMLINKS=1
 fi
