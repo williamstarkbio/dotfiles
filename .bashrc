@@ -139,10 +139,12 @@ EDITOR=vim
 VISUAL=vim
 
 
-### set the $TERM to resolve a terminal rendering error with tmux and Neovim
-# https://github.com/neovim/neovim/issues/6403
+### set the $TERM to resolve rendering issues with tmux and Neovim
 # https://github.com/neovim/neovim/wiki/FAQ#nvim-shows-weird-symbols-2-q-when-changing-modes
-#export TERM=konsole-256color
+# https://github.com/tmux/tmux/wiki/FAQ#what-is-term-and-what-does-it-do
+# Neovim
+# :help $TEMP
+export TERM=konsole-256color
 
 
 ## safety
@@ -449,16 +451,7 @@ alias scp='scp -p -r'
 # terminal multiplexer
 # -2
 # Force tmux to assume the terminal supports 256 colours.
-alias tmux='tmux -2'
-
-aliased_tmux() {
-    if [[ -z "$1" ]]; then
-        echo "Pass the name of the session to open in tmux."
-    else
-        tmux a -t "$1"
-    fi
-}
-alias t='aliased_tmux'
+#alias tmux='tmux -2'
 
 
 ### vim (nvim)
