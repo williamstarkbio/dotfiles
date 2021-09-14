@@ -466,10 +466,18 @@ alias vim='vim -p'
 alias vimdiff='vim -d -R'
 
 ### youtube-dl
+# https://github.com/ytdl-org/youtube-dl
 # download best format available but not better that 1080p
 alias youtube-dl="youtube-dl --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]'"
 #alias subs-youtube-dl="youtube-dl --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --write-sub --sub-lang en"
 alias subs-youtube-dl="youtube-dl --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --write-sub"
+
+### yt-dlp
+# https://github.com/yt-dlp/yt-dlp
+# download best format available but not better that 1080p
+alias yt-dlp="yt-dlp --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]'"
+#alias subs-yt-dlp="yt-dlp --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --write-sub --sub-lang en"
+alias subs-yt-dlp="yt-dlp --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --write-sub"
 ################################################################################
 
 
