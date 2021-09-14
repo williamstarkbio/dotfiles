@@ -1198,7 +1198,7 @@ fi
 
 ## specify Python pycache directory
 if command -v pyenv &> /dev/null; then
-    export PYTHONPYCACHEPREFIX="$(pyenv prefix)/pycache"
+    export PYTHONPYCACHEPREFIX="$(pyenv root)/pycache"
 else
     export PYTHONPYCACHEPREFIX="$HOME/.cache/pycache"
 fi
