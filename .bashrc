@@ -463,7 +463,7 @@ alias vim='vim -p'
 # Start in diff-mode.
 # -R
 # Readonly mode.
-alias vimdiff='vim -d -R'
+#alias vimdiff='vim -d -R'
 
 ### youtube-dl
 # https://github.com/ytdl-org/youtube-dl
