@@ -1150,7 +1150,7 @@ fi
 
 # set up git completion
 # https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
-[[ -f "$HOME/dotfiles/git-completion.bash" ]] && source "$HOME/dotfiles/git-completion.bash"
+#[[ -f "$HOME/dotfiles/git-completion.bash" ]] && source "$HOME/dotfiles/git-completion.bash"
 
 
 ### Java jenv
