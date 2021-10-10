@@ -349,6 +349,10 @@ main() {
     fi
     ################################################################################
 
+    # disable less `s` key log feature
+    # (specify custom key bindings for less, described in `$HOME/.lesskey`)
+    ln --symbolic --force --verbose $HOME/dotfiles/.lesskey $HOME/
+    lesskey
 
     if [[ "$SUPERUSER_RIGHTS" == "1" ]]; then
         sudo apt install -y $STANDARD_PACKAGES
