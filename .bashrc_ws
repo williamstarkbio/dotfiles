@@ -15,7 +15,7 @@ Z_ROOT_DIRECTORY="$HOME/data/programs/z"
 [[ -d "$Z_ROOT_DIRECTORY" ]] && export Z_ROOT_DIRECTORY
 
 ### Python pyenv
-[[ -d "$HOME/.pyenv" ]] && export PYENV_ROOT="$HOME/.pyenv"
+[[ -d "/data/.pyenv" ]] && export PYENV_ROOT="/data/.pyenv"
 
 ### Rust
 # https://www.rust-lang.org/
