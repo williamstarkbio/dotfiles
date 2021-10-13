@@ -121,8 +121,8 @@ setup_python_programs() {
     # https://github.com/psf/black
     pipx install black
 
-    # https://github.com/ytdl-org/youtube-dl
-    pipx install youtube-dl
+    # https://github.com/yt-dlp/yt-dlp
+    pipx install yt-dlp
 }
 
 
