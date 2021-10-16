@@ -476,7 +476,7 @@ set diffopt+=vertical
 
 """ vim-gitgutter
 " reduce update time of diff markers
-set updatetime=100
+set updatetime=200
 " set sign colors
 highlight GitGutterAdd ctermfg=green
 highlight GitGutterChange ctermfg=yellow

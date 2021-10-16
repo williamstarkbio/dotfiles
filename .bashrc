@@ -472,6 +472,16 @@ alias vim='vim -p'
 alias yt-dlp="yt-dlp --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]'"
 alias subs-yt-dlp="yt-dlp --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --write-sub --sub-lang en.*"
 #alias subs-yt-dlp="yt-dlp --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --write-sub"
+
+playlist-yt-dlp() {
+    PLAYLIST="$1"
+
+    RATE_LIMIT="10M"
+    #RATE_LIMIT="2M"
+    #RATE_LIMIT="0.5M"
+
+    yt-dlp --playlist-start 1 --limit-rate "$RATE_LIMIT" --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --merge-output-format mkv --ignore-errors --write-sub --sub-lang en -o "%(playlist)s [%(playlist_id)s]/%(playlist_index)s - %(title)s [%(id)s].%(ext)s" "$PLAYLIST"
+}
 ################################################################################
 
 
