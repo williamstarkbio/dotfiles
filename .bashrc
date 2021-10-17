@@ -469,9 +469,7 @@ alias vim='vim -p'
 ### yt-dlp
 # https://github.com/yt-dlp/yt-dlp
 # download best format available but not better that 1080p
-alias yt-dlp="yt-dlp --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]'"
-alias subs-yt-dlp="yt-dlp --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --write-sub --sub-lang en.*"
-#alias subs-yt-dlp="yt-dlp --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --write-sub"
+alias yt-dlp="yt-dlp --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --write-sub --sub-lang en.*"
 
 playlist-yt-dlp() {
     PLAYLIST="$1"
