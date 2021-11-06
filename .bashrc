@@ -159,14 +159,8 @@ alias sudo='sudo '
 
 ### black
 # The uncompromising code formatter.
-aliased_black() {
-    if [[ -z "$1" ]]; then
-        find ./ -type f -name "*.py" -exec black --line-length 90 "{}" \;
-    else
-        black --line-length 90 "$@"
-    fi
-}
-alias black='aliased_black'
+# https://github.com/psf/black
+alias black='black --line-length 90'
 
 
 ### cp
