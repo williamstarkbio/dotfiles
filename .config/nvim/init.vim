@@ -486,6 +486,11 @@ set signcolumn=yes
 let NERDTreeShowHidden=1
 
 
+""" supertab
+let g:SuperTabDefaultCompletionType = "<c-n>"
+"let g:SuperTabContextDefaultCompletionType = "<c-n>"
+
+
 """ Tagbar
 " toggle Tagbar
 nnoremap <F8> :TagbarToggle<CR>
