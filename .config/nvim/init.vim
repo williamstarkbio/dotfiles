@@ -51,11 +51,6 @@ Plug 'tpope/vim-fugitive'
 " https://github.com/henrik/vim-indexed-search
 Plug 'henrik/vim-indexed-search'
 
-" jedi-vim
-" awesome Python autocompletion with VIM
-" https://github.com/davidhalter/jedi-vim
-Plug 'davidhalter/jedi-vim'
-
 " jupytext.vim
 " plugin for editing Jupyter notebook (ipynb) files through jupytext
 " https://github.com/goerz/jupytext.vim
