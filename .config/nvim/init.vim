@@ -58,14 +58,14 @@ Plug 'henrik/vim-indexed-search'
 Plug 'goerz/jupytext.vim'
 
 " NERD Commenter
-" easy commenting/uncommenting
-" https://github.com/scrooloose/nerdcommenter
-Plug 'scrooloose/nerdcommenter'
+" powerful comment functions
+" https://github.com/preservim/nerdcommenter
+Plug 'preservim/nerdcommenter'
 
 " NERD Tree
-" tree explorer plugin
-" https://github.com/scrooloose/nerdtree
-Plug 'scrooloose/nerdtree'
+" file system explorer
+" https://github.com/preservim/nerdtree
+Plug 'preservim/nerdtree'
 
 " vim-perl
 " support for Perl 5
