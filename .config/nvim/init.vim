@@ -55,7 +55,7 @@ Plug 'henrik/vim-indexed-search'
 " plugin for editing Jupyter notebook (ipynb) files through jupytext
 " https://github.com/goerz/jupytext.vim
 " requires jupytext https://github.com/mwouts/jupytext
-Plug 'goerz/jupytext.vim'
+"Plug 'goerz/jupytext.vim'
 
 " NERD Commenter
 " powerful comment functions
