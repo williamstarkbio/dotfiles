@@ -251,8 +251,8 @@ set nohlsearch
 
 
 """ mark the target width of source code lines
-" set a marker on the 89th text column (Black's default line length is 88 characters)
-set colorcolumn=89
+" set a marker on the 91th text column (Black max line length setting)
+set colorcolumn=91
 
 
 """ folds
