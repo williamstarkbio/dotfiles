@@ -82,6 +82,12 @@ Plug 'tpope/vim-repeat'
 " https://github.com/rust-lang/rust.vim
 Plug 'rust-lang/rust.vim'
 
+" vim-sanegx
+" make gx work correctly
+" https://github.com/felipec/vim-sanegx
+" https://github.com/vim/vim/issues/4738#issuecomment-856925080
+Plug 'felipec/vim-sanegx'
+
 " supertab
 " Perform all your vim insert mode completions with Tab
 " https://github.com/ervandew/supertab
