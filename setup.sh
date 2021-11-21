@@ -386,19 +386,9 @@ main() {
     SCRIPT_USER=$USER
     echo "logged in as user $SCRIPT_USER"
 
-    YES_NO_ANSWER=$(yes_no_question "Do you have superuser rights on this system?")
+    YES_NO_ANSWER=$(yes_no_question "Update and upgrade the system?")
     if [[ $YES_NO_ANSWER = "y" ]]; then
-        SUPERUSER_RIGHTS=1
-    else
-        SUPERUSER_RIGHTS=0
-        echo "Skipping commands that require superuser rights."
-    fi
-
-    if [[ "$SUPERUSER_RIGHTS" == "1" ]]; then
-        YES_NO_ANSWER=$(yes_no_question "Update and upgrade the system?")
-        if [[ $YES_NO_ANSWER = "y" ]]; then
-            sudo apt update && sudo apt -y upgrade && sudo apt dist-upgrade
-        fi
+        sudo apt update && sudo apt -y upgrade && sudo apt dist-upgrade
     fi
 
 
@@ -450,55 +440,51 @@ main() {
     lesskey
 
 
-    if [[ "$SUPERUSER_RIGHTS" == "1" ]]; then
-        create_data_directory
+    create_data_directory
 
-        # setup unattended security upgrades
-        sudo apt install unattended-upgrades
-        sudo dpkg-reconfigure unattended-upgrades
+    # setup unattended security upgrades
+    sudo apt install unattended-upgrades
+    sudo dpkg-reconfigure unattended-upgrades
 
-        install_standard_packages
+    install_standard_packages
 
-        setup_python
+    setup_python
 
-        setup_neovim
+    setup_neovim
 
-        setup_rust
+    setup_rust
 
-        setup_go
+    setup_go
 
-        setup_nodejs
+    setup_nodejs
 
-        setup_additional_software
+    setup_additional_software
 
-        YES_NO_ANSWER=$(yes_no_question "Is this a desktop system?")
-        if [[ $YES_NO_ANSWER = "y" ]]; then
-            install_desktop_packages
+    YES_NO_ANSWER=$(yes_no_question "Is this a desktop system?")
+    if [[ $YES_NO_ANSWER = "y" ]]; then
+        install_desktop_packages
 
-            install_google_chrome
-        fi
+        install_google_chrome
+    fi
 
-        YES_NO_ANSWER=$(yes_no_question "Is this a server system?")
-        if [[ $YES_NO_ANSWER = "y" ]]; then
-            # Fail2ban
-            # https://github.com/fail2ban/fail2ban
+    YES_NO_ANSWER=$(yes_no_question "Is this a server system?")
+    if [[ $YES_NO_ANSWER = "y" ]]; then
+        # Fail2ban
+        # https://github.com/fail2ban/fail2ban
 
-            # ufw
-            # https://launchpad.net/ufw
+        # ufw
+        # https://launchpad.net/ufw
 
-            sudo apt install -y fail2ban ufw
+        sudo apt install -y fail2ban ufw
 
-            setup_ufw_firewall
-        fi
+        setup_ufw_firewall
     fi
 
 
     # install the linux-headers and build-essential packages
-    if [[ "$SUPERUSER_RIGHTS" == "1" ]]; then
-        YES_NO_ANSWER=$(yes_no_question "Install linux-headers and build-essential packages?")
-        if [[ $YES_NO_ANSWER = "y" ]]; then
-            sudo apt install -y linux-headers-generic build-essential
-        fi
+    YES_NO_ANSWER=$(yes_no_question "Install linux-headers and build-essential packages?")
+    if [[ $YES_NO_ANSWER = "y" ]]; then
+        sudo apt install -y linux-headers-generic build-essential
     fi
 }
 
