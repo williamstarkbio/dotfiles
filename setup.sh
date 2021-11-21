@@ -53,6 +53,10 @@ create_data_directory() {
 
 
 install_standard_packages() {
+    # curl
+    # command line tool and library for transferring data with URLs
+    # https://curl.se/
+
     # dos2unix
     # DOS/Mac to Unix and vice versa text file format converter
     # https://manpages.ubuntu.com/manpages/focal/man1/dos2unix.1.html
@@ -79,6 +83,7 @@ install_standard_packages() {
     # https://github.com/astrand/xclip
 
     STANDARD_PACKAGES=(
+        curl
         dos2unix
         fd-find
         git
