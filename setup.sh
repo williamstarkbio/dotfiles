@@ -8,18 +8,6 @@
 set -e
 
 
-STANDARD_PACKAGES=(
-    dos2unix
-    hashdeep
-    git
-    python-argcomplete
-    ripgrep
-    ssh
-    tmux
-    xclip
-)
-
-
 yes_no_question() {
     while true; do
         read -e -p "$1 (y/n): " YES_NO_ANSWER < /dev/tty
@@ -61,6 +49,43 @@ create_data_directory() {
 
     # create symbolic link /d to /data
     sudo ln --symbolic --force --verbose /data /d
+}
+
+
+install_standard_packages() {
+    # dos2unix
+    # DOS/Mac to Unix and vice versa text file format converter
+    # https://manpages.ubuntu.com/manpages/focal/man1/dos2unix.1.html
+
+    # fd
+    # find replacement (search for files)
+    # https://github.com/sharkdp/fd
+
+    # hashdeep
+    # compute and verify file hashes
+    # https://github.com/jessek/hashdeep
+
+    # ripgrep
+    # recursively search file contents for a regex pattern
+    # https://github.com/BurntSushi/ripgrep
+
+    # xclip
+    # command line interface to X selections (clipboard)
+    # https://manpages.ubuntu.com/manpages/focal/man1/xclip.1.html
+    # https://github.com/astrand/xclip
+
+    STANDARD_PACKAGES=(
+        dos2unix
+        fd-find
+        git
+        hashdeep
+        ripgrep
+        ssh
+        tmux
+        xclip
+    )
+
+    sudo apt install -y "$STANDARD_PACKAGES"
 }
 
 
@@ -355,13 +380,13 @@ main() {
     lesskey
 
     if [[ "$SUPERUSER_RIGHTS" == "1" ]]; then
-        sudo apt install -y $STANDARD_PACKAGES
+        create_data_directory
 
         # setup unattended security upgrades
         sudo apt install unattended-upgrades
         sudo dpkg-reconfigure unattended-upgrades
 
-        create_data_directory
+        install_standard_packages
 
         setup_python
         setup_python_programs
