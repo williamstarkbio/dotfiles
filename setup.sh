@@ -407,9 +407,6 @@ main() {
 
     create_data_directory
 
-    # setup unattended security upgrades
-    sudo apt install unattended-upgrades
-    sudo dpkg-reconfigure unattended-upgrades
 
     install_standard_packages
 
