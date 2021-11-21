@@ -90,7 +90,7 @@ install_standard_packages() {
         xclip
     )
 
-    sudo apt install -y "$STANDARD_PACKAGES"
+    sudo apt install -y "${STANDARD_PACKAGES[@]}"
 }
 
 
@@ -346,7 +346,7 @@ install_desktop_packages() {
         xournalpp
     )
 
-    sudo apt install -y $DESKTOP_PACKAGES
+    sudo apt install -y "${DESKTOP_PACKAGES[@]}"
 }
 
 
