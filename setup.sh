@@ -65,6 +65,10 @@ install_standard_packages() {
     # compute and verify file hashes
     # https://github.com/jessek/hashdeep
 
+    # Magic Wormhole
+    # send file / directory / text to another computer over the Internet
+    # https://github.com/magic-wormhole/magic-wormhole
+
     # ripgrep
     # recursively search file contents for a regex pattern
     # https://github.com/BurntSushi/ripgrep
@@ -79,6 +83,7 @@ install_standard_packages() {
         fd-find
         git
         hashdeep
+        magic-wormhole
         ripgrep
         ssh
         tmux
@@ -182,6 +187,28 @@ setup_rust() {
 }
 
 
+setup_go() {
+    # Go programming language
+    # https://golang.org/
+
+    sudo add-apt-repository ppa:longsleep/golang-backports
+
+    # install latest major version
+    sudo apt install golang-go
+
+    # watch
+    # watch implementation that supports aliases and color
+    # https://github.com/antonmedv/watch
+    go get github.com/antonmedv/watch
+
+    # massren
+    # rename files using a text editor
+    # https://github.com/laurent22/massren
+    go get -u github.com/laurent22/massren
+    go install github.com/laurent22/massren
+}
+
+
 setup_neovim() {
     # https://github.com/neovim/neovim
 
@@ -238,7 +265,7 @@ setup_nodejs() {
 }
 
 
-install_z() {
+setup_additional_software() {
     # z
     # https://github.com/rupa/z
     # NOTE
@@ -248,6 +275,11 @@ install_z() {
     Z_ROOT_DIRECTORY="$HOME/data/programs/z"
     [[ -d "$Z_ROOT_DIRECTORY" ]] && backup_datetime "$Z_ROOT_DIRECTORY"
     git clone https://github.com/rupa/z.git "$Z_ROOT_DIRECTORY"
+
+    # direnv
+    # automatically load and unload environment variables when changing directory
+    # https://github.com/direnv/direnv
+    curl -sfL https://direnv.net/install.sh | bash
 }
 
 
@@ -293,6 +325,11 @@ install_desktop_packages() {
     # Thunderbird
     # https://www.thunderbird.net/
 
+    # Xournal++
+    # PDF annotation and notetaking
+    # https://github.com/xournalpp/xournalpp
+    sudo add-apt-repository ppa:apandada1/xournalpp-stable
+
     DESKTOP_PACKAGES=(
         copyq
         evince
@@ -306,6 +343,7 @@ install_desktop_packages() {
         keepassxc
         qbittorrent
         thunderbird
+        xournalpp
     )
 
     sudo apt install -y $DESKTOP_PACKAGES
@@ -427,9 +465,11 @@ main() {
 
         setup_rust
 
+        setup_go
+
         setup_nodejs
 
-        install_z
+        setup_additional_software
 
         YES_NO_ANSWER=$(yes_no_question "Is this a desktop system?")
         if [[ $YES_NO_ANSWER = "y" ]]; then
