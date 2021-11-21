@@ -128,12 +128,13 @@ setup_python() {
     # https://github.com/pyenv/pyenv/wiki#suggested-build-environment
     sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 
-    # install latest Python version
-    PYTHON_LATEST_VERSION=$(pyenv latest --print)
-    pyenv install $PYTHON_LATEST_VERSION
+    # install latest bugfix version of preferred Python minor version
+    PREFERRED_PYTHON_MINOR_VERSION="3.9"
+    LATEST_PREFERRED_PYTHON_VERSION=$(pyenv latest --print "$PREFERRED_PYTHON_MINOR_VERSION")
+    pyenv install $LATEST_PREFERRED_PYTHON_VERSION
 
     # set global Python to latest
-    pyenv global $PYTHON_LATEST_VERSION
+    pyenv global $LATEST_PREFERRED_PYTHON_VERSION
 
     # upgrade global Python pip
     pip install --upgrade pip
