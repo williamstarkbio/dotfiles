@@ -697,7 +697,7 @@ alias gsh='aliased_gsh'
 ### load GitHub SSH key
 github-ssh() {
     #pkill ssh-agent
-    eval "$(ssh-agent -s)"
+    #eval "$(ssh-agent -s)"
     ssh-add $HOME/.ssh/id_rsa_github
 }
 
@@ -705,7 +705,7 @@ github-ssh() {
 ### load GitLab SSH key
 gitlab-ssh() {
     #pkill ssh-agent
-    eval "$(ssh-agent -s)"
+    #eval "$(ssh-agent -s)"
     ssh-add $HOME/.ssh/id_rsa_gitlab
 }
 
