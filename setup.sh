@@ -42,6 +42,22 @@ backup_datetime() {
 }
 
 
+create_directories() {
+    # create $HOME directories
+    mkdir --parents --verbose "$HOME/data"
+    mkdir --parents --verbose "$HOME/data/programs"
+    mkdir --parents --verbose "$HOME/bin"
+    mkdir --parents --verbose "$HOME/.config"
+
+
+    # create /data directory
+    sudo mkdir --parents --verbose /data
+    sudo chown --verbose "$SCRIPT_USER:$SCRIPT_USER" /data
+    # create symbolic link /d to /data
+    sudo ln --symbolic --force --verbose /data /d
+}
+
+
 setup_dotfiles() {
     # dotfiles
     ############################################################################
@@ -428,20 +444,10 @@ main() {
         sudo apt update && sudo apt -y upgrade && sudo apt dist-upgrade
     fi
 
-
-    # create $HOME directories
-    mkdir --parents --verbose "$HOME/data"
-    mkdir --parents --verbose "$HOME/data/programs"
-    mkdir --parents --verbose "$HOME/bin"
-    mkdir --parents --verbose "$HOME/.config"
-
-
-    # create /data directory
-    sudo mkdir --parents --verbose /data
-    sudo chown --verbose "$SCRIPT_USER:$SCRIPT_USER" /data
-    # create symbolic link /d to /data
-    sudo ln --symbolic --force --verbose /data /d
-
+    YES_NO_ANSWER=$(yes_no_question "Create custom directories?")
+    if [[ $YES_NO_ANSWER = "y" ]]; then
+        create_directories
+    fi
 
     YES_NO_ANSWER=$(yes_no_question "Install standard packages?")
     if [[ $YES_NO_ANSWER = "y" ]]; then
