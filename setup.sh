@@ -399,10 +399,17 @@ main() {
     mkdir --parents --verbose "$HOME/.config"
 
 
-    # configuration
-    ############################################################################
+    create_data_directory
+
+    # setup unattended security upgrades
+    sudo apt install unattended-upgrades
+    sudo dpkg-reconfigure unattended-upgrades
+
+    install_standard_packages
+
 
     # dotfiles
+    ############################################################################
     # https://github.com/williamstark01/dotfiles
     backup_datetime dotfiles
     git clone https://github.com/williamstark01/dotfiles.git
@@ -439,14 +446,6 @@ main() {
     ln --symbolic --force --verbose "$HOME/dotfiles/.lesskey" "$HOME/"
     lesskey
 
-
-    create_data_directory
-
-    # setup unattended security upgrades
-    sudo apt install unattended-upgrades
-    sudo dpkg-reconfigure unattended-upgrades
-
-    install_standard_packages
 
     setup_python
 
