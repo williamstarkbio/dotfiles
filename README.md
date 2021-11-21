@@ -1,6 +1,6 @@
 # ws dotfiles
 
-My configuration files and setup script for a Kubuntu desktop or an Ubuntu server. Tested with version 20.04 LTS.
+Machine Learning development with Neovim on a 20.04 LTS Kubuntu desktop or Ubuntu server configuration and setup script.
 
 Bootstrap a system with:
 ```
