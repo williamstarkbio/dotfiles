@@ -4,12 +4,7 @@ Machine Learning development with Neovim on a 20.04 LTS Kubuntu desktop or Ubunt
 
 Bootstrap a system with:
 ```
-curl https://raw.githubusercontent.com/williamstark01/dotfiles/master/setup.sh | bash
-```
-
-Download the setup script:
-```
-curl -O https://raw.githubusercontent.com/williamstark01/dotfiles/master/setup.sh
+wget https://raw.githubusercontent.com/williamstark01/dotfiles/master/setup.sh && bash setup.sh
 ```
 
 

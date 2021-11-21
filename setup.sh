@@ -10,7 +10,7 @@ set -e
 
 yes_no_question() {
     while true; do
-        read -e -p -r "$1 (y/n): " YES_NO_ANSWER < /dev/tty
+        read -e -r -p "$1 (y/n): " YES_NO_ANSWER < /dev/tty
         case $YES_NO_ANSWER in
             y)
                 break
