@@ -160,6 +160,28 @@ setup_python() {
 }
 
 
+setup_rust() {
+    # https://www.rust-lang.org/
+
+    export RUSTUP_HOME="$HOME/.rustup"
+    export CARGO_HOME="$HOME/.cargo"
+    export PATH="$CARGO_HOME/bin:$PATH"
+
+    # install Rust
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+    # exa
+    # modern ls replacement
+    # https://github.com/ogham/exa
+    cargo install exa
+
+    # delta
+    # a syntax-highlighting pager for git and diff output
+    # https://github.com/dandavison/delta
+    cargo install git-delta
+}
+
+
 setup_neovim() {
     # https://github.com/neovim/neovim
 
@@ -402,6 +424,8 @@ main() {
         setup_python
 
         setup_neovim
+
+        setup_rust
 
         setup_nodejs
 
