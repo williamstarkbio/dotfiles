@@ -483,7 +483,6 @@ alias ..='cd ..'
 
 alias clip='xclip -sel clip'
 alias py='python'
-alias spyder='spyder3 --workdir=. &'
 ################################################################################
 
 
