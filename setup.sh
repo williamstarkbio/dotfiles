@@ -136,7 +136,7 @@ setup_python() {
     # install Poetry
     # Python dependency manager
     # https://github.com/python-poetry/poetry
-    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -
+    curl -sSL https://install.python-poetry.org | python -
 
     # NOTE
     # not sure I need those
