@@ -10,7 +10,7 @@ set -e
 
 yes_no_question() {
     while true; do
-        read -e -p "$1 (y/n): " YES_NO_ANSWER < /dev/tty
+        read -e -p -r "$1 (y/n): " YES_NO_ANSWER < /dev/tty
         case $YES_NO_ANSWER in
             y)
                 break
@@ -24,7 +24,7 @@ yes_no_question() {
         esac
     done
 
-    echo $YES_NO_ANSWER
+    echo "$YES_NO_ANSWER"
 }
 
 
@@ -45,7 +45,7 @@ backup_datetime() {
 create_data_directory() {
     sudo mkdir --parents --verbose /data
 
-    sudo chown --verbose $SCRIPT_USER:$SCRIPT_USER /data
+    sudo chown --verbose "$SCRIPT_USER:$SCRIPT_USER" /data
 
     # create symbolic link /d to /data
     sudo ln --symbolic --force --verbose /data /d
@@ -93,6 +93,7 @@ setup_python() {
     # https://www.python.org/
 
     # install pyenv
+    # Python version manager
     # https://github.com/pyenv/pyenv
     if [[ -n "$PYENV_ROOT" ]]; then
         backup_datetime "$PYENV_ROOT"
@@ -105,6 +106,7 @@ setup_python() {
 
     # enable pyenv
     export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init --path)"
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 
@@ -116,26 +118,29 @@ setup_python() {
     # https://github.com/pyenv/pyenv/wiki#suggested-build-environment
     sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 
+    # install latest Python version
     PYTHON_LATEST_VERSION=$(pyenv latest --print)
-
     pyenv install $PYTHON_LATEST_VERSION
+
+    # set global Python to latest
     pyenv global $PYTHON_LATEST_VERSION
 
     # upgrade global Python pip
     pip install --upgrade pip
 
     # install Poetry
+    # Python dependency manager
     # https://github.com/python-poetry/poetry
     curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -
 
+    # NOTE
+    # not sure I need those
     # link $HOME/.pylintrc and .config/flake8
-    ln --symbolic --force --verbose $HOME/dotfiles/.pylintrc $HOME/
-    ln --symbolic --force --verbose $HOME/dotfiles/.config/flake8 $HOME/.config/
-}
+    #ln --symbolic --force --verbose $HOME/dotfiles/.pylintrc $HOME/
+    #ln --symbolic --force --verbose $HOME/dotfiles/.config/flake8 $HOME/.config/
 
-
-setup_python_programs() {
     # install pipx
+    # Install and Run Python Applications in Isolated Environments
     # https://github.com/pypa/pipx
     python3 -m pip install --user pipx
     python3 -m pipx ensurepath
@@ -143,9 +148,13 @@ setup_python_programs() {
     PIPX_BIN_DIR="$HOME/.local/bin"
     export PATH="$PIPX_BIN_DIR:$PATH"
 
+    # Black
+    # Python code formatter
     # https://github.com/psf/black
     pipx install black
 
+    # yt-dlp
+    # video downloader
     # https://github.com/yt-dlp/yt-dlp
     pipx install yt-dlp
 }
@@ -179,6 +188,7 @@ setup_neovim() {
     # https://github.com/deoplete-plugins/deoplete-jedi/wiki/Setting-up-Python-for-Neovim#using-virtual-environments
     pyenv virtualenv neovim
     pyenv activate neovim
+    pip install --upgrade pip
     pip install neovim
     pyenv deactivate
 
@@ -195,14 +205,13 @@ setup_nodejs() {
     # https://nodejs.org/
 
     # https://github.com/nvm-sh/nvm
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-
-    # TODO
-    # verify path is correct
-    # https://superuser.com/questions/365847/where-should-the-xdg-config-home-variable-be-defined/425712#425712
     export NVM_DIR="$HOME/.nvm"
+    mkdir --parents --verbose "$NVM_DIR"
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+
     [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
 
+    # install latest LTS version
     nvm install --lts
 }
 
@@ -214,8 +223,6 @@ install_z() {
     # for smart case sensitivity support check my own fork that merges ericbn's
     # pull request https://github.com/rupa/z/pull/221
     # https://github.com/williamstark01/z
-    mkdir --parents --verbose $HOME/data/programs
-
     Z_ROOT_DIRECTORY="$HOME/data/programs/z"
     [[ -d "$Z_ROOT_DIRECTORY" ]] && backup_datetime "$Z_ROOT_DIRECTORY"
     git clone https://github.com/rupa/z.git "$Z_ROOT_DIRECTORY"
@@ -313,12 +320,11 @@ setup_ufw_firewall() {
 
 
 main() {
-    cd $HOME
+    cd "$HOME"
 
-    # global variables
+    # save user
     SCRIPT_USER=$USER
     echo "logged in as user $SCRIPT_USER"
-
 
     YES_NO_ANSWER=$(yes_no_question "Do you have superuser rights on this system?")
     if [[ $YES_NO_ANSWER = "y" ]]; then
@@ -336,16 +342,20 @@ main() {
     fi
 
 
-    # configuration
-    ################################################################################
-
     # create $HOME directories
-    mkdir --parents --verbose bin
-    mkdir --parents --verbose ".config"
+    mkdir --parents --verbose "$HOME/data"
+    mkdir --parents --verbose "$HOME/data/programs"
+    mkdir --parents --verbose "$HOME/bin"
+    mkdir --parents --verbose "$HOME/.config"
 
+
+    # configuration
+    ############################################################################
+
+    # dotfiles
+    # https://github.com/williamstark01/dotfiles
     backup_datetime dotfiles
     git clone https://github.com/williamstark01/dotfiles.git
-
 
     DOTFILES=(
         .bash_profile
@@ -354,30 +364,31 @@ main() {
         .profile
         .tmux.conf
     )
-
     for DOTFILE in "${DOTFILES[@]}"; do
         backup_datetime "$DOTFILE"
-        ln --symbolic --force --verbose $HOME/dotfiles/"$DOTFILE" $HOME/
+        ln --symbolic --force --verbose "$HOME/dotfiles/$DOTFILE" "$HOME/"
     done
 
-
     backup_datetime .bashrc_local
-    cp --interactive --verbose $HOME/dotfiles/.bashrc_local $HOME/
+    cp --interactive --verbose "$HOME/dotfiles/.bashrc_local" "$HOME/"
 
     backup_datetime .gitconfig
-    cp --interactive --verbose $HOME/dotfiles/.gitconfig $HOME/
+    cp --interactive --verbose "$HOME/dotfiles/.gitconfig" "$HOME/"
 
     # Konsole Tomorrow theme
     # https://github.com/dram/konsole-tomorrow-theme
     if [[ -d "$HOME/.local/share/konsole/" ]]; then
-        ln --symbolic --force --verbose $HOME/dotfiles/.local/share/konsole/Tomorrow.colorscheme $HOME/.local/share/konsole/
+        ln --symbolic --force --verbose "$HOME/dotfiles/.local/share/konsole/Tomorrow.colorscheme" "$HOME/.local/share/konsole/"
     fi
     ################################################################################
 
+
     # disable less `s` key log feature
     # (specify custom key bindings for less, described in `$HOME/.lesskey`)
-    ln --symbolic --force --verbose $HOME/dotfiles/.lesskey $HOME/
+    # man lesskey
+    ln --symbolic --force --verbose "$HOME/dotfiles/.lesskey" "$HOME/"
     lesskey
+
 
     if [[ "$SUPERUSER_RIGHTS" == "1" ]]; then
         create_data_directory
@@ -389,7 +400,6 @@ main() {
         install_standard_packages
 
         setup_python
-        setup_python_programs
 
         setup_neovim
 
@@ -433,4 +443,4 @@ main
 
 
 echo ""
-echo "System setup successful!"
+echo "Setup successful!"
