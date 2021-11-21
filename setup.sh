@@ -42,13 +42,42 @@ backup_datetime() {
 }
 
 
-create_data_directory() {
-    sudo mkdir --parents --verbose /data
+setup_dotfiles() {
+    # dotfiles
+    ############################################################################
+    # https://github.com/williamstark01/dotfiles
+    backup_datetime dotfiles
+    git clone https://github.com/williamstark01/dotfiles.git
 
-    sudo chown --verbose "$SCRIPT_USER:$SCRIPT_USER" /data
+    DOTFILES=(
+        .bash_profile
+        .bashrc
+        .inputrc
+        .profile
+        .tmux.conf
+    )
+    for DOTFILE in "${DOTFILES[@]}"; do
+        backup_datetime "$DOTFILE"
+        ln --symbolic --force --verbose "$HOME/dotfiles/$DOTFILE" "$HOME/"
+    done
 
-    # create symbolic link /d to /data
-    sudo ln --symbolic --force --verbose /data /d
+    backup_datetime .bashrc_local
+    cp --interactive --verbose "$HOME/dotfiles/.bashrc_local" "$HOME/"
+
+    backup_datetime .gitconfig
+    cp --interactive --verbose "$HOME/dotfiles/.gitconfig" "$HOME/"
+
+    # Konsole Tomorrow theme
+    # https://github.com/dram/konsole-tomorrow-theme
+    if [[ -d "$HOME/.local/share/konsole/" ]]; then
+        ln --symbolic --force --verbose "$HOME/dotfiles/.local/share/konsole/Tomorrow.colorscheme" "$HOME/.local/share/konsole/"
+    fi
+
+    # disable less `s` key log feature
+    # (specify custom key bindings for less, described in `$HOME/.lesskey`)
+    # man lesskey
+    ln --symbolic --force --verbose "$HOME/dotfiles/.lesskey" "$HOME/"
+    lesskey
 }
 
 
@@ -392,6 +421,8 @@ main() {
     SCRIPT_USER=$USER
     echo "logged in as user $SCRIPT_USER"
 
+    export PATH="$HOME/.local/bin:$PATH"
+
     YES_NO_ANSWER=$(yes_no_question "Update and upgrade the system?")
     if [[ $YES_NO_ANSWER = "y" ]]; then
         sudo apt update && sudo apt -y upgrade && sudo apt dist-upgrade
@@ -405,71 +436,66 @@ main() {
     mkdir --parents --verbose "$HOME/.config"
 
 
-    create_data_directory
+    # create /data directory
+    sudo mkdir --parents --verbose /data
+    sudo chown --verbose "$SCRIPT_USER:$SCRIPT_USER" /data
+    # create symbolic link /d to /data
+    sudo ln --symbolic --force --verbose /data /d
 
 
-    install_standard_packages
-
-
-    # dotfiles
-    ############################################################################
-    # https://github.com/williamstark01/dotfiles
-    backup_datetime dotfiles
-    git clone https://github.com/williamstark01/dotfiles.git
-
-    DOTFILES=(
-        .bash_profile
-        .bashrc
-        .inputrc
-        .profile
-        .tmux.conf
-    )
-    for DOTFILE in "${DOTFILES[@]}"; do
-        backup_datetime "$DOTFILE"
-        ln --symbolic --force --verbose "$HOME/dotfiles/$DOTFILE" "$HOME/"
-    done
-
-    backup_datetime .bashrc_local
-    cp --interactive --verbose "$HOME/dotfiles/.bashrc_local" "$HOME/"
-
-    backup_datetime .gitconfig
-    cp --interactive --verbose "$HOME/dotfiles/.gitconfig" "$HOME/"
-
-    # Konsole Tomorrow theme
-    # https://github.com/dram/konsole-tomorrow-theme
-    if [[ -d "$HOME/.local/share/konsole/" ]]; then
-        ln --symbolic --force --verbose "$HOME/dotfiles/.local/share/konsole/Tomorrow.colorscheme" "$HOME/.local/share/konsole/"
+    YES_NO_ANSWER=$(yes_no_question "Install standard packages?")
+    if [[ $YES_NO_ANSWER = "y" ]]; then
+        install_standard_packages
     fi
-    ################################################################################
 
+    YES_NO_ANSWER=$(yes_no_question "Install linux-headers and build-essential packages?")
+    if [[ $YES_NO_ANSWER = "y" ]]; then
+        sudo apt install -y linux-headers-generic build-essential
+    fi
 
-    # disable less `s` key log feature
-    # (specify custom key bindings for less, described in `$HOME/.lesskey`)
-    # man lesskey
-    ln --symbolic --force --verbose "$HOME/dotfiles/.lesskey" "$HOME/"
-    lesskey
+    YES_NO_ANSWER=$(yes_no_question "Set up dotfiles?")
+    if [[ $YES_NO_ANSWER = "y" ]]; then
+        setup_dotfiles
+    fi
 
+    YES_NO_ANSWER=$(yes_no_question "Set up Python?")
+    if [[ $YES_NO_ANSWER = "y" ]]; then
+        setup_python
+    fi
 
-    setup_python
+    YES_NO_ANSWER=$(yes_no_question "Set up Neovim?")
+    if [[ $YES_NO_ANSWER = "y" ]]; then
+        setup_neovim
+    fi
 
-    setup_neovim
+    YES_NO_ANSWER=$(yes_no_question "Set up Rust?")
+    if [[ $YES_NO_ANSWER = "y" ]]; then
+        setup_rust
+    fi
 
-    setup_rust
+    YES_NO_ANSWER=$(yes_no_question "Set up Go?")
+    if [[ $YES_NO_ANSWER = "y" ]]; then
+        setup_go
+    fi
 
-    setup_go
+    YES_NO_ANSWER=$(yes_no_question "Set up Node.js?")
+    if [[ $YES_NO_ANSWER = "y" ]]; then
+        setup_nodejs
+    fi
 
-    setup_nodejs
+    YES_NO_ANSWER=$(yes_no_question "Set up additional software?")
+    if [[ $YES_NO_ANSWER = "y" ]]; then
+        setup_additional_software
+    fi
 
-    setup_additional_software
-
-    YES_NO_ANSWER=$(yes_no_question "Is this a desktop system?")
+    YES_NO_ANSWER=$(yes_no_question "Install desktop programs?")
     if [[ $YES_NO_ANSWER = "y" ]]; then
         install_desktop_packages
 
         install_google_chrome
     fi
 
-    YES_NO_ANSWER=$(yes_no_question "Is this a server system?")
+    YES_NO_ANSWER=$(yes_no_question "Install server programs?")
     if [[ $YES_NO_ANSWER = "y" ]]; then
         # Fail2ban
         # https://github.com/fail2ban/fail2ban
@@ -480,13 +506,6 @@ main() {
         sudo apt install -y fail2ban ufw
 
         setup_ufw_firewall
-    fi
-
-
-    # install the linux-headers and build-essential packages
-    YES_NO_ANSWER=$(yes_no_question "Install linux-headers and build-essential packages?")
-    if [[ $YES_NO_ANSWER = "y" ]]; then
-        sudo apt install -y linux-headers-generic build-essential
     fi
 }
 
