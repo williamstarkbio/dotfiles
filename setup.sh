@@ -245,18 +245,17 @@ setup_go() {
     sudo add-apt-repository ppa:longsleep/golang-backports
 
     # install latest major version
-    sudo apt install golang-go
+    sudo apt install -y golang-go
 
     # watch
     # watch implementation that supports aliases and color
     # https://github.com/antonmedv/watch
-    go get github.com/antonmedv/watch
+    go install github.com/antonmedv/watch@latest
 
     # massren
     # rename files using a text editor
     # https://github.com/laurent22/massren
-    go get -u github.com/laurent22/massren
-    go install github.com/laurent22/massren
+    go install github.com/laurent22/massren@latest
 }
 
 
@@ -271,7 +270,7 @@ setup_neovim() {
     sudo apt install -y neovim
 
     # Python modules prerequisites
-    sudo apt install python-dev python-pip python3-dev python3-pip
+    sudo apt install -y python3-dev python3-pip
 
     # use Neovim for all editor alternatives
     sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
