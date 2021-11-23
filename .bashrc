@@ -1095,7 +1095,15 @@ fi
 #complete -C aws_completer aws
 
 
-### add GPG key
+## start authentication agent and load SSH keys
+eval $(ssh-agent -s) &> /dev/null
+# kill the agent on session exit
+trap "ssh-agent -k" exit
+[[ -f "$HOME/.ssh/id_rsa_github" ]] && ssh-add "$HOME/.ssh/id_rsa_github" &> /dev/null
+[[ -f "$HOME/.ssh/id_rsa_gitlab" ]] && ssh-add "$HOME/.ssh/id_rsa_gitlab" &> /dev/null
+
+
+## add GPG key
 export GPG_TTY=$(tty)
 ################################################################################
 
