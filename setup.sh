@@ -68,6 +68,7 @@ setup_dotfiles() {
     DOTFILES=(
         .bash_profile
         .bashrc
+        .bashrc_wc
         .inputrc
         .profile
         .tmux.conf
