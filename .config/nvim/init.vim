@@ -437,6 +437,9 @@ set iskeyword-=.
 inoremap <S-Tab> <C-V><Tab>
 
 
+set mouse=a
+
+
 """ Neovim settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ preview substitutions
