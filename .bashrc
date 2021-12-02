@@ -672,7 +672,7 @@ alias gsh='aliased_gsh'
 ### custom functions
 ################################################################################
 
-youtube_plus() {
+yt() {
     # download videos with yt-dlp
     # https://github.com/yt-dlp/yt-dlp
 
