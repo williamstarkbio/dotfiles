@@ -452,20 +452,6 @@ alias vim='vim -p'
 # -R
 # Readonly mode.
 #alias vimdiff='vim -d -R'
-
-### yt-dlp
-# https://github.com/yt-dlp/yt-dlp
-# download best format available but not better that 1080p
-RATE_LIMIT="1M"; alias yt-dlp="yt-dlp --limit-rate "$RATE_LIMIT"  --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --write-sub --sub-lang en.*"
-
-playlist-yt-dlp() {
-    PLAYLIST="$1"
-
-    #RATE_LIMIT="10M"
-    RATE_LIMIT="1M"
-
-    yt-dlp --playlist-start 1 --limit-rate "$RATE_LIMIT" --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --merge-output-format mkv --ignore-errors --write-sub --sub-lang en -o "%(playlist)s [%(playlist_id)s]/%(playlist_index)s - %(title)s [%(id)s].%(ext)s" "$PLAYLIST"
-}
 ################################################################################
 
 
@@ -685,6 +671,32 @@ alias gsh='aliased_gsh'
 
 ### custom functions
 ################################################################################
+
+youtube_plus() {
+    # download videos with yt-dlp
+    # https://github.com/yt-dlp/yt-dlp
+
+    # download best format available but not better that 1080p
+
+    #RATE_LIMIT="10M"
+    RATE_LIMIT="2M"
+    #RATE_LIMIT="1M"
+
+    # YouTube playlist
+    if [[ "$1" == "https://www.youtube.com/playlist?list="* ]]; then
+        yt-dlp --playlist-start 1 --limit-rate "$RATE_LIMIT" --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --ignore-errors --write-subs --sub-langs "en.*" -o "%(playlist)s [%(playlist_id)s]/%(playlist_index)s - %(title)s [%(id)s].%(ext)s" "$1"
+
+    # text file with links to videos
+    elif [[ "$1" == *".txt" ]]; then
+        yt-dlp --limit-rate "$RATE_LIMIT" --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --write-subs --sub-langs "en.*" -a "$1"
+
+    # individual YouTube video (link starting with "https://www.youtube.com/watch?v=")
+    # or video from other platforms
+    else
+        yt-dlp --limit-rate "$RATE_LIMIT" --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --write-subs --sub-langs "en.*" "$1"
+    fi
+}
+
 
 ### load GitHub SSH key
 github-ssh() {
