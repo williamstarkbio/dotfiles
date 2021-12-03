@@ -819,7 +819,10 @@ aliased_d_compress_7z() {
         # remove trailing slash
         arg=${arg%/}
 
-        7z a "$arg".7z "$arg"
+        # run on a single core
+        7z a -t7z -mmt=1 -m0=lzma "$arg".7z "$arg"
+
+        #7z a "$arg".7z "$arg"
     done
 }
 alias d-compress-7z='aliased_d_compress_7z'
