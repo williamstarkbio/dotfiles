@@ -471,6 +471,7 @@ alias py='python'
 ### initialize a git repo, add and commit my default .gitignore
 aliased_gi() {
     git init
+    git checkout -b main
     cp $HOME/dotfiles/.gitignore .
     git add .gitignore
     git commit -m "add .gitignore"
@@ -481,6 +482,7 @@ alias gi='aliased_gi'
 ### initialize a repo, add and commit all existing files
 aliased_gii() {
     git init
+    git checkout -b main
     cp $HOME/dotfiles/.gitignore .
     git add .gitignore
     git commit -m "add .gitignore"
