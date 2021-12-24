@@ -732,6 +732,19 @@ aliased_d_open() {
 alias d-open='aliased_d_open'
 
 
+### md5 hash function
+aliased_md5sum() {
+    if [[ -z "$1" ]]; then
+        md5sum *
+    else
+        for arg in "$@"; do
+            md5sum "$arg"
+        done
+    fi
+}
+alias m5='aliased_md5sum'
+
+
 ### generate and save hashes of files
 aliased_d_hash_generate() {
     if [[ -z "$1" ]]; then
