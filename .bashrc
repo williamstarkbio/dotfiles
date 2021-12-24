@@ -174,7 +174,9 @@ alias black='black --line-length 90'
 # copy directories recursively
 # -v, --verbose
 # explain what is being done
-alias cp='cp --interactive --preserve --recursive --verbose'
+### icp
+# Rename or copy a file by editing the destination name using GNU readline.
+alias cp='icp --pass-through --interactive --preserve --recursive --verbose'
 
 
 ### df
@@ -346,25 +348,14 @@ alias md='mkdir --parents --verbose'
 
 
 ### mv
-# Rename or move a file with mv without typing its name or path twice.
-# Pass its name or path to mv just once and enter will allow you to edit
-# this argument while a second enter will complete the operation.
-# NOTE:
-# Maybe incorporating the command imv from the package renameutils would make
-# this function even more robust.
+# move (rename) files
 # -i, --interactive
 # prompt before overwrite
 # -v, --verbose
 # explain what is being done
-aliased_mv() {
-    if [[ -z "$1" ]] || [[ "$#" -ne 1 ]]; then
-        mv --interactive --verbose "$@"
-    else
-        read -ei "$1" NEW_FILENAME
-        mv --interactive --verbose -- "$1" "$NEW_FILENAME"
-    fi
-}
-alias mv='aliased_mv'
+### imv
+# Rename or copy a file by editing the destination name using GNU readline.
+alias mv='imv --pass-through --interactive --verbose'
 
 
 ### pgrep, pkill

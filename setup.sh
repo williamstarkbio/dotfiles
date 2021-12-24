@@ -119,6 +119,11 @@ install_standard_packages() {
     # send file / directory / text to another computer over the Internet
     # https://github.com/magic-wormhole/magic-wormhole
 
+    # renameutils
+    # set of programs designed to make renaming of files faster and less cumbersome
+    # (includes imv and icp)
+    # https://www.nongnu.org/renameutils/
+
     # ripgrep
     # recursively search file contents for a regex pattern
     # https://github.com/BurntSushi/ripgrep
@@ -135,6 +140,7 @@ install_standard_packages() {
         git
         hashdeep
         magic-wormhole
+        renameutils
         ripgrep
         ssh
         tmux
