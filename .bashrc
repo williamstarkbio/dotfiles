@@ -196,12 +196,6 @@ alias df='df --human-readable --exclude-type=squashfs'
 alias du='du -h -s'
 
 
-### googler
-# Google from the terminal
-# https://github.com/jarun/googler
-alias googler='googler --noua'
-
-
 ### info
 # read Info documents
 # --vi-keys
