@@ -133,6 +133,10 @@ install_standard_packages() {
     # https://manpages.ubuntu.com/manpages/focal/man1/xclip.1.html
     # https://github.com/astrand/xclip
 
+    # zstd
+    # compress or decompress .zst files
+    # https://manpages.ubuntu.com/manpages/focal/man1/zstd.1.html
+
     STANDARD_PACKAGES=(
         curl
         dos2unix
@@ -145,6 +149,7 @@ install_standard_packages() {
         ssh
         tmux
         xclip
+        zstd
     )
 
     sudo apt install -y "${STANDARD_PACKAGES[@]}"

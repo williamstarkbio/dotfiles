@@ -801,7 +801,7 @@ aliased_d_compress_tgz() {
         # remove trailing slash
         arg=${arg%/}
 
-        tar -c -z -f "$arg".tgz "$arg"
+        tar --create --gzip --file "$arg".tgz "$arg"
     done
 }
 alias d-compress-tgz='aliased_d_compress_tgz'
@@ -831,7 +831,7 @@ alias d-compress-7z='aliased_d_compress_7z'
 ### extract an archive
 aliased_d_extract() {
     if [[ -z "$1" ]]; then
-        echo "extract a zip, tgz, 7z, rar, gz, bz2, xz, or tar archive"
+        echo "extract a zip, tgz, 7z, rar, gz, bz2, xz, zst, or tar archive"
         echo "usage: d-extract <FILE> [<FILE> ...]"
         return 0
     fi
@@ -844,7 +844,7 @@ aliased_d_extract() {
                 unzip "$arg"
             ;;
             *.tar|*.tar.gz|*.tgz|*.bz2|*.xz)
-                tar -x -v -f "$arg"
+                tar --extract --verbose --file "$arg"
             ;;
             *.gz)
                 #gunzip -k "$arg"
@@ -867,6 +867,9 @@ aliased_d_extract() {
                 fi
 
                 7z x "${opt}" "$arg"
+            ;;
+            *.zst)
+                tar --use-compress-program=unzstd --extract --verbose --file "$arg"
             ;;
         esac
     done
