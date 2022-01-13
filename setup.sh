@@ -68,7 +68,7 @@ setup_dotfiles() {
     DOTFILES=(
         .bash_profile
         .bashrc
-        .bashrc_wc
+        .bashrc_ws
         .inputrc
         .profile
         .tmux.conf
@@ -252,7 +252,7 @@ setup_rust() {
 
 setup_go() {
     # Go programming language
-    # https://golang.org/
+    # https://go.dev/
 
     sudo add-apt-repository ppa:longsleep/golang-backports
 
