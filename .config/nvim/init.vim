@@ -21,11 +21,6 @@ call plug#begin(stdpath('data') . '/plugged')
 """ plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" ALE
-" Asynchronous linting/fixing and Language Server Protocol client
-" https://github.com/dense-analysis/ale
-Plug 'dense-analysis/ale'
-
 " Barbaric
 " Automatic input method switching for vim
 " https://github.com/rlue/vim-barbaric
@@ -50,12 +45,6 @@ Plug 'tpope/vim-fugitive'
 " Show "Match 123 of 456 /search term/" in Vim searches.
 " https://github.com/henrik/vim-indexed-search
 Plug 'henrik/vim-indexed-search'
-
-" jupytext.vim
-" plugin for editing Jupyter notebook (ipynb) files through jupytext
-" https://github.com/goerz/jupytext.vim
-" requires jupytext https://github.com/mwouts/jupytext
-"Plug 'goerz/jupytext.vim'
 
 " NERD Commenter
 " powerful comment functions
@@ -108,18 +97,6 @@ Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 " https://github.com/powerman/vim-plugin-viewdoc
 Plug 'powerman/vim-plugin-viewdoc'
 
-" vim-ghost
-" edit browser textarea contents in Neovim with GhostText
-" https://github.com/raghur/vim-ghost
-" https://github.com/GhostText/GhostText
-" https://chrome.google.com/webstore/detail/ghosttext/godiecgffnchndlihlpaajjcplehddca
-" requirements (install in the pyenv neovim virtual environment) :
-" pip install SimpleWebSocketServer
-" pip install python-slugify
-" sudo apt install xdotool
-" run "GhostInstall" in Neovim
-"Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
-
 " vim-gitgutter
 " show a git diff in the gutter
 " https://github.com/airblade/vim-gitgutter
@@ -137,12 +114,6 @@ Plug 'gabrielelana/vim-markdown'
 let g:markdown_enable_spell_checking = 0
 " disable insert mode mappings
 let g:markdown_enable_insert_mode_mappings = 0
-
-" vim-polyglot
-" A collection of language packs for Vim.
-" https://github.com/sheerun/vim-polyglot
-"let g:polyglot_disabled = ['markdown']
-"Plug 'sheerun/vim-polyglot'
 
 " vim-uppercase-sql
 " Automatically uppercase SQL keywords as you type
@@ -459,14 +430,6 @@ let g:python3_host_prog = $PYENV_ROOT . '/versions/neovim/bin/python'
 """ plugin settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""" ALE
-" disable Flake8 and Pylint in Neovim
-"let b:ale_linters = ['flake8', 'pylint']
-let b:ale_linters = []
-" only run linters named in ale_linters settings
-let g:ale_linters_explicit = 1
-
-
 """ EasyMotion
 let g:EasyMotion_leader_key = '<Leader>'
 hi link EasyMotionTarget2First EasyMotionTarget
@@ -508,10 +471,4 @@ nnoremap <F8> :TagbarToggle<CR>
 """ vim-json
 " disable JSON syntax concealing
 let g:vim_json_syntax_conceal = 0
-
-
-" vim-polyglot / vim-markdown
-" https://github.com/plasticboy/vim-markdown
-"let g:vim_markdown_conceal = 0
-"let g:vim_markdown_conceal_code_blocks = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
