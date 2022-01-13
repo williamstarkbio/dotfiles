@@ -50,17 +50,15 @@ fi
 ### prompt command
 [[ -f "$HOME/dotfiles/git-prompt.sh" ]] && source "$HOME/dotfiles/git-prompt.sh"
 update_prompt() {
-    GREEN="\[\033[1;32m\]"
-    MAGENTA="\[\033[1;35m\]"
-    BLUE="\[\033[1;34m\]"
-    COLOR_OFF="\[\033[0m\]"
+    # define colors with ANSI escape codes
+    # https://stackoverflow.com/questions/4842424/list-of-ansi-color-escape-sequences/33206814#33206814
+    # https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
+    GREEN="\033[32;1m"
+    MAGENTA="\033[35;1m"
+    BLUE="\033[34;1m"
+    COLOR_OFF="\033[0m"
 
-    # initialize an empty prompt string
-    #PROMPT=""
-
-    # add the datetime in the prompt string
-    #PROMPT="$MAGENTA\D{%F_%T }$COLOR_OFF"
-    # add just the time in the prompt string
+    # add the current time to the prompt string
     PROMPT="$MAGENTA\D{%T }$COLOR_OFF"
 
     # if in a virtual environment, prefix the prompt with its name or a symbol
@@ -427,7 +425,7 @@ alias scp='scp -p -r'
 #alias tmux='tmux -2'
 
 
-### vim (nvim)
+### Neovim (nvim)
 # -p[N]
 # Open N tab pages. If [N] is not given, one tab page is opened for every file
 # given as argument.
