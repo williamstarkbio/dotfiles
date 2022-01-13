@@ -77,6 +77,11 @@ Plug 'rust-lang/rust.vim'
 " https://github.com/vim/vim/issues/4738#issuecomment-856925080
 Plug 'felipec/vim-sanegx'
 
+" SimpylFold
+" correct Python code folding
+" https://github.com/tmhedberg/SimpylFold
+Plug 'tmhedberg/SimpylFold'
+
 " supertab
 " Perform all your vim insert mode completions with Tab
 " https://github.com/ervandew/supertab
@@ -465,6 +470,11 @@ set signcolumn=yes
 """ NERD Tree
 " show hidden files
 let NERDTreeShowHidden=1
+
+
+" SimpylFold
+let g:SimpylFold_fold_docstring	= 0
+let g:SimpylFold_fold_import = 0
 
 
 """ supertab
