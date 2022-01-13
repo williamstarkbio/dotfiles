@@ -408,7 +408,16 @@ set iskeyword-=.
 inoremap <S-Tab> <C-V><Tab>
 
 
+""" enable mouse support
 set mouse=a
+
+
+""" select a line without the newline character
+" https://stackoverflow.com/questions/20165596/select-entire-line-in-vim-without-the-new-line-character
+vnoremap al :<C-U>normal 0v$h<CR>
+omap al :normal val<CR>
+vnoremap il :<C-U>normal ^vg_<CR>
+omap il :normal vil<CR>
 
 
 """ Neovim settings
