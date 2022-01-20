@@ -664,7 +664,8 @@ yt() {
     # download best format available but not better that 1080p
 
     #RATE_LIMIT="10M"
-    RATE_LIMIT="2M"
+    RATE_LIMIT="5M"
+    #RATE_LIMIT="2M"
     #RATE_LIMIT="1M"
 
     # YouTube playlist
