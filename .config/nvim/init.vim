@@ -259,12 +259,6 @@ endfunction
 nnoremap <Leader>l :call ToggleVisibleWhitespace()<CR>
 
 
-""" use system-wide directories for swap files
-"set backupdir=~/.vim/tmp/backup/
-"set directory=~/.vim/tmp/swap/
-"set undodir=~/.vim/tmp/undo/
-
-
 """ filetype specific settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " manually set a new filetype
