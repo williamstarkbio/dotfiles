@@ -201,12 +201,6 @@ setup_python() {
     # https://github.com/python-poetry/poetry
     curl -sSL https://install.python-poetry.org | python -
 
-    # NOTE
-    # not sure I need those
-    # link $HOME/.pylintrc and .config/flake8
-    #ln --symbolic --force --verbose $HOME/dotfiles/.pylintrc $HOME/
-    #ln --symbolic --force --verbose $HOME/dotfiles/.config/flake8 $HOME/.config/
-
     # install pipx
     # Install and Run Python Applications in Isolated Environments
     # https://github.com/pypa/pipx
