@@ -335,6 +335,16 @@ aliased_exa_tree() {
 }
 alias lat='aliased_exa_tree'
 
+aliased_exa_tree_level_3() {
+    clear -x
+    if [[ -z "$1" ]]; then
+        exa --tree --level=3 --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always | less -FRX
+    else
+        exa --tree --level=3 --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always "$1" | less -FRX
+    fi
+}
+alias latt='aliased_exa_tree_level_3'
+
 
 ### mkdir
 # make directories
