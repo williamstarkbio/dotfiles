@@ -19,6 +19,8 @@
 *.jpg
 *.jpeg
 *.pickle
+*.docx
+*.7z
 
 # other file formats
 *.html
