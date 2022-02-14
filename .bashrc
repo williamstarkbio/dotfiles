@@ -614,7 +614,17 @@ alias gcau='git commit -a -m "update"'
 aliased_gl() {
     clear -x
     # <abbreviated commit hash> (<ref names>) <subject>
-    git log --decorate --all --graph --pretty=format:'%C(yellow bold)%h%Creset%C(auto)%d%Creset %s'
+    if [[ -z "$1" ]]; then
+        git log --decorate --all --graph --pretty=format:'%C(yellow bold)%h%Creset%C(auto)%d%Creset %s'
+    else
+        if [[ "$1" == "." ]]; then
+            # show log for current branch only
+            git log --decorate --graph --pretty=format:'%C(yellow bold)%h%Creset%C(auto)%d%Creset %s' --first-parent $(git rev-parse --abbrev-ref HEAD)
+        else
+            # show log for specified branch only
+            git log --decorate --graph --pretty=format:'%C(yellow bold)%h%Creset%C(auto)%d%Creset %s' --first-parent "$1"
+        fi
+    fi
 }
 alias gl='aliased_gl'
 
