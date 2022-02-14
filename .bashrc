@@ -625,18 +625,48 @@ alias gl='aliased_gl'
 gll() {
     clear -x
     # <abbreviated commit hash> (<ref names>) <subject> (committer date, relative)
-    git log --decorate --all --graph --pretty=format:'%C(yellow bold)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr)%Creset'
+    if [[ -z "$1" ]]; then
+        git log --decorate --all --graph --pretty=format:'%C(yellow bold)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr)%Creset'
+    else
+        if [[ "$1" == "." ]]; then
+            # show log for current branch only
+            git log --decorate --graph --pretty=format:'%C(yellow bold)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr)%Creset' --first-parent $(git rev-parse --abbrev-ref HEAD)
+        else
+            # show log for specified branch only
+            git log --decorate --graph --pretty=format:'%C(yellow bold)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr)%Creset' --first-parent "$1"
+        fi
+    fi
 }
 
 glll() {
     clear -x
     # <abbreviated commit hash> (<ref names>) <subject> (committer date, relative) <<author name>>
-    git log --decorate --all --graph --pretty=format:'%C(yellow bold)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr)%Creset %C(bold blue)<%an>%Creset'
+    if [[ -z "$1" ]]; then
+        git log --decorate --all --graph --pretty=format:'%C(yellow bold)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr)%Creset %C(bold blue)<%an>%Creset'
+    else
+        if [[ "$1" == "." ]]; then
+            # show log for current branch only
+            git log --decorate --graph --pretty=format:'%C(yellow bold)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr)%Creset %C(bold blue)<%an>%Creset' --first-parent $(git rev-parse --abbrev-ref HEAD)
+        else
+            # show log for specified branch only
+            git log --decorate --graph --pretty=format:'%C(yellow bold)%h%Creset%C(auto)%d%Creset %s %Cgreen(%cr)%Creset %C(bold blue)<%an>%Creset' --first-parent "$1"
+        fi
+    fi
 }
 
 gllll() {
     clear -x
-    git log --decorate --all --graph --date=iso
+    if [[ -z "$1" ]]; then
+        git log --decorate --all --graph --date=iso
+    else
+        if [[ "$1" == "." ]]; then
+            # show log for current branch only
+            git log --decorate --graph --date=iso --first-parent $(git rev-parse --abbrev-ref HEAD)
+        else
+            # show log for specified branch only
+            git log --decorate --graph --date=iso --first-parent "$1"
+        fi
+    fi
 }
 
 
