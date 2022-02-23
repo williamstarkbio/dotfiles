@@ -82,6 +82,11 @@ Plug 'felipec/vim-sanegx'
 " https://github.com/tmhedberg/SimpylFold
 Plug 'tmhedberg/SimpylFold'
 
+" vim-slime
+" Vim to REPL interactive programming
+" https://github.com/jpalardy/vim-slime
+Plug 'jpalardy/vim-slime'
+
 " supertab
 " Perform all your vim insert mode completions with Tab
 " https://github.com/ervandew/supertab
@@ -466,9 +471,21 @@ set signcolumn=yes
 let NERDTreeShowHidden=1
 
 
-" SimpylFold
+""" SimpylFold
 let g:SimpylFold_fold_docstring = 0
 let g:SimpylFold_fold_import = 0
+
+
+""" vim-slime
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
+let g:slime_dont_ask_default = 1
+"let g:slime_python_ipython = 1
+let g:slime_no_mappings = 1
+xmap <c-c><c-c> <Plug>SlimeRegionSend
+"nmap <c-c><c-c> <Plug>SlimeParagraphSend
+nmap <c-c><c-c> <Plug>SlimeLineSend
+nmap <c-c>v <Plug>SlimeConfig
 
 
 """ supertab
