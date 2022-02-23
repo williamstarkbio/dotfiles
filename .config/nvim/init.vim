@@ -467,7 +467,7 @@ let NERDTreeShowHidden=1
 
 
 " SimpylFold
-let g:SimpylFold_fold_docstring	= 0
+let g:SimpylFold_fold_docstring = 0
 let g:SimpylFold_fold_import = 0
 
 
