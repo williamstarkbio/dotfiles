@@ -172,9 +172,25 @@ alias black='black --line-length 90'
 # copy directories recursively
 # -v, --verbose
 # explain what is being done
+# --command=FILE
+# Specify command to run instead of the default `mv' or `cp'.
+# (required by Exodus bundled icp)
 ### icp
 # Rename or copy a file by editing the destination name using GNU readline.
-alias cp='icp --pass-through --interactive --preserve --recursive --verbose'
+alias cp='icp --command=cp --pass-through --interactive --preserve --recursive --verbose'
+
+### mv
+# move (rename) files
+# -i, --interactive
+# prompt before overwrite
+# -v, --verbose
+# explain what is being done
+# --command=FILE
+# Specify command to run instead of the default `mv' or `cp'.
+# (required by Exodus bundled imv)
+### imv
+# Rename or copy a file by editing the destination name using GNU readline.
+alias mv='imv --command=mv --pass-through --interactive --verbose'
 
 
 ### df
@@ -353,17 +369,6 @@ alias latt='aliased_exa_tree_level_3'
 # -v, --verbose
 # print a message for each created directory
 alias md='mkdir --parents --verbose'
-
-
-### mv
-# move (rename) files
-# -i, --interactive
-# prompt before overwrite
-# -v, --verbose
-# explain what is being done
-### imv
-# Rename or copy a file by editing the destination name using GNU readline.
-alias mv='imv --pass-through --interactive --verbose'
 
 
 ### pgrep, pkill
