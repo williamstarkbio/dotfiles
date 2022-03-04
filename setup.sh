@@ -45,7 +45,7 @@ backup_datetime() {
 create_directories() {
     # create $HOME directories
     mkdir --parents --verbose "$HOME/data"
-    mkdir --parents --verbose "$HOME/data/programs"
+    mkdir --parents --verbose "$HOME/data/software"
     mkdir --parents --verbose "$HOME/bin"
     mkdir --parents --verbose "$HOME/.config"
 
@@ -103,6 +103,10 @@ install_standard_packages() {
     # command line tool and library for transferring data with URLs
     # https://curl.se/
 
+    # direnv
+    # automatically load and unload environment variables when changing directory
+    # https://github.com/direnv/direnv
+
     # dos2unix
     # DOS/Mac to Unix and vice versa text file format converter
     # https://manpages.ubuntu.com/manpages/focal/man1/dos2unix.1.html
@@ -139,6 +143,7 @@ install_standard_packages() {
 
     STANDARD_PACKAGES=(
         curl
+        direnv
         dos2unix
         fd-find
         git
@@ -312,7 +317,7 @@ setup_nodejs() {
     # https://github.com/nvm-sh/nvm
     export NVM_DIR="$HOME/.nvm"
     mkdir --parents --verbose "$NVM_DIR"
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
     [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
 
@@ -328,14 +333,9 @@ setup_additional_software() {
     # for smart case sensitivity support check my own fork that merges ericbn's
     # pull request https://github.com/rupa/z/pull/221
     # https://github.com/williamstark01/z
-    Z_ROOT_DIRECTORY="$HOME/data/programs/z"
+    Z_ROOT_DIRECTORY="$HOME/data/software/z"
     [[ -d "$Z_ROOT_DIRECTORY" ]] && backup_datetime "$Z_ROOT_DIRECTORY"
     git clone https://github.com/rupa/z.git "$Z_ROOT_DIRECTORY"
-
-    # direnv
-    # automatically load and unload environment variables when changing directory
-    # https://github.com/direnv/direnv
-    curl -sfL https://direnv.net/install.sh | bash
 }
 
 
@@ -500,14 +500,14 @@ main() {
         setup_additional_software
     fi
 
-    YES_NO_ANSWER=$(yes_no_question "Install desktop programs?")
+    YES_NO_ANSWER=$(yes_no_question "Install desktop software?")
     if [[ $YES_NO_ANSWER = "y" ]]; then
         install_desktop_packages
 
         install_google_chrome
     fi
 
-    YES_NO_ANSWER=$(yes_no_question "Install server programs?")
+    YES_NO_ANSWER=$(yes_no_question "Install server software?")
     if [[ $YES_NO_ANSWER = "y" ]]; then
         # Fail2ban
         # https://github.com/fail2ban/fail2ban
