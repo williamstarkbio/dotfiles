@@ -236,7 +236,7 @@ alias ipa='ip -color address'
 # handle ANSI "color" escape sequences
 # -X or --no-init
 # don't clear the screen on exit
-aliased_le() {
+le() {
     clear -x
     if [[ -z "$1" ]]; then
         less -FRX
@@ -246,7 +246,6 @@ aliased_le() {
         done
     fi
 }
-alias le='aliased_le'
 
 
 ### exa
@@ -258,7 +257,7 @@ alias le='aliased_le'
 #export EXA_COLORS="da=1;90"
 # cyan
 export EXA_COLORS="da=1;36"
-aliased_exa() {
+la() {
     clear -x
     if [[ -z "$1" ]]; then
         exa --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git
@@ -268,9 +267,9 @@ aliased_exa() {
         done
     fi
 }
-alias la='aliased_exa'
 
-aliased_exa_paged() {
+lla() {
+    # paged la
     clear -x
     if [[ -z "$1" ]]; then
         exa --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always | less -FRX
@@ -282,9 +281,9 @@ aliased_exa_paged() {
         ) | less -FRX
     fi
 }
-alias lla='aliased_exa_paged'
 
-aliased_exa_tree() {
+lat() {
+    # exa tree
     clear -x
     if [[ -z "$1" ]]; then
         exa --tree --level=2 --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always | less -FRX
@@ -292,9 +291,9 @@ aliased_exa_tree() {
         exa --tree --level=2 --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always "$1" | less -FRX
     fi
 }
-alias lat='aliased_exa_tree'
 
-aliased_exa_tree_level_3() {
+latt() {
+    # exa tree level 3
     clear -x
     if [[ -z "$1" ]]; then
         exa --tree --level=3 --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always | less -FRX
@@ -302,7 +301,6 @@ aliased_exa_tree_level_3() {
         exa --tree --level=3 --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always "$1" | less -FRX
     fi
 }
-alias latt='aliased_exa_tree_level_3'
 
 
 ### mkdir
@@ -398,18 +396,17 @@ alias py='python'
 ################################################################################
 
 ### initialize a git repo, add and commit my default .gitignore
-aliased_gi() {
+gi() {
     git init
     git checkout -b main
     cp $HOME/dotfiles/.gitignore .
     git add .gitignore
     git commit -m "add .gitignore"
 }
-alias gi='aliased_gi'
 
 
 ### initialize a repo, add and commit all existing files
-aliased_gii() {
+gii() {
     git init
     git checkout -b main
     cp $HOME/dotfiles/.gitignore .
@@ -418,7 +415,6 @@ aliased_gii() {
     git add .
     git commit -m "import files"
 }
-alias gii='aliased_gii'
 
 
 ### git add
@@ -430,7 +426,7 @@ alias ga='git add'
 # -p, --patch
 # Interactively choose hunks of patch between the index and the work tree
 # and add them to the index.
-aliased_gap() {
+gap() {
     clear -x
     if [[ -z "$1" ]]; then
         git add -p
@@ -440,21 +436,19 @@ aliased_gap() {
         done
     fi
 }
-alias gap='aliased_gap'
 
 
 ### git status
 # show the working tree status
-aliased_gst() {
+gst() {
     clear -x
     git status
 }
-alias gst='aliased_gst'
 
 
 ### git diff
 # show changes between commits, commit and working tree, etc
-aliased_gd() {
+gd() {
     clear -x
     if [[ -z "$1" ]]; then
         git diff
@@ -464,14 +458,13 @@ aliased_gd() {
         done
     fi
 }
-alias gd='aliased_gd'
 
 
 ### git diff --cached
 # --cached
 # view the changes you staged for the next commit
 # --staged is a synonym of --cached
-aliased_gds() {
+gds() {
     clear -x
     if [[ -z "$1" ]]; then
         git diff --cached
@@ -481,12 +474,11 @@ aliased_gds() {
         done
     fi
 }
-alias gds='aliased_gds'
 
 
 ### git difftool
 # show changes using common diff tools
-aliased_gdt() {
+gdt() {
     clear -x
     if [[ -z "$1" ]]; then
         git difftool
@@ -496,13 +488,12 @@ aliased_gdt() {
         done
     fi
 }
-alias gdt=aliased_gdt
 
 
 ### git difftool --cached
 # git difftool is a frontend to git diff and accepts the same options and
 # arguments.
-aliased_gdst() {
+gdst() {
     clear -x
     if [[ -z "$1" ]]; then
         git difftool --cached
@@ -512,7 +503,6 @@ aliased_gdst() {
         done
     fi
 }
-alias gdst='aliased_gdst'
 
 
 ### git commit
@@ -547,7 +537,7 @@ alias gcau='git commit -a -m "update"'
 # left hand side of the output.
 # --date=iso (or --date=iso8601)
 # shows timestamps in ISO 8601 format.
-aliased_gl() {
+gl() {
     clear -x
     # <abbreviated commit hash> (<ref names>) <subject>
     if [[ -z "$1" ]]; then
@@ -562,7 +552,6 @@ aliased_gl() {
         fi
     fi
 }
-alias gl='aliased_gl'
 
 
 ### git concise log
@@ -628,7 +617,7 @@ alias gps='git push'
 
 ### git show
 # Show various types of objects
-aliased_gsh() {
+gsh() {
     clear -x
     if [[ -z "$1" ]]; then
         git show
@@ -636,7 +625,6 @@ aliased_gsh() {
         git show "$1"
     fi
 }
-alias gsh='aliased_gsh'
 ################################################################################
 
 
@@ -696,7 +684,7 @@ calc() {
 # open a file browser on the current directory if run without arguments
 ### xdg-open
 # opens a file or URL in the user's preferred application
-aliased_f_open() {
+f-open() {
     if [[ -z "$1" ]]; then
         xdg-open .
     else
@@ -705,11 +693,10 @@ aliased_f_open() {
         done
     fi
 }
-alias f-open='aliased_f_open'
 
 
 ### md5 hash function
-aliased_md5sum() {
+m5() {
     if [[ -z "$1" ]]; then
         md5sum *
     else
@@ -718,7 +705,6 @@ aliased_md5sum() {
         done
     fi
 }
-alias m5='aliased_md5sum'
 
 
 ### generate and save hashes of files
@@ -757,7 +743,7 @@ aliased_f_hash_verify() {
 # store symbolic links as such in the zip archive, instead of compressing and
 # storing the file referred to by the link.
 ### compress to zip
-aliased_f_compress_zip() {
+f-compress-zip() {
     if [[ -z "$1" ]]; then
         echo "compress to a zip archive with the same filename"
         echo "usage: f-compress-zip <FILE> [<FILE> ...]"
@@ -771,11 +757,10 @@ aliased_f_compress_zip() {
         zip --recurse-paths --symlinks "$arg".zip "$arg"
     done
 }
-alias f-compress-zip='aliased_f_compress_zip'
 
 
 ### compress to tgz
-aliased_f_compress_tgz() {
+f-compress-tgz() {
     if [[ -z "$1" ]]; then
         echo "compress to a tgz archive with the same filename"
         echo "usage: f-compress-tgz <FILE> [<FILE> ...]"
@@ -789,11 +774,10 @@ aliased_f_compress_tgz() {
         tar --create --gzip --file "$arg".tgz "$arg"
     done
 }
-alias f-compress-tgz='aliased_f_compress_tgz'
 
 
 ### compress to 7z
-aliased_f_compress_7z() {
+f-compress-7z() {
     if [[ -z "$1" ]]; then
         echo "compress to a 7z archive with the same filename"
         echo "usage: f-compress-7z <FILE> [<FILE> ...]"
@@ -810,11 +794,10 @@ aliased_f_compress_7z() {
         #7z a "$arg".7z "$arg"
     done
 }
-alias f-compress-7z='aliased_f_compress_7z'
 
 
 ### extract an archive
-aliased_f_extract() {
+f-extract() {
     if [[ -z "$1" ]]; then
         echo "extract a zip, tgz, 7z, rar, gz, bz2, xz, zst, or tar archive"
         echo "usage: f-extract <FILE> [<FILE> ...]"
@@ -859,11 +842,10 @@ aliased_f_extract() {
         esac
     done
 }
-alias f-extract='aliased_f_extract'
 
 
 ### create a backup copy of a directory or file
-aliased_f_backup() {
+f-backup() {
     if [[ -z "$1" ]]; then
         echo "create a backup copy of a directory or file"
         echo "usage: f-backup <FILE> [<FILE> ...]"
@@ -889,11 +871,10 @@ aliased_f_backup() {
         fi
     done
 }
-alias f-backup='aliased_f_backup'
 
 
 ### format / beautify JSON files
-aliased_f_json_format() {
+f-json_format() {
     if [[ -z "$1" ]]; then
         echo "format / beautify JSON files"
         echo "usage: f-format_json <FILE> [<FILE> ...]"
@@ -907,11 +888,10 @@ aliased_f_json_format() {
         cat "$arg" | python -m json.tool > "$DIRECTORY_PATH/$FILENAME_STEM.formatted.json"
     done
 }
-alias f-json_format='aliased_f_json_format'
 
 
 ### compile a C program
-aliased_f_c_compile() {
+f-c-compile() {
     arg="$1"
     if [[ -z "$arg" ]]; then
         echo "f-c-compile requires a C source file as an argument"
@@ -919,7 +899,6 @@ aliased_f_c_compile() {
         gcc -Wall -g "$arg" -o "${arg%.c}"
     fi
 }
-alias f-c-compile='aliased_f_c_compile'
 
 
 ### find
@@ -929,7 +908,7 @@ alias f-c-compile='aliased_f_c_compile'
 # <pattern>. [...]
 # -iname pattern
 # Like -name, but the match is case insensitive. [...]
-aliased_f() {
+f() {
     clear -x
     if [[ -z "$1" ]]; then
         echo "nothing to search for"
@@ -937,7 +916,6 @@ aliased_f() {
         find . -iname "*$1*"
     fi
 }
-alias f='aliased_f'
 
 
 ### remove unnecessary files
@@ -985,7 +963,7 @@ f-update-and-upgrade() {
 # print the newline counts
 # -w, --words
 # print the word counts
-aliased_wcc() {
+wcc() {
     if [[ -z "$1" ]]; then
         echo "print the number of lines, words, and characters of a text file"
         echo "usage: wcc <file_path>"
@@ -995,12 +973,11 @@ aliased_wcc() {
         done
     fi
 }
-alias wcc='aliased_wcc'
 
 
 ### d755_f644
 # set directory permissions to 755 and file permissions to 644
-d_d755_f644() {
+f_d755_f644() {
     if [[ -z "$1" ]]; then
         # chmod 755 to all directories
         find . -type d -exec chmod 755 {} \;
@@ -1016,7 +993,7 @@ d_d755_f644() {
         done
     fi
 }
-alias f-d755_f644='d_d755_f644'
+alias f-d755_f644='f_d755_f644'
 ################################################################################
 
 
