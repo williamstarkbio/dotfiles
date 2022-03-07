@@ -421,7 +421,7 @@ alias rm='rm -I --verbose'
 # -i, --itemize-changes : output a change-summary for all updates
 # -z, --compress : compress file data during the transfer
 # --stats : give some file-transfer stats
-alias d-rsync='rsync --verbose --recursive --links --hard-links --perms --owner --group --times --protect-args -hh --progress --itemize-changes --compress --stats'
+alias f-rsync='rsync --verbose --recursive --links --hard-links --perms --owner --group --times --protect-args -hh --progress --itemize-changes --compress --stats'
 
 
 ### scp
@@ -765,7 +765,7 @@ calc() {
 # open a file browser on the current directory if run without arguments
 ### xdg-open
 # opens a file or URL in the user's preferred application
-aliased_d_open() {
+aliased_f_open() {
     if [[ -z "$1" ]]; then
         xdg-open .
     else
@@ -774,7 +774,7 @@ aliased_d_open() {
         done
     fi
 }
-alias d-open='aliased_d_open'
+alias f-open='aliased_f_open'
 
 
 ### md5 hash function
@@ -791,7 +791,7 @@ alias m5='aliased_md5sum'
 
 
 ### generate and save hashes of files
-aliased_d_hash_generate() {
+aliased_f_hash_generate() {
     if [[ -z "$1" ]]; then
         shopt -s extglob
         # NOTE
@@ -802,11 +802,11 @@ aliased_d_hash_generate() {
         hashdeep -j0 -r -e -l "$@" > file_hashes.txt
     fi
 }
-#alias d-hash_generate='aliased_d_hash_generate'
+#alias f-hash_generate='aliased_f_hash_generate'
 
 
 ### read and verify hashes of files
-aliased_d_hash_verify() {
+aliased_f_hash_verify() {
     if [[ -z "$1" ]]; then
         shopt -s extglob
         #hashdeep -j0 -r -e -l -a -v -k file_hashes.txt !(file_hashes.txt)
@@ -815,7 +815,7 @@ aliased_d_hash_verify() {
         hashdeep -j0 -r -e -l -a -v -k file_hashes.txt "$@"
     fi
 }
-#alias d-hash_verify='aliased_d_hash_verify'
+#alias f-hash_verify='aliased_f_hash_verify'
 
 
 ### zip
@@ -826,10 +826,10 @@ aliased_d_hash_verify() {
 # store symbolic links as such in the zip archive, instead of compressing and
 # storing the file referred to by the link.
 ### compress to zip
-aliased_d_compress_zip() {
+aliased_f_compress_zip() {
     if [[ -z "$1" ]]; then
         echo "compress to a zip archive with the same filename"
-        echo "usage: d-compress-zip <FILE> [<FILE> ...]"
+        echo "usage: f-compress-zip <FILE> [<FILE> ...]"
         return 0
     fi
 
@@ -840,14 +840,14 @@ aliased_d_compress_zip() {
         zip --recurse-paths --symlinks "$arg".zip "$arg"
     done
 }
-alias d-compress-zip='aliased_d_compress_zip'
+alias f-compress-zip='aliased_f_compress_zip'
 
 
 ### compress to tgz
-aliased_d_compress_tgz() {
+aliased_f_compress_tgz() {
     if [[ -z "$1" ]]; then
         echo "compress to a tgz archive with the same filename"
-        echo "usage: d-compress-tgz <FILE> [<FILE> ...]"
+        echo "usage: f-compress-tgz <FILE> [<FILE> ...]"
         return 0
     fi
 
@@ -858,14 +858,14 @@ aliased_d_compress_tgz() {
         tar --create --gzip --file "$arg".tgz "$arg"
     done
 }
-alias d-compress-tgz='aliased_d_compress_tgz'
+alias f-compress-tgz='aliased_f_compress_tgz'
 
 
 ### compress to 7z
-aliased_d_compress_7z() {
+aliased_f_compress_7z() {
     if [[ -z "$1" ]]; then
         echo "compress to a 7z archive with the same filename"
-        echo "usage: d-compress-7z <FILE> [<FILE> ...]"
+        echo "usage: f-compress-7z <FILE> [<FILE> ...]"
         return 0
     fi
 
@@ -879,14 +879,14 @@ aliased_d_compress_7z() {
         #7z a "$arg".7z "$arg"
     done
 }
-alias d-compress-7z='aliased_d_compress_7z'
+alias f-compress-7z='aliased_f_compress_7z'
 
 
 ### extract an archive
-aliased_d_extract() {
+aliased_f_extract() {
     if [[ -z "$1" ]]; then
         echo "extract a zip, tgz, 7z, rar, gz, bz2, xz, zst, or tar archive"
-        echo "usage: d-extract <FILE> [<FILE> ...]"
+        echo "usage: f-extract <FILE> [<FILE> ...]"
         return 0
     fi
 
@@ -928,14 +928,14 @@ aliased_d_extract() {
         esac
     done
 }
-alias d-extract='aliased_d_extract'
+alias f-extract='aliased_f_extract'
 
 
 ### create a backup copy of a directory or file
-aliased_d_backup() {
+aliased_f_backup() {
     if [[ -z "$1" ]]; then
         echo "create a backup copy of a directory or file"
-        echo "usage: d-backup <FILE> [<FILE> ...]"
+        echo "usage: f-backup <FILE> [<FILE> ...]"
         return 0
     fi
 
@@ -958,14 +958,14 @@ aliased_d_backup() {
         fi
     done
 }
-alias d-backup='aliased_d_backup'
+alias f-backup='aliased_f_backup'
 
 
 ### format / beautify JSON files
-aliased_d_json_format() {
+aliased_f_json_format() {
     if [[ -z "$1" ]]; then
         echo "format / beautify JSON files"
-        echo "usage: d-format_json <FILE> [<FILE> ...]"
+        echo "usage: f-format_json <FILE> [<FILE> ...]"
         return 0
     fi
 
@@ -976,19 +976,19 @@ aliased_d_json_format() {
         cat "$arg" | python -m json.tool > "$DIRECTORY_PATH/$FILENAME_STEM.formatted.json"
     done
 }
-alias d-json_format='aliased_d_json_format'
+alias f-json_format='aliased_f_json_format'
 
 
 ### compile a C program
-aliased_d_c_compile() {
+aliased_f_c_compile() {
     arg="$1"
     if [[ -z "$arg" ]]; then
-        echo "d-c-compile requires a C source file as an argument"
+        echo "f-c-compile requires a C source file as an argument"
     else
         gcc -Wall -g "$arg" -o "${arg%.c}"
     fi
 }
-alias d-c-compile='aliased_d_c_compile'
+alias f-c-compile='aliased_f_c_compile'
 
 
 ### find
@@ -1010,7 +1010,7 @@ alias f='aliased_f'
 
 
 ### remove unnecessary files
-d-cleanup() {
+f-cleanup() {
     find . -type d \( -path "./.venv/*" \) -prune -o -type f -name "*.pyc" -print -exec rm -r "{}" \;
     find . -type d \( -path "./.venv/*" \) -prune -o -type f -name ".DS_Store" -print -exec rm -r "{}" \;
     find . -type d \( -path "./.venv/*" \) -prune -o -type f -name "Thumbs.db" -print -exec rm -r "{}" \;
@@ -1021,7 +1021,7 @@ d-cleanup() {
 
 
 ### update and upgrade the system
-d-update-and-upgrade() {
+f-update-and-upgrade() {
     printf "sudo apt update\n---\n"
     sudo apt update
     if [[ $? -ne 0 ]]; then
@@ -1085,7 +1085,7 @@ d_d755_f644() {
         done
     fi
 }
-alias d-d755_f644='d_d755_f644'
+alias f-d755_f644='d_d755_f644'
 ################################################################################
 
 
