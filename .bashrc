@@ -236,7 +236,6 @@ alias ipa='ip -color address'
 # handle ANSI "color" escape sequences
 # -X or --no-init
 # don't clear the screen on exit
-#alias less='less -FRX'
 aliased_le() {
     clear -x
     if [[ -z "$1" ]]; then
@@ -377,23 +376,11 @@ alias f-rsync='rsync --verbose --recursive --links --hard-links --perms --owner 
 alias scp='scp -p -r'
 
 
-### tmux
-# terminal multiplexer
-# -2
-# Force tmux to assume the terminal supports 256 colours.
-#alias tmux='tmux -2'
-
-
 ### Neovim (nvim)
 # -p[N]
 # Open N tab pages. If [N] is not given, one tab page is opened for every file
 # given as argument.
 alias vim='vim -p'
-# -d
-# Start in diff-mode.
-# -R
-# Readonly mode.
-#alias vimdiff='vim -d -R'
 ################################################################################
 
 
