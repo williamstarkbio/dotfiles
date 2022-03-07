@@ -250,62 +250,6 @@ aliased_le() {
 alias le='aliased_le'
 
 
-### ls
-# list directory contents
-# -A, --almost-all
-# list entries starting with . (dot), except implied . and ..
-# -h, --human-readable
-# with -l, print sizes in human readable format (e.g., 1K 234M 2G)
-# -l
-# use a long listing format
-# -N, --literal
-# print entry names without quoting
-aliased_la() {
-    clear -x
-    if [[ -z "$1" ]]; then
-        ls -Ahl -N --color=always --group-directories-first --sort=extension --time-style=long-iso
-    else
-        for arg in "$@"; do
-            ls -Ahl -N --color=always --group-directories-first --sort=extension --time-style=long-iso "$arg"
-        done
-    fi
-}
-#alias la='aliased_la'
-
-aliased_lla() {
-    clear -x
-    if [[ -z "$1" ]]; then
-        ls -Ahl -N --color=always --group-directories-first --sort=extension --time-style=long-iso | less -FRX
-    else
-        DIR_COLOR=$(__get_directories_color)
-        DIR_COLOR="\033[""$DIR_COLOR"m
-        #echo $DIR_COLOR
-        # \033[01;34m
-        COLOR_OFF="\033[0m"
-        (
-        for arg in "$@"; do
-            if [[ -d "$arg" ]]; then
-                if [[ -L "$arg" ]]; then
-                    ls -Ahl -N --color=always --group-directories-first --sort=extension --time-style=long-iso "$arg"
-                else
-                    echo -e "$DIR_COLOR$arg$COLOR_OFF"
-                    ls -Ahl -N --color=always --group-directories-first --sort=extension --time-style=long-iso "$arg"
-                fi
-
-                echo
-            fi
-        done
-        for arg in "$@"; do
-            if [[ ! -d "$arg" ]]; then
-                ls -Ahl -N --color=always --group-directories-first --sort=extension --time-style=long-iso "$arg"
-            fi
-        done
-        ) | less -FRX
-    fi
-}
-#alias lla='aliased_lla'
-
-
 ### exa
 # a modern replacement for ls
 # https://github.com/ogham/exa
