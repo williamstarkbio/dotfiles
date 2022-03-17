@@ -510,19 +510,19 @@ gdst() {
 alias gc='git commit'
 
 
-### git commit -a
+### git commit --all
 # -a, --all
 # Tell the command to automatically stage files that have been modified
 # and deleted, but new files you have not told git about are not affected.
-alias gca='git commit -a'
+alias gca='git commit --all'
 
 
 ### commit changes in the staging area
-alias gcu='git commit -m "update"'
+alias gcu='git commit --message "update"'
 
 
 ### commit all changes
-alias gcau='git commit -a -m "update"'
+alias gcau='git commit --all --message "update"'
 
 
 ### git log
@@ -969,7 +969,7 @@ wcc() {
         echo "usage: wcc <file_path>"
     else
         for arg in "$@"; do
-            wc -l -w -m "$arg"
+            wc --lines --words --chars "$arg"
         done
     fi
 }
