@@ -362,7 +362,7 @@ alias rm='rm -I --verbose'
 # -i, --itemize-changes : output a change-summary for all updates
 # -z, --compress : compress file data during the transfer
 # --stats : give some file-transfer stats
-alias f-rsync='rsync --verbose --recursive --links --hard-links --perms --owner --group --times --protect-args -hh --progress --itemize-changes --compress --stats'
+alias d-rsync='rsync --verbose --recursive --links --hard-links --perms --owner --group --times --protect-args -hh --progress --itemize-changes --compress --stats'
 
 
 ### scp
@@ -684,7 +684,7 @@ calc() {
 # open a file browser on the current directory if run without arguments
 ### xdg-open
 # opens a file or URL in the user's preferred application
-f-open() {
+d-open() {
     if [[ -z "$1" ]]; then
         xdg-open .
     else
@@ -719,7 +719,7 @@ aliased_f_hash_generate() {
         hashdeep -j0 -r -e -l "$@" > file_hashes.txt
     fi
 }
-#alias f-hash_generate='aliased_f_hash_generate'
+#alias d-hash_generate='aliased_f_hash_generate'
 
 
 ### read and verify hashes of files
@@ -732,7 +732,7 @@ aliased_f_hash_verify() {
         hashdeep -j0 -r -e -l -a -v -k file_hashes.txt "$@"
     fi
 }
-#alias f-hash_verify='aliased_f_hash_verify'
+#alias d-hash_verify='aliased_f_hash_verify'
 
 
 ### zip
@@ -743,10 +743,10 @@ aliased_f_hash_verify() {
 # store symbolic links as such in the zip archive, instead of compressing and
 # storing the file referred to by the link.
 ### compress to zip
-f-compress-zip() {
+d-compress-zip() {
     if [[ -z "$1" ]]; then
         echo "compress to a zip archive with the same filename"
-        echo "usage: f-compress-zip <FILE> [<FILE> ...]"
+        echo "usage: d-compress-zip <FILE> [<FILE> ...]"
         return 0
     fi
 
@@ -760,10 +760,10 @@ f-compress-zip() {
 
 
 ### compress to tgz
-f-compress-tgz() {
+d-compress-tgz() {
     if [[ -z "$1" ]]; then
         echo "compress to a tgz archive with the same filename"
-        echo "usage: f-compress-tgz <FILE> [<FILE> ...]"
+        echo "usage: d-compress-tgz <FILE> [<FILE> ...]"
         return 0
     fi
 
@@ -777,10 +777,10 @@ f-compress-tgz() {
 
 
 ### compress to 7z
-f-compress-7z() {
+d-compress-7z() {
     if [[ -z "$1" ]]; then
         echo "compress to a 7z archive with the same filename"
-        echo "usage: f-compress-7z <FILE> [<FILE> ...]"
+        echo "usage: d-compress-7z <FILE> [<FILE> ...]"
         return 0
     fi
 
@@ -797,10 +797,10 @@ f-compress-7z() {
 
 
 ### extract an archive
-f-extract() {
+d-extract() {
     if [[ -z "$1" ]]; then
         echo "extract a zip, tgz, 7z, rar, gz, bz2, xz, zst, or tar archive"
-        echo "usage: f-extract <FILE> [<FILE> ...]"
+        echo "usage: d-extract <FILE> [<FILE> ...]"
         return 0
     fi
 
@@ -845,10 +845,10 @@ f-extract() {
 
 
 ### create a backup copy of a directory or file
-f-backup() {
+d-backup() {
     if [[ -z "$1" ]]; then
         echo "create a backup copy of a directory or file"
-        echo "usage: f-backup <FILE> [<FILE> ...]"
+        echo "usage: d-backup <FILE> [<FILE> ...]"
         return 0
     fi
 
@@ -874,10 +874,10 @@ f-backup() {
 
 
 ### format / beautify JSON files
-f-json_format() {
+d-json_format() {
     if [[ -z "$1" ]]; then
         echo "format / beautify JSON files"
-        echo "usage: f-format_json <FILE> [<FILE> ...]"
+        echo "usage: d-format_json <FILE> [<FILE> ...]"
         return 0
     fi
 
@@ -891,10 +891,10 @@ f-json_format() {
 
 
 ### compile a C program
-f-c-compile() {
+d-c-compile() {
     arg="$1"
     if [[ -z "$arg" ]]; then
-        echo "f-c-compile requires a C source file as an argument"
+        echo "d-c-compile requires a C source file as an argument"
     else
         gcc -Wall -g "$arg" -o "${arg%.c}"
     fi
@@ -919,7 +919,7 @@ f() {
 
 
 ### remove unnecessary files
-f-cleanup() {
+d-cleanup() {
     find . -type d \( -path "./.venv/*" \) -prune -o -type f -name "*.pyc" -print -exec rm -r "{}" \;
     find . -type d \( -path "./.venv/*" \) -prune -o -type f -name ".DS_Store" -print -exec rm -r "{}" \;
     find . -type d \( -path "./.venv/*" \) -prune -o -type f -name "Thumbs.db" -print -exec rm -r "{}" \;
@@ -930,7 +930,7 @@ f-cleanup() {
 
 
 ### update and upgrade the system
-f-update-and-upgrade() {
+d-update-and-upgrade() {
     printf "sudo apt update\n---\n"
     sudo apt update
     if [[ $? -ne 0 ]]; then
@@ -993,7 +993,7 @@ f_d755_f644() {
         done
     fi
 }
-alias f-d755_f644='f_d755_f644'
+alias d-d755_f644='f_d755_f644'
 ################################################################################
 
 
