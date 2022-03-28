@@ -31,6 +31,11 @@ Plug 'rlue/vim-barbaric'
 " https://github.com/chrisbra/Colorizer
 Plug 'chrisbra/Colorizer'
 
+" csv.vim
+" filetype plugin for CSV files
+" https://github.com/chrisbra/csv.vim
+Plug 'chrisbra/csv.vim'
+
 " EasyMotion
 " improved motion shortcuts
 " https://github.com/easymotion/vim-easymotion
