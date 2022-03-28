@@ -263,6 +263,8 @@ function! ToggleVisibleWhitespace()
 endfunction
 nnoremap <Leader>l :call ToggleVisibleWhitespace()<CR>
 
+" use Bash login shell in terminal
+set shell=bash\ --login
 
 """ filetype specific settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
