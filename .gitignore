@@ -7,9 +7,6 @@
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints
 
-# virtual environment directories
-.venv
-
 # binary file formats
 *.pdf
 *.zip
