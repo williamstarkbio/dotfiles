@@ -18,6 +18,7 @@
 *.pickle
 *.docx
 *.7z
+*.webm
 
 # other file formats
 *.html
