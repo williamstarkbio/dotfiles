@@ -123,12 +123,12 @@ Plug 'airblade/vim-gitgutter'
 Plug 'elzr/vim-json'
 
 " vim-markdown
-" Markdown for Vim
-" https://github.com/gabrielelana/vim-markdown
-Plug 'gabrielelana/vim-markdown'
-let g:markdown_enable_spell_checking = 0
-" disable insert mode mappings
-let g:markdown_enable_insert_mode_mappings = 0
+" syntax highlighting, matching rules and mappings for the original Markdown and extensions
+" https://github.com/preservim/vim-markdown
+Plug 'preservim/vim-markdown'
+" comment out TableFormat command:
+" $HOME/.local/share/nvim/plugged/vim-markdown/ftplugin/markdown.vim
+" command! -buffer TableFormat call s:TableFormat()
 
 " vim-uppercase-sql
 " Automatically uppercase SQL keywords as you type
@@ -301,11 +301,8 @@ autocmd FileType make setlocal noexpandtab
 
 " Markdown
 autocmd BufNewFile,BufRead *.md set filetype=markdown
-" override vim-markdown adding +, -, : to word ranges
-" https://github.com/gabrielelana/vim-markdown/blob/master/ftplugin/markdown.vim#L71
-autocmd FileType markdown set iskeyword-=+
-autocmd FileType markdown set iskeyword-=-
-autocmd FileType markdown set iskeyword-=:
+" syntax highlighting for fenced code blocks
+"let g:markdown_fenced_languages = ['python', 'bash=sh']
 
 " Perl
 " don't autocomplete from included files
