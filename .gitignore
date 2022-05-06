@@ -19,6 +19,7 @@
 *.docx
 *.7z
 *.webm
+*.sif
 
 # other file formats
 *.html
