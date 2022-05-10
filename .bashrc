@@ -158,7 +158,7 @@ alias sudo='sudo '
 ### black
 # The uncompromising code formatter.
 # https://github.com/psf/black
-alias black='black --line-length 90'
+#alias black='black --line-length 90'
 
 
 ### cp
