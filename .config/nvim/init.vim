@@ -243,8 +243,8 @@ set nohlsearch
 
 
 """ mark the target width of source code lines
-" set a marker on the 91th text column (Black max line length setting)
-set colorcolumn=91
+" set a marker on the 89th text column (Black max line length setting)
+set colorcolumn=88
 
 
 """ folds
