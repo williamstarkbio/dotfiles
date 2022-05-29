@@ -205,11 +205,13 @@ alias df='df --human-readable --exclude-type=squashfs'
 
 ### du
 # estimate file space usage
+# -c, --total
+# produce a grand total
 # -h, --human-readable
 # print sizes in human readable format (e.g., 1K 234M 2G)
 # -s, --summarize
 # display only a total for each argument
-alias du='du -h -s'
+alias du='du -c -h -s'
 
 
 ### info
