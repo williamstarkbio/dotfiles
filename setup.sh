@@ -45,7 +45,6 @@ backup_datetime() {
 create_directories() {
     # create $HOME directories
     mkdir --parents --verbose "$HOME/data"
-    mkdir --parents --verbose "$HOME/data/software"
     mkdir --parents --verbose "$HOME/bin"
     mkdir --parents --verbose "$HOME/.config"
 
@@ -327,15 +326,23 @@ setup_nodejs() {
 
 
 setup_additional_software() {
+    SOFTWARE_DIRECTORY="$HOME/data/software"
+    mkdir --parents --verbose "$HOME/data/software"
+
     # z
     # https://github.com/rupa/z
     # NOTE
     # for smart case sensitivity support check my own fork that merges ericbn's
     # pull request https://github.com/rupa/z/pull/221
     # https://github.com/williamstark01/z
-    Z_ROOT_DIRECTORY="$HOME/data/software/z"
+    Z_ROOT_DIRECTORY="${SOFTWARE_DIRECTORY}/z"
     [[ -d "$Z_ROOT_DIRECTORY" ]] && backup_datetime "$Z_ROOT_DIRECTORY"
     git clone https://github.com/rupa/z.git "$Z_ROOT_DIRECTORY"
+
+    # tmux Bash completion
+    # https://github.com/imomaliev/tmux-bash-completion
+    TMUX_BASH_COMPLETION_DIRECTORY="${SOFTWARE_DIRECTORY}/tmux-bash-completion"
+    git clone https://github.com/imomaliev/tmux-bash-completion.git "$TMUX_BASH_COMPLETION_DIRECTORY"
 }
 
 
