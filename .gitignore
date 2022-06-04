@@ -24,3 +24,9 @@
 # other file formats
 *.html
 *.csv
+
+# LaTeX
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
