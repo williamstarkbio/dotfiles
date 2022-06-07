@@ -920,14 +920,22 @@ f() {
 }
 
 
-### remove unnecessary files
+### delete / remove unnecessary files
 d-cleanup() {
-    find . -type d \( -path "./.venv/*" \) -prune -o -type f -name "*.pyc" -print -exec rm -r "{}" \;
-    find . -type d \( -path "./.venv/*" \) -prune -o -type f -name ".DS_Store" -print -exec rm -r "{}" \;
-    find . -type d \( -path "./.venv/*" \) -prune -o -type f -name "Thumbs.db" -print -exec rm -r "{}" \;
-    find . -type d \( -path "./.venv/*" \) -prune -o -type d -name "__MACOSX" -print -prune -exec rm -r "{}" \;
-    find . -type d \( -path "./.venv/*" \) -prune -o -type d -name "__pycache__" -print -prune -exec rm -r "{}" \;
-    find . -type d \( -path "./.venv/*" \) -prune -o -type d -name ".pytest_cache" -print -prune -exec rm -r "{}" \;
+    UNNECESSARY_FILES=(
+        "*.aux"
+        "*.fdb_latexmk"
+        "*.fls"
+        "*.pyc"
+        ".DS_Store"
+        "Thumbs.db"
+        "__MACOSX"
+        "__pycache__"
+        ".pytest_cache"
+    )
+    for FILE_PATTERN in "${UNNECESSARY_FILES[@]}"; do
+        find . -type d \( -path "./.venv/*" \) -prune -o -type f -name "$FILE_PATTERN" -print -exec rm -r "{}" \;
+    done
 }
 
 
