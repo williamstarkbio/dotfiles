@@ -1161,12 +1161,12 @@ if [[ -d "$JENV_ROOT" ]]; then
 fi
 
 
-### plenv
-if [[ -d "$PLENV_ROOT" ]]; then
-    export PLENV_ROOT
-    export PATH="$PLENV_ROOT/bin:$PATH"
-    eval "$(plenv init -)"
-fi
+# ### plenv
+# if [[ -d "$PLENV_ROOT" ]]; then
+#     export PLENV_ROOT
+#     export PATH="$PLENV_ROOT/bin:$PATH"
+#     eval "$(plenv init -)"
+# fi
 
 
 ## Node.js
