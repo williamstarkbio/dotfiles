@@ -1064,6 +1064,9 @@ fi
 
 
 ## Go
+if [[ -s "$GO_ROOT/bin" ]]; then
+    export PATH="$GO_ROOT/bin:$PATH"
+fi
 if command -v go &> /dev/null; then
     export GOPATH="$HOME/go"
     export PATH="$HOME/go/bin:$PATH"

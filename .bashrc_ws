@@ -17,6 +17,10 @@ export SOFTWARE_DIRECTORY="$HOME/data/software"
 [[ -d "$HOME/.cargo" ]] && export CARGO_HOME="$HOME/.cargo"
 [[ -d "$CARGO_HOME/bin" ]] && export PATH="$CARGO_HOME/bin:$PATH"
 
+### Go
+#GO_ROOT="/usr/local/go"
+#[[ -d $GO_ROOT ]] && export GO_ROOT
+
 ### Node.js nvm
 [[ -d "$HOME/.nvm" ]] && export NVM_DIR="$HOME/.nvm"
 

@@ -252,6 +252,9 @@ setup_go() {
     # Go programming language
     # https://go.dev/
 
+    # or install from official release distribution:
+    # https://go.dev/doc/install
+
     sudo add-apt-repository ppa:longsleep/golang-backports
 
     # install latest major version
