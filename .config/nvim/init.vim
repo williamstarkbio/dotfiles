@@ -61,6 +61,11 @@ Plug 'preservim/nerdcommenter'
 " https://github.com/preservim/nerdtree
 Plug 'preservim/nerdtree'
 
+" nextflow-vim
+" Nextflow syntax
+" https://github.com/LukeGoodsell/nextflow-vim
+Plug 'LukeGoodsell/nextflow-vim'
+
 " vim-perl
 " support for Perl 5
 " https://github.com/vim-perl/vim-perl
@@ -346,7 +351,7 @@ endfunction
 " strip trailing whitespace on save
 " NOTE
 " order file extensions alphabetically
-autocmd BufWritePre *.c,*.css,*.cu,*.h,*.html,*.ino,*.md,*.markdown,*.js,*.pl,*.pm,*.py,*.sh,*.sql,*.tex,*.txt :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre *.c,*.css,*.cu,*.h,*.html,*.ino,*.md,*.markdown,*.nf,*.js,*.pl,*.pm,*.py,*.sh,*.sql,*.tex,*.txt :call <SID>StripTrailingWhitespaces()
 
 " map the <SID>StripTrailingWhitespaces function to a shortcut
 nnoremap ,w :call <SID>StripTrailingWhitespaces()<CR>
