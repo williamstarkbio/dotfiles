@@ -388,6 +388,9 @@ install_desktop_packages() {
     # https://www.qbittorrent.org/
     # https://github.com/qbittorrent/qBittorrent
 
+    # SMPlayer
+    # https://www.smplayer.info/
+
     # Thunderbird
     # https://www.thunderbird.net/
 
@@ -408,6 +411,7 @@ install_desktop_packages() {
         kdiff3
         keepassxc
         qbittorrent
+        smplayer
         thunderbird
         xournalpp
     )
