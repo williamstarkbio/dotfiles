@@ -383,6 +383,8 @@ install_desktop_packages() {
     # KeePassXC
     # https://keepassxc.org/
     # https://github.com/keepassxreboot/keepassxc
+    # https://launchpad.net/~phoerious/+archive/ubuntu/keepassxc
+    sudo add-apt-repository ppa:phoerious/keepassxc
 
     # qBittorrent
     # https://www.qbittorrent.org/
