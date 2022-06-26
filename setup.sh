@@ -99,45 +99,68 @@ setup_dotfiles() {
 
 install_standard_packages() {
     # curl
-    # command line tool and library for transferring data with URLs
+    # command line tool for transferring data with URL syntax
+    # https://packages.ubuntu.com/focal/curl
     # https://curl.se/
 
     # direnv
-    # automatically load and unload environment variables when changing directory
+    # utility to set directory specific environment variables
+    # https://packages.ubuntu.com/focal/direnv
     # https://github.com/direnv/direnv
 
     # dos2unix
-    # DOS/Mac to Unix and vice versa text file format converter
+    # convert text file line endings between CRLF and LF
+    # https://packages.ubuntu.com/focal/dos2unix
     # https://manpages.ubuntu.com/manpages/focal/man1/dos2unix.1.html
 
     # fd
-    # find replacement (search for files)
+    # simple, fast and user-friendly alternative to find
+    # https://packages.ubuntu.com/focal/fd-find
     # https://github.com/sharkdp/fd
 
     # hashdeep
-    # compute and verify file hashes
+    # recursively compute hashsums or piecewise hashings
+    # https://packages.ubuntu.com/focal/hashdeep
     # https://github.com/jessek/hashdeep
 
     # Magic Wormhole
-    # send file / directory / text to another computer over the Internet
+    # securely and simply transfer data between computers
+    # https://packages.ubuntu.com/focal/magic-wormhole
     # https://github.com/magic-wormhole/magic-wormhole
 
     # renameutils
-    # set of programs designed to make renaming of files faster and less cumbersome
+    # set of programs to make file renaming easier
+    # https://packages.ubuntu.com/focal/renameutils
     # (includes imv and icp)
     # https://www.nongnu.org/renameutils/
 
     # ripgrep
     # recursively search file contents for a regex pattern
+    # https://packages.ubuntu.com/focal/ripgrep
     # https://github.com/BurntSushi/ripgrep
+
+    # sqlite3
+    # command line interface for SQLite 3
+    # https://packages.ubuntu.com/focal/sqlite3
+    # SQLite SQL database engine
+    # https://www.sqlite.org
+    # https://manpages.ubuntu.com/manpages/focal/man1/sqlite3.1.html
+
+    # ssh
+    # secure shell client and server (metapackage)
+    # https://packages.ubuntu.com/focal/ssh
+    # OpenSSH remote login client
+    # https://manpages.ubuntu.com/manpages/focal/man1/ssh.1.html
 
     # xclip
     # command line interface to X selections (clipboard)
+    # https://packages.ubuntu.com/focal/xclip
     # https://manpages.ubuntu.com/manpages/focal/man1/xclip.1.html
     # https://github.com/astrand/xclip
 
     # zstd
     # compress or decompress .zst files
+    # https://packages.ubuntu.com/focal/zstd
     # https://manpages.ubuntu.com/manpages/focal/man1/zstd.1.html
 
     STANDARD_PACKAGES=(
@@ -150,6 +173,7 @@ install_standard_packages() {
         magic-wormhole
         renameutils
         ripgrep
+        sqlite3
         ssh
         tmux
         xclip
@@ -269,6 +293,7 @@ setup_go() {
     # rename files using a text editor
     # https://github.com/laurent22/massren
     go install github.com/laurent22/massren@latest
+    massren --config editor "vim"
 }
 
 
