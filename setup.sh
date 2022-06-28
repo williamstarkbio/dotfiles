@@ -118,6 +118,11 @@ install_standard_packages() {
     # https://packages.ubuntu.com/focal/fd-find
     # https://github.com/sharkdp/fd
 
+    # git-lfs
+    # Git extension for versioning large files
+    # https://packages.ubuntu.com/focal/git-lfs
+    # https://git-lfs.github.com/
+
     # hashdeep
     # recursively compute hashsums or piecewise hashings
     # https://packages.ubuntu.com/focal/hashdeep
@@ -169,6 +174,7 @@ install_standard_packages() {
         dos2unix
         fd-find
         git
+        git-lfs
         hashdeep
         magic-wormhole
         renameutils
