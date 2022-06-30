@@ -24,6 +24,7 @@
 # other file formats
 *.html
 *.csv
+*.ipynb
 
 # LaTeX
 *.aux
