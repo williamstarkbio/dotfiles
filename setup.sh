@@ -384,6 +384,11 @@ install_desktop_packages() {
     # CopyQ
     # https://github.com/hluk/CopyQ
 
+    # diffpdf
+    # compare two PDF files textually or visually
+    # https://packages.ubuntu.com/focal/diffpdf
+    # http://www.qtrac.eu/diffpdf.html
+
     # Evince
     # https://wiki.gnome.org/Apps/Evince
 
@@ -434,6 +439,7 @@ install_desktop_packages() {
 
     DESKTOP_PACKAGES=(
         copyq
+        diffpdf
         evince
         filelight
         gimp
