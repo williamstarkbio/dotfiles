@@ -6,20 +6,15 @@
 set nocompatible
 
 
-""" vim-plug
+" vim-plug
 " Minimalist Vim Plugin Manager
 " https://github.com/junegunn/vim-plug
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" install vim-plug and plugins automatically
-" https://github.com/junegunn/vim-plug/wiki/tips#automatic-installation
-
+" plugins
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " specify directory for plugins
 call plug#begin(stdpath('data') . '/plugged')
-
-
-""" plugins
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Barbaric
 " Automatic input method switching for vim
@@ -137,12 +132,14 @@ Plug 'preservim/vim-markdown'
 
 " vim-uppercase-sql
 " Automatically uppercase SQL keywords as you type
-" https://github.com/alcesleo/vim-uppercase-sql
+" https://github.com/jsborjesson/vim-uppercase-sql
 " NOTE
-" use my own fork that adds support for more SQL keywords
+" use my fork that uses official lists of SQL keywords
 " https://github.com/williamstark01/vim-uppercase-sql
 Plug 'williamstark01/vim-uppercase-sql'
 
+" load local plugins
+source ~/.config/nvim/local_plugins.vim
 
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -510,4 +507,10 @@ nnoremap <F8> :TagbarToggle<CR>
 """ vim-json
 " disable JSON syntax concealing
 let g:vim_json_syntax_conceal = 0
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" more
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" load local configuration file
+source ~/.config/nvim/local.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
