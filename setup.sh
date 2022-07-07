@@ -425,6 +425,7 @@ install_desktop_packages() {
     # qBittorrent
     # https://www.qbittorrent.org/
     # https://github.com/qbittorrent/qBittorrent
+    sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable
 
     # SMPlayer
     # https://www.smplayer.info/
