@@ -190,6 +190,17 @@ install_standard_packages() {
 }
 
 
+remove_unneeded_packages() {
+    UNNEEDED_PACKAGES=(
+        vim-tiny
+    )
+
+    sudo apt purge "${UNNEEDED_PACKAGES[@]}"
+
+    sudo apt autoremove
+}
+
+
 setup_python() {
     # https://www.python.org/
 
@@ -512,6 +523,11 @@ main() {
     YES_NO_ANSWER=$(yes_no_question "Install standard packages?")
     if [[ $YES_NO_ANSWER = "y" ]]; then
         install_standard_packages
+    fi
+
+    YES_NO_ANSWER=$(yes_no_question "Remove unneeded packages?")
+    if [[ $YES_NO_ANSWER = "y" ]]; then
+        remove_unneeded_packages
     fi
 
     YES_NO_ANSWER=$(yes_no_question "Install linux-headers and build-essential packages?")
