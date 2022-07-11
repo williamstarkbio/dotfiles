@@ -1117,9 +1117,6 @@ fi
 if [[ -f $HOME/.bashrc_codon ]]; then
     source $HOME/.bashrc_codon
 fi
-if [[ -f $HOME/.bashrc_noah ]]; then
-    source $HOME/.bashrc_noah
-fi
 
 
 ### local settings
