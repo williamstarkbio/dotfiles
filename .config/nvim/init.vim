@@ -288,9 +288,6 @@ autocmd FileType css setlocal tabstop=2 softtabstop=2 shiftwidth=2
 " HTML
 autocmd FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
-" ino Arduino sketches
-autocmd FileType ino setlocal tabstop=2 softtabstop=2 shiftwidth=2
-
 " JavaScript
 autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
@@ -348,7 +345,7 @@ endfunction
 " strip trailing whitespace on save
 " NOTE
 " order file extensions alphabetically
-autocmd BufWritePre *.c,*.css,*.cu,*.h,*.html,*.ino,*.md,*.markdown,*.nf,*.js,*.pl,*.pm,*.py,*.sh,*.sql,*.tex,*.txt :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre *.c,*.css,*.cu,*.h,*.html,*.md,*.markdown,*.nf,*.js,*.pl,*.pm,*.py,*.sh,*.sql,*.tex,*.txt :call <SID>StripTrailingWhitespaces()
 
 " map the <SID>StripTrailingWhitespaces function to a shortcut
 nnoremap ,w :call <SID>StripTrailingWhitespaces()<CR>
