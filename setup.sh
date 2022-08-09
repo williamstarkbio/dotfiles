@@ -193,6 +193,7 @@ install_standard_packages() {
 remove_unneeded_packages() {
     UNNEEDED_PACKAGES=(
         vim-tiny
+        kubuntu-web-shortcuts
     )
 
     sudo apt purge "${UNNEEDED_PACKAGES[@]}"
