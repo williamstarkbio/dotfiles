@@ -234,10 +234,14 @@ setup_python() {
     # install latest bugfix version of preferred Python minor version
     PREFERRED_PYTHON_MINOR_VERSION="3.9"
     LATEST_PREFERRED_PYTHON_VERSION=$(pyenv latest --print "$PREFERRED_PYTHON_MINOR_VERSION")
-    pyenv install $LATEST_PREFERRED_PYTHON_VERSION
+
+    #PREFERRED_PYTHON_VERSION=$LATEST_PREFERRED_PYTHON_VERSION
+    PREFERRED_PYTHON_VERSION="3.9.12"
+
+    pyenv install $PREFERRED_PYTHON_VERSION
 
     # set global Python to latest
-    pyenv global $LATEST_PREFERRED_PYTHON_VERSION
+    pyenv global $PREFERRED_PYTHON_VERSION
 
     # upgrade global Python pip
     pip install --upgrade pip
@@ -245,7 +249,7 @@ setup_python() {
     # install Poetry
     # Python dependency manager
     # https://github.com/python-poetry/poetry
-    curl -sSL https://install.python-poetry.org | python -
+    curl -sSL https://install.python-poetry.org | python3 -
 
     # install pipx
     # Install and Run Python Applications in Isolated Environments
@@ -256,10 +260,20 @@ setup_python() {
     PIPX_BIN_DIR="$HOME/.local/bin"
     export PATH="$PIPX_BIN_DIR:$PATH"
 
+    # IPython
+    # Python interactive shell
+    # https://github.com/ipython/ipython
+    pipx install ipython
+
     # Black
     # Python code formatter
     # https://github.com/psf/black
     pipx install black
+
+    # isort
+    # Python imports organizer
+    # https://github.com/PyCQA/isort
+    pipx install isort
 
     # yt-dlp
     # video downloader

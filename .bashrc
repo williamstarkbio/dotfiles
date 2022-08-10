@@ -1035,10 +1035,9 @@ __get_directories_color() {
 ################################################################################
 ## Python
 
-### Poetry
-[[ -d "$HOME/.poetry/bin" ]] && export PATH="$HOME/.poetry/bin:$PATH"
-
 ### pipx
+# enable autocomplete
+# (requires argcomplete)
 #eval "$(register-python-argcomplete pipx)"
 # run install and upgrade with the --verbose flag
 pipx() {
