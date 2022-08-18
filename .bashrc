@@ -661,6 +661,15 @@ yt() {
     fi
 }
 
+yt-auto-subs() {
+    #RATE_LIMIT="10M"
+    RATE_LIMIT="5M"
+    #RATE_LIMIT="2M"
+    #RATE_LIMIT="1M"
+
+    yt-dlp --limit-rate "$RATE_LIMIT" --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --embed-chapters --write-subs --write-auto-subs --sub-langs "en.*,zh-Hans" "$1"
+}
+
 
 ### load GitHub SSH key
 github-ssh() {
