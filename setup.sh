@@ -235,13 +235,10 @@ setup_python() {
     PREFERRED_PYTHON_MINOR_VERSION="3.9"
     LATEST_PREFERRED_PYTHON_VERSION=$(pyenv latest --print "$PREFERRED_PYTHON_MINOR_VERSION")
 
-    #PREFERRED_PYTHON_VERSION=$LATEST_PREFERRED_PYTHON_VERSION
-    PREFERRED_PYTHON_VERSION="3.9.12"
-
-    pyenv install $PREFERRED_PYTHON_VERSION
+    pyenv install $LATEST_PREFERRED_PYTHON_VERSION
 
     # set global Python to latest
-    pyenv global $PREFERRED_PYTHON_VERSION
+    pyenv global $LATEST_PREFERRED_PYTHON_VERSION
 
     # upgrade global Python pip
     pip install --upgrade pip
