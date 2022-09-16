@@ -26,6 +26,11 @@ Plug 'rlue/vim-barbaric'
 " https://github.com/chrisbra/Colorizer
 Plug 'chrisbra/Colorizer'
 
+" Copilot.vim
+" Neovim plugin for GitHub Copilot
+" https://github.com/github/copilot.vim
+Plug 'github/copilot.vim'
+
 " csv.vim
 " filetype plugin for CSV files
 " https://github.com/chrisbra/csv.vim
@@ -445,6 +450,14 @@ let g:python3_host_prog = $PYENV_ROOT . '/versions/neovim/bin/python'
 
 """ plugin settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""" Copilot.vim
+let g:copilot_node_command = '~/.nvm/versions/node/v16.17.0/bin/node'
+let g:copilot_filetypes = {
+      \ '*': v:false,
+      \ 'python': v:true,
+      \ }
+
 
 """ EasyMotion
 let g:EasyMotion_leader_key = '<Leader>'
