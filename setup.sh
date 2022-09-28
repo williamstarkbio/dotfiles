@@ -243,11 +243,6 @@ setup_python() {
     # upgrade global Python pip
     pip install --upgrade pip
 
-    # install Poetry
-    # Python dependency manager
-    # https://github.com/python-poetry/poetry
-    curl -sSL https://install.python-poetry.org | python3 -
-
     # install pipx
     # Install and Run Python Applications in Isolated Environments
     # https://github.com/pypa/pipx
@@ -256,6 +251,11 @@ setup_python() {
 
     PIPX_BIN_DIR="$HOME/.local/bin"
     export PATH="$PIPX_BIN_DIR:$PATH"
+
+    # Poetry
+    # Python dependency manager
+    # https://github.com/python-poetry/poetry
+    pipx install poetry
 
     # IPython
     # Python interactive shell
