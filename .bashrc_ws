@@ -25,7 +25,9 @@ fi
 #[[ -d $GO_ROOT ]] && export GO_ROOT
 
 ### Node.js nvm
-[[ -d "$HOME/.nvm" ]] && export NVM_DIR="$HOME/.nvm"
+NVM_DIR="$HOME/.nvm"
+[[ -d "$NVM_DIR" ]] && export NVM_DIR
 
 ### Java jenv
-[[ -d "$HOME/.jenv" ]] && export JENV_ROOT="$HOME/.jenv"
+JENV_ROOT="$HOME/.jenv"
+[[ -d "$JENV_ROOT" ]] && export JENV_ROOT
