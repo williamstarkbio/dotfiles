@@ -203,6 +203,15 @@ alias mv='imv --command=mv --pass-through --interactive --verbose'
 alias df='df --human-readable --exclude-type=squashfs'
 
 
+### diff
+# compare files line by line
+# -q, --brief
+# report only when files differ
+# -r, --recursive
+# recursively compare any subdirectories found
+alias d-diff='diff --brief --recursive'
+
+
 ### du
 # estimate file space usage
 # -c, --total
@@ -1153,9 +1162,9 @@ fi
 
 # tmux Bash completion
 # https://github.com/imomaliev/tmux-bash-completion
-TMUX_BASH_COMPLETION_DIRECTORY="${SOFTWARE_DIRECTORY}/tmux-bash-completion"
+TMUX_BASH_COMPLETION_DIRECTORY="$SOFTWARE_DIRECTORY/tmux-bash-completion"
 if [[ -d "$TMUX_BASH_COMPLETION_DIRECTORY" ]]; then
-    source "${TMUX_BASH_COMPLETION_DIRECTORY}/completions/tmux"
+    source "$TMUX_BASH_COMPLETION_DIRECTORY/completions/tmux"
 fi
 
 
