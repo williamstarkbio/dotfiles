@@ -209,7 +209,9 @@ alias df='df --human-readable --exclude-type=squashfs'
 # report only when files differ
 # -r, --recursive
 # recursively compare any subdirectories found
-alias d-diff='diff --brief --recursive'
+# --no-dereference
+# don't follow symbolic links
+alias d-diff='diff --brief --recursive --no-dereference'
 
 
 ### du
