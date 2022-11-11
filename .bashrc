@@ -211,7 +211,7 @@ alias df='df --human-readable --exclude-type=squashfs'
 # recursively compare any subdirectories found
 # --no-dereference
 # don't follow symbolic links
-alias d-diff='diff --brief --recursive --no-dereference'
+alias diff='diff --brief --recursive --no-dereference'
 
 
 ### du
