@@ -1084,18 +1084,6 @@ if [[ -d "$HOME/.deno" ]]; then
 fi
 
 
-## Go
-if [[ -z "$GO_ROOT" ]]; then
-    if [[ -s "$GO_ROOT/bin" ]]; then
-        export PATH="$GO_ROOT/bin:$PATH"
-    fi
-fi
-if command -v go &> /dev/null; then
-    export GOPATH="$HOME/go"
-    export PATH="$HOME/go/bin:$PATH"
-fi
-
-
 ## Ruby
 # http://rvm.io/
 if [[ -s "$HOME/.rvm/bin" ]]; then
@@ -1194,6 +1182,15 @@ if [[ -d "$NVM_DIR" ]]; then
     [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
     # load nvm bash_completion
     [[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
+fi
+
+
+## Go
+# export if environment variables are set
+if [[ -n "$GOROOT" && -n "$GOPATH" ]]; then
+    PATH="$GOPATH/bin:$PATH"
+    PATH="$GOROOT/bin:$PATH"
+    export PATH
 fi
 
 

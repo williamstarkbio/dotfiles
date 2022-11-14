@@ -21,8 +21,9 @@ fi
 [[ -d "$CARGO_HOME/bin" ]] && export PATH="$CARGO_HOME/bin:$PATH"
 
 ### Go
-#GO_ROOT="/usr/local/go"
-#[[ -d $GO_ROOT ]] && export GO_ROOT
+# NOTE
+# run `go env` to print Go environment information
+[[ -d "/usr/lib/go" ]] && export GOROOT="/usr/lib/go" && export GOPATH="$HOME/go"
 
 ### Node.js nvm
 NVM_DIR="$HOME/.nvm"
