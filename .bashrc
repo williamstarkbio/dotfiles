@@ -1116,21 +1116,15 @@ export GPG_TTY=$(tty)
 ################################################################################
 
 
-### ws
-if [[ -f $HOME/.bashrc_ws ]]; then
-    source $HOME/.bashrc_ws
-fi
-
-
-### EMBL-EBI
-if [[ -f $HOME/.bashrc_codon ]]; then
-    source $HOME/.bashrc_codon
-fi
-
-
 ### local settings
 if [[ -f $HOME/.bashrc_local ]]; then
     source $HOME/.bashrc_local
+fi
+
+
+### temp settings
+if [[ -f $HOME/.bashrc_temp ]]; then
+    source $HOME/.bashrc_temp
 fi
 
 
