@@ -77,8 +77,8 @@ setup_dotfiles() {
         ln --symbolic --force --verbose "$HOME/dotfiles/$DOTFILE" "$HOME/"
     done
 
-    backup_datetime .bashrc_local
-    cp --interactive --verbose "$HOME/dotfiles/.bashrc_local" "$HOME/"
+    backup_datetime .bashrc_temp
+    cp --interactive --verbose "$HOME/dotfiles/.bashrc_temp" "$HOME/"
 
     backup_datetime .gitconfig
     cp --interactive --verbose "$HOME/dotfiles/.gitconfig" "$HOME/"
