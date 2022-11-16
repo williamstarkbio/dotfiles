@@ -394,6 +394,17 @@ alias scp='scp -p -r'
 # Open N tab pages. If [N] is not given, one tab page is opened for every file
 # given as argument.
 alias vim='vim -p'
+
+
+### watch
+# execute a program periodically, showing output fullscreen
+# -c, --color
+# Interpret ANSI color and style sequences.
+# -x, --exec
+# Pass command to exec(2) instead of sh -c which reduces the need to use extra quoting to get
+# the desired effect.
+# enable alias expansion
+alias watch='watch --color --exec bash -ic '
 ################################################################################
 
 
