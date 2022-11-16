@@ -313,11 +313,6 @@ setup_go() {
     # install latest major version
     sudo apt install -y golang-go
 
-    # watch
-    # watch implementation that supports aliases and color
-    # https://github.com/antonmedv/watch
-    go install github.com/antonmedv/watch@latest
-
     # massren
     # rename files using a text editor
     # https://github.com/laurent22/massren
