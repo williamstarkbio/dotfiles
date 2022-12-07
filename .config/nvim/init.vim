@@ -455,7 +455,7 @@ let g:python3_host_prog = $PYENV_ROOT . '/versions/neovim/bin/python'
 let g:copilot_node_command = '~/.nvm/versions/node/v16.17.0/bin/node'
 let g:copilot_filetypes = {
       \ '*': v:false,
-      \ 'python': v:true,
+      \ 'python': v:false,
       \ }
 
 
