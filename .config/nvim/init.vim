@@ -161,8 +161,11 @@ set encoding=utf-8
 " map space to the leader key in all modes
 map <Space> <Leader>
 " disable the Ex mode
-nnoremap Q <nop>
+nnoremap Q <Nop>
 
+" disable shortcut to increment or decrement a number after the cursor
+map <C-a> <Nop>
+map <C-x> <Nop>
 
 """ automatically change working directory to the directory of the current file
 autocmd BufEnter * if expand('%:p') !~ '://' | :lcd %:p:h | endif
