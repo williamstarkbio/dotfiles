@@ -309,6 +309,15 @@ setup_go() {
     # install latest major version
     sudo apt install -y golang-go
 
+    # load Go environment variables
+    export GOROOT="/usr/lib/go"
+    export GOPATH="$HOME/go"
+
+    # add bin directories to PATH
+    PATH="$GOPATH/bin:$PATH"
+    PATH="$GOROOT/bin:$PATH"
+    export PATH
+
     # massren
     # rename files using a text editor
     # https://github.com/laurent22/massren
