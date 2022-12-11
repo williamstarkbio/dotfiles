@@ -383,6 +383,18 @@ setup_nodejs() {
 
 
 setup_additional_software() {
+    # nvme-cli
+    # nvme - the NVMe storage command line interface utility (nvme-cli)
+    # https://packages.ubuntu.com/focal/nvme-cli
+    # https://manpages.ubuntu.com/manpages/focal/man1/nvme.1.html
+
+    ADDITIONAL_PACKAGES=(
+        nvme-cli
+    )
+
+    sudo apt install -y "${ADDITIONAL_PACKAGES[@]}"
+
+
     SOFTWARE_DIRECTORY="$HOME/data/software"
     mkdir --parents --verbose "$HOME/data/software"
 
