@@ -9,7 +9,6 @@
 
 # binary file formats
 *.pdf
-*.zip
 *.png
 *.mp4
 *.mkv
@@ -17,9 +16,14 @@
 *.jpeg
 *.pickle
 *.docx
-*.7z
 *.webm
 *.sif
+
+# archive formats
+*.zip
+*.7z
+*.tgz
+*.gz
 
 # other file formats
 *.html
