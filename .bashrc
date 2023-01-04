@@ -834,7 +834,7 @@ d-compress-7z() {
 ### extract an archive
 d-extract() {
     if [[ -z "$1" ]]; then
-        echo "extract a zip, tgz, 7z, rar, gz, bz2, xz, zst, or tar archive"
+        echo "extract any of several types of archive files (zip, 7z, tgz, tar.gz, tar, xz, gz, bz2, zst, rar)"
         echo "usage: d-extract <FILE> [<FILE> ...]"
         return 0
     fi
@@ -845,20 +845,6 @@ d-extract() {
         case "$arg" in
             *.zip)
                 unzip "$arg"
-            ;;
-            *.tar|*.tar.gz|*.tgz|*.xz)
-                tar --extract --verbose --file "$arg"
-            ;;
-            *.bz2)
-                bzip2 --decompress --keep --verbose "$arg"
-            ;;
-            *.gz)
-                #gunzip -k "$arg"
-                # use shell redirections that work in versions lower than 1.6
-                gunzip < "$arg" > "${arg%.*}"
-            ;;
-            *.rar)
-                unrar x "$arg"
             ;;
             *.7z)
                 FILENAME=$(basename "$arg")
@@ -874,8 +860,22 @@ d-extract() {
 
                 7z x "${opt}" "$arg"
             ;;
+            *.tar|*.tar.gz|*.tgz|*.xz)
+                tar --extract --verbose --file "$arg"
+            ;;
+            *.gz)
+                #gunzip -k "$arg"
+                # use shell redirections that work in versions lower than 1.6
+                gunzip < "$arg" > "${arg%.*}"
+            ;;
+            *.bz2)
+                bzip2 --decompress --keep --verbose "$arg"
+            ;;
             *.zst)
                 tar --use-compress-program=unzstd --extract --verbose --file "$arg"
+            ;;
+            *.rar)
+                unrar x "$arg"
             ;;
         esac
     done
