@@ -834,7 +834,7 @@ d-compress-7z() {
 ### extract an archive
 d-extract() {
     if [[ -z "$1" ]]; then
-        echo "extract any of several types of archive files (zip, 7z, tgz, tar.gz, tar, xz, gz, bz2, zst, rar)"
+        echo "extract any of several types of archive files (zip, 7z, tgz, tar.gz, tar, gz, bz2, xz, zst, rar)"
         echo "usage: d-extract <FILE> [<FILE> ...]"
         return 0
     fi
@@ -855,24 +855,25 @@ d-extract() {
 
                 # if num_objects > 2 add -o switch (the archive itself is included in the count)
                 if [[ $num_objects -gt 2 ]]; then
-                    opt="-o${FILENAME_STEM}"
+                    options="-o${FILENAME_STEM}"
                 fi
 
-                7z x "${opt}" "$arg"
+                7z x "${options}" "$arg"
             ;;
-            *.tar|*.tar.gz|*.tgz|*.xz)
+            *.tgz|*.tar.gz|*.tar)
                 tar --extract --verbose --file "$arg"
             ;;
             *.gz)
-                #gunzip -k "$arg"
-                # use shell redirections that work in versions lower than 1.6
-                gunzip < "$arg" > "${arg%.*}"
+                gzip --decompress --keep --verbose "$arg"
             ;;
             *.bz2)
                 bzip2 --decompress --keep --verbose "$arg"
             ;;
+            *.xz)
+                xz --decompress --keep --verbose "$arg"
+            ;;
             *.zst)
-                tar --use-compress-program=unzstd --extract --verbose --file "$arg"
+                zstd --decompress --keep --verbose "$arg"
             ;;
             *.rar)
                 unrar x "$arg"
