@@ -846,8 +846,11 @@ d-extract() {
             *.zip)
                 unzip "$arg"
             ;;
-            *.tar|*.tar.gz|*.tgz|*.bz2|*.xz)
+            *.tar|*.tar.gz|*.tgz|*.xz)
                 tar --extract --verbose --file "$arg"
+            ;;
+            *.bz2)
+                bzip2 --decompress --keep --verbose "$arg"
             ;;
             *.gz)
                 #gunzip -k "$arg"
