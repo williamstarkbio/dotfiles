@@ -1230,4 +1230,6 @@ export PYTHONPYCACHEPREFIX="$HOME/.cache/pycache"
 # https://github.com/direnv/direnv
 # hook direnv to bash
 # NOTE: this should appear after any shell extension that manipulates the prompt
-eval "$(direnv hook bash)"
+if [[ -x "$(command -v direnv)" ]]; then
+    eval "$(direnv hook bash)"
+fi
