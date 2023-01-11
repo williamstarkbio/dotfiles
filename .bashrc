@@ -271,12 +271,22 @@ le() {
 export EXA_COLORS="da=1;36"
 la() {
     clear -x
-    if [[ -z "$1" ]]; then
-        exa --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git
+    if [[ -x "$(command -v exa)" ]]; then
+        if [[ -z "$1" ]]; then
+            exa --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git
+        else
+            for arg in "$@"; do
+                exa --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git "$arg"
+            done
+        fi
     else
-        for arg in "$@"; do
-            exa --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git "$arg"
-        done
+        if [[ -z "$1" ]]; then
+            ls -Ahl -N --color=always --group-directories-first --sort=extension --time-style=long-iso
+        else
+            for arg in "$@"; do
+                ls -Ahl -N --color=always --group-directories-first --sort=extension --time-style=long-iso "$arg"
+            done
+        fi
     fi
 }
 
