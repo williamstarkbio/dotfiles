@@ -876,7 +876,7 @@ d-extract() {
                 gzip --decompress --keep --verbose "$arg"
             ;;
             *.bz2)
-                bzip2 --decompress --keep --verbose "$arg"
+                tar --extract --bzip2 --verbose --file "$arg"
             ;;
             *.xz)
                 xz --decompress --keep --verbose "$arg"
