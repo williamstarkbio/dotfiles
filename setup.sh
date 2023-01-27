@@ -133,6 +133,11 @@ install_standard_packages() {
     # https://packages.ubuntu.com/focal/magic-wormhole
     # https://github.com/magic-wormhole/magic-wormhole
 
+    # ncdu
+    # disk usage analyzer with an ncurses interface
+    # https://packages.ubuntu.com/focal/ncdu
+    # https://dev.yorhel.nl/ncdu
+
     # renameutils
     # set of programs to make file renaming easier
     # https://packages.ubuntu.com/focal/renameutils
