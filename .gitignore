@@ -1,8 +1,9 @@
 # Vim swap files
 *.swp
 
-# Python byte code files
+# Python
 *.pyc
+poetry.lock
 
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints
