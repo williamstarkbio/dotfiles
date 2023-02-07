@@ -483,61 +483,18 @@ gst() {
 
 ### git diff
 # show changes between commits, commit and working tree, etc
-gd() {
-    clear -x
-    if [[ -z "$1" ]]; then
-        git diff
-    else
-        for arg in "$@"; do
-            git diff "$arg"
-        done
-    fi
-}
-
-
+alias gd='git diff'
 ### git diff --cached
 # --cached
 # view the changes you staged for the next commit
 # --staged is a synonym of --cached
-gds() {
-    clear -x
-    if [[ -z "$1" ]]; then
-        git diff --cached
-    else
-        for arg in "$@"; do
-            git diff --cached "$arg"
-        done
-    fi
-}
-
-
+alias gds='git diff --cached'
 ### git difftool
 # show changes using common diff tools
-gdt() {
-    clear -x
-    if [[ -z "$1" ]]; then
-        git difftool
-    else
-        for arg in "$@"; do
-            git difftool "$arg"
-        done
-    fi
-}
-
-
+alias gds='git difftool'
 ### git difftool --cached
-# git difftool is a frontend to git diff and accepts the same options and
-# arguments.
-gdst() {
-    clear -x
-    if [[ -z "$1" ]]; then
-        git difftool --cached
-    else
-        for arg in "$@"; do
-            git difftool --cached "$arg"
-        done
-    fi
-}
+# git difftool is a frontend to git diff and accepts the same options and arguments.
+alias gds='git difftool --cached'
 
 
 ### git commit
