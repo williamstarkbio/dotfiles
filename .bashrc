@@ -491,10 +491,10 @@ alias gd='git diff'
 alias gds='git diff --cached'
 ### git difftool
 # show changes using common diff tools
-alias gds='git difftool'
+alias gdt='git difftool'
 ### git difftool --cached
-# git difftool is a frontend to git diff and accepts the same options and arguments.
-alias gds='git difftool --cached'
+# git difftool is a frontend to git diff and accepts the same options and arguments
+alias gdst='git difftool --cached'
 
 
 ### git commit
