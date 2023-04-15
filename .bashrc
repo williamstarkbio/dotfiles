@@ -636,7 +636,7 @@ yt() {
 
     # YouTube playlist
     if [[ "$1" == "https://www.youtube.com/playlist?list="* ]]; then
-        yt-dlp --playlist-start 1 --limit-rate "$RATE_LIMIT" --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --ignore-errors --embed-chapters --write-subs --sub-langs "en.*,zh-Hans" -o "%(playlist)s [%(playlist_id)s]/%(playlist_index)s - %(title)s [%(id)s].%(ext)s" "$1"
+        yt-dlp --playlist-start 1 --limit-rate "$RATE_LIMIT" --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --ignore-errors --embed-chapters --write-subs --sub-langs "en.*,zh-Hans" -o "%(playlist_id)s/%(playlist_index)s - %(title)s [%(id)s].%(ext)s" "$1"
 
     # text file with links to videos
     elif [[ "$1" == *".txt" ]]; then
