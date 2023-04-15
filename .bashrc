@@ -629,6 +629,10 @@ yt() {
 
     # download best format available but not better that 1080p
 
+    # use "%(title).200B" instead of "%(title)s" to truncate the title to 200 bytes
+    # https://github.com/yt-dlp/yt-dlp/issues/1837#issuecomment-1100889801
+    # https://github.com/yt-dlp/yt-dlp/issues/1136#issuecomment-932077195
+
     #RATE_LIMIT="10M"
     RATE_LIMIT="5M"
     #RATE_LIMIT="2M"
@@ -636,16 +640,16 @@ yt() {
 
     # YouTube playlist
     if [[ "$1" == "https://www.youtube.com/playlist?list="* ]]; then
-        yt-dlp --playlist-start 1 --limit-rate "$RATE_LIMIT" --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --ignore-errors --embed-chapters --write-subs --sub-langs "en.*,zh-Hans" -o "%(playlist_id)s/%(playlist_index)s - %(title)s [%(id)s].%(ext)s" "$1"
+        yt-dlp --playlist-start 1 --limit-rate "$RATE_LIMIT" --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --ignore-errors --embed-chapters --write-subs --sub-langs "en.*" -o "%(playlist_id)s/%(playlist_index)s - %(title).200B [%(id)s].%(ext)s" "$1"
 
     # text file with links to videos
     elif [[ "$1" == *".txt" ]]; then
-        yt-dlp --limit-rate "$RATE_LIMIT" --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --embed-chapters --write-subs --sub-langs "en.*,zh-Hans" -a "$1"
+        yt-dlp --limit-rate "$RATE_LIMIT" --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --embed-chapters --write-subs --sub-langs "en.*" -a "$1"
 
     # individual YouTube video (link starting with "https://www.youtube.com/watch?v=")
     # or video from other platforms
     else
-        yt-dlp --limit-rate "$RATE_LIMIT" --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --embed-chapters --write-subs --sub-langs "en.*,zh-Hans" "$1"
+        yt-dlp --limit-rate "$RATE_LIMIT" --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --embed-chapters --write-subs --sub-langs "en.*" "$1"
     fi
 }
 
@@ -655,7 +659,7 @@ yt-auto-subs() {
     #RATE_LIMIT="2M"
     #RATE_LIMIT="1M"
 
-    yt-dlp --limit-rate "$RATE_LIMIT" --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --embed-chapters --write-subs --write-auto-subs --sub-langs "en.*,zh-Hans" "$1"
+    yt-dlp --limit-rate "$RATE_LIMIT" --no-mtime --format 'bestvideo[ext=mp4][height<=1080][vcodec!*=av01]+bestaudio[ext=m4a]/best[height<=1080]' --embed-chapters --write-subs --write-auto-subs --sub-langs "en.*" "$1"
 }
 
 
