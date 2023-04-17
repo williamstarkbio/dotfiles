@@ -29,7 +29,7 @@ Plug 'chrisbra/Colorizer'
 " Copilot.vim
 " Neovim plugin for GitHub Copilot
 " https://github.com/github/copilot.vim
-Plug 'github/copilot.vim'
+"Plug 'github/copilot.vim'
 
 " csv.vim
 " filetype plugin for CSV files
