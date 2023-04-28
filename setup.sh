@@ -97,6 +97,18 @@ setup_dotfiles() {
 }
 
 
+remove_unneeded_packages() {
+    UNNEEDED_PACKAGES=(
+        vim-tiny
+        kubuntu-web-shortcuts
+    )
+
+    sudo apt purge "${UNNEEDED_PACKAGES[@]}"
+
+    sudo apt autoremove
+}
+
+
 install_standard_packages() {
     # curl
     # command line tool for transferring data with URL syntax
@@ -192,18 +204,6 @@ install_standard_packages() {
     )
 
     sudo apt install -y "${STANDARD_PACKAGES[@]}"
-}
-
-
-remove_unneeded_packages() {
-    UNNEEDED_PACKAGES=(
-        vim-tiny
-        kubuntu-web-shortcuts
-    )
-
-    sudo apt purge "${UNNEEDED_PACKAGES[@]}"
-
-    sudo apt autoremove
 }
 
 
@@ -549,14 +549,14 @@ main() {
         create_directories
     fi
 
-    YES_NO_ANSWER=$(yes_no_question "Install standard packages?")
-    if [[ $YES_NO_ANSWER = "y" ]]; then
-        install_standard_packages
-    fi
-
     YES_NO_ANSWER=$(yes_no_question "Remove unneeded packages?")
     if [[ $YES_NO_ANSWER = "y" ]]; then
         remove_unneeded_packages
+    fi
+
+    YES_NO_ANSWER=$(yes_no_question "Install standard packages?")
+    if [[ $YES_NO_ANSWER = "y" ]]; then
+        install_standard_packages
     fi
 
     YES_NO_ANSWER=$(yes_no_question "Install linux-headers and build-essential packages?")
