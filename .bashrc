@@ -1124,11 +1124,6 @@ if [[ -f "$Z_ROOT_DIRECTORY/z.sh" ]]; then
 fi
 
 
-# set up git completion
-# https://github.com/git/git/blob/master/contrib/completion/git-completion.bash
-#[[ -f "$HOME/dotfiles/git-completion.bash" ]] && source "$HOME/dotfiles/git-completion.bash"
-
-
 # tmux Bash completion
 # https://github.com/imomaliev/tmux-bash-completion
 TMUX_BASH_COMPLETION_DIRECTORY="$SOFTWARE_DIRECTORY/tmux-bash-completion"
