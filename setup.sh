@@ -112,85 +112,84 @@ remove_unneeded_packages() {
 install_standard_packages() {
     # curl
     # command line tool for transferring data with URL syntax
-    # https://packages.ubuntu.com/focal/curl
+    # https://packages.ubuntu.com/jammy/curl
     # https://curl.se/
-
-    # direnv
-    # utility to set directory specific environment variables
-    # https://packages.ubuntu.com/focal/direnv
-    # https://github.com/direnv/direnv
 
     # dos2unix
     # convert text file line endings between CRLF and LF
-    # https://packages.ubuntu.com/focal/dos2unix
-    # https://manpages.ubuntu.com/manpages/focal/man1/dos2unix.1.html
+    # https://packages.ubuntu.com/jammy/dos2unix
+    # https://manpages.ubuntu.com/manpages/jammy/man1/dos2unix.1.html
+
+    # exa
+    # modern ls replacement
+    # https://github.com/ogham/exa
+    # https://the.exa.website/
 
     # fd
     # simple, fast and user-friendly alternative to find
-    # https://packages.ubuntu.com/focal/fd-find
+    # https://packages.ubuntu.com/jammy/fd-find
     # https://github.com/sharkdp/fd
 
     # git-lfs
     # Git extension for versioning large files
-    # https://packages.ubuntu.com/focal/git-lfs
+    # https://packages.ubuntu.com/jammy/git-lfs
     # https://git-lfs.github.com/
 
     # hashdeep
     # recursively compute hashsums or piecewise hashings
-    # https://packages.ubuntu.com/focal/hashdeep
+    # https://packages.ubuntu.com/jammy/hashdeep
     # https://github.com/jessek/hashdeep
 
     # Magic Wormhole
     # securely and simply transfer data between computers
-    # https://packages.ubuntu.com/focal/magic-wormhole
+    # https://packages.ubuntu.com/jammy/magic-wormhole
     # https://github.com/magic-wormhole/magic-wormhole
 
     # ncdu
     # disk usage analyzer with an ncurses interface
-    # https://packages.ubuntu.com/focal/ncdu
+    # https://packages.ubuntu.com/jammy/ncdu
     # https://dev.yorhel.nl/ncdu
 
     # renameutils
     # set of programs to make file renaming easier
-    # https://packages.ubuntu.com/focal/renameutils
+    # https://packages.ubuntu.com/jammy/renameutils
     # (includes imv and icp)
     # https://www.nongnu.org/renameutils/
 
     # ripgrep
     # recursively search file contents for a regex pattern
-    # https://packages.ubuntu.com/focal/ripgrep
+    # https://packages.ubuntu.com/jammy/ripgrep
     # https://github.com/BurntSushi/ripgrep
 
     # sqlite3
     # command line interface for SQLite 3
-    # https://packages.ubuntu.com/focal/sqlite3
+    # https://packages.ubuntu.com/jammy/sqlite3
     # SQLite SQL database engine
     # https://www.sqlite.org
-    # https://manpages.ubuntu.com/manpages/focal/man1/sqlite3.1.html
+    # https://manpages.ubuntu.com/manpages/jammy/man1/sqlite3.1.html
 
     # ssh
     # secure shell client and server (metapackage)
-    # https://packages.ubuntu.com/focal/ssh
+    # https://packages.ubuntu.com/jammy/ssh
     # OpenSSH remote login client
-    # https://manpages.ubuntu.com/manpages/focal/man1/ssh.1.html
+    # https://manpages.ubuntu.com/manpages/jammy/man1/ssh.1.html
 
     # xclip
     # command line interface to X selections (clipboard)
-    # https://packages.ubuntu.com/focal/xclip
-    # https://manpages.ubuntu.com/manpages/focal/man1/xclip.1.html
+    # https://packages.ubuntu.com/jammy/xclip
+    # https://manpages.ubuntu.com/manpages/jammy/man1/xclip.1.html
     # https://github.com/astrand/xclip
 
     # zstd
     # compress or decompress .zst files
-    # https://packages.ubuntu.com/focal/zstd
-    # https://manpages.ubuntu.com/manpages/focal/man1/zstd.1.html
+    # https://packages.ubuntu.com/jammy/zstd
+    # https://manpages.ubuntu.com/manpages/jammy/man1/zstd.1.html
 
     STANDARD_PACKAGES=(
         curl
-        direnv
         dos2unix
+        exa
         fd-find
-        git
         git-lfs
         hashdeep
         magic-wormhole
@@ -230,7 +229,7 @@ setup_python() {
 
     # install Python build dependencies
     # https://github.com/pyenv/pyenv/wiki#suggested-build-environment
-    sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+    sudo apt install -y build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev curl libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 
     # install latest bugfix version of preferred Python minor version
     PREFERRED_PYTHON_MINOR_VERSION="3.10"
@@ -289,11 +288,6 @@ setup_rust() {
 
     # install Rust
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
-    # exa
-    # modern ls replacement
-    # https://github.com/ogham/exa
-    cargo install exa
 
     # delta
     # a syntax-highlighting pager for git and diff output
@@ -378,7 +372,7 @@ setup_nodejs() {
     # https://github.com/nvm-sh/nvm
     export NVM_DIR="$HOME/.nvm"
     mkdir --parents --verbose "$NVM_DIR"
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 
     [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
 
@@ -390,8 +384,8 @@ setup_nodejs() {
 setup_additional_software() {
     # nvme-cli
     # nvme - the NVMe storage command line interface utility (nvme-cli)
-    # https://packages.ubuntu.com/focal/nvme-cli
-    # https://manpages.ubuntu.com/manpages/focal/man1/nvme.1.html
+    # https://packages.ubuntu.com/jammy/nvme-cli
+    # https://manpages.ubuntu.com/manpages/jammy/man1/nvme.1.html
 
     ADDITIONAL_PACKAGES=(
         nvme-cli
@@ -405,10 +399,6 @@ setup_additional_software() {
 
     # z
     # https://github.com/rupa/z
-    # NOTE
-    # for smart case sensitivity support check my own fork that merges ericbn's
-    # pull request https://github.com/rupa/z/pull/221
-    # https://github.com/williamstark01/z
     Z_ROOT_DIRECTORY="${SOFTWARE_DIRECTORY}/z"
     [[ -d "$Z_ROOT_DIRECTORY" ]] && backup_datetime "$Z_ROOT_DIRECTORY"
     git clone https://github.com/rupa/z.git "$Z_ROOT_DIRECTORY"
@@ -426,7 +416,7 @@ install_desktop_packages() {
 
     # diffpdf
     # compare two PDF files textually or visually
-    # https://packages.ubuntu.com/focal/diffpdf
+    # https://packages.ubuntu.com/jammy/diffpdf
     # http://www.qtrac.eu/diffpdf.html
 
     # Evince
@@ -476,7 +466,6 @@ install_desktop_packages() {
     # Xournal++
     # PDF annotation and notetaking
     # https://github.com/xournalpp/xournalpp
-    sudo add-apt-repository ppa:apandada1/xournalpp-stable
 
     DESKTOP_PACKAGES=(
         copyq
