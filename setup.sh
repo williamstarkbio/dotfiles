@@ -3,9 +3,11 @@
 # William Stark (william.stark.5000@gmail.com)
 
 
-# Exit immediately if a pipeline (which may consist of a single  simple  command),
-# a list, or a compound command, exits with a non-zero status.
+# Exit immediately if a pipeline (see Pipelines), which may consist of a single simple command (see Simple Commands), a list (see Lists of Commands), or a compound command (see Compound Commands) returns a non-zero status. [...]
 set -e
+
+# Print a trace of simple commands, for commands, case commands, select commands, and arithmetic for commands and their arguments or associated word lists after they are expanded and before they are executed. The value of the PS4 variable is expanded and the resultant value is printed before the command and its expanded arguments.
+set -x
 
 
 yes_no_question() {
