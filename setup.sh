@@ -6,8 +6,8 @@
 # Exit immediately if a pipeline (see Pipelines), which may consist of a single simple command (see Simple Commands), a list (see Lists of Commands), or a compound command (see Compound Commands) returns a non-zero status. [...]
 set -e
 
-# Print a trace of simple commands, for commands, case commands, select commands, and arithmetic for commands and their arguments or associated word lists after they are expanded and before they are executed. The value of the PS4 variable is expanded and the resultant value is printed before the command and its expanded arguments.
-set -x
+# Print shell input lines as they are read.
+set -v
 
 
 yes_no_question() {
@@ -95,7 +95,6 @@ setup_dotfiles() {
     # (specify custom key bindings for less, described in `$HOME/.lesskey`)
     # man lesskey
     ln --symbolic --force --verbose "$HOME/dotfiles/.lesskey" "$HOME/"
-    lesskey
 }
 
 
