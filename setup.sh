@@ -104,9 +104,9 @@ remove_unneeded_packages() {
         kubuntu-web-shortcuts
     )
 
-    sudo apt purge "${UNNEEDED_PACKAGES[@]}"
+    sudo apt -y purge "${UNNEEDED_PACKAGES[@]}"
 
-    sudo apt autoremove
+    sudo apt -y autoremove
 }
 
 
