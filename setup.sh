@@ -443,6 +443,7 @@ install_desktop_packages() {
 
     # Grub Customizer
     # https://launchpad.net/grub-customizer
+    sudo add-apt-repository ppa:danielrichter2007/grub-customizer
 
     # KDiff3
     # https://apps.kde.org/kdiff3/
