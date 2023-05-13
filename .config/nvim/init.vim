@@ -428,7 +428,7 @@ set mouse=a
 
 
 """ select a line without the newline character
-" https://stackoverflow.com/questions/20165596/select-entire-line-in-vim-without-the-new-line-character
+" https://stackoverflow.com/questions/20165596/select-entire-line-in-vim-without-the-new-line-character/61624228#61624228
 vnoremap al :<C-U>normal 0v$h<CR>
 omap al :normal val<CR>
 vnoremap il :<C-U>normal ^vg_<CR>
