@@ -121,11 +121,6 @@ install_standard_packages() {
     # https://packages.ubuntu.com/jammy/dos2unix
     # https://manpages.ubuntu.com/manpages/jammy/man1/dos2unix.1.html
 
-    # exa
-    # modern ls replacement
-    # https://github.com/ogham/exa
-    # https://the.exa.website/
-
     # fd
     # simple, fast and user-friendly alternative to find
     # https://packages.ubuntu.com/jammy/fd-find
@@ -189,7 +184,6 @@ install_standard_packages() {
     STANDARD_PACKAGES=(
         curl
         dos2unix
-        exa
         fd-find
         git-lfs
         hashdeep
@@ -294,6 +288,12 @@ setup_rust() {
     # a syntax-highlighting pager for git and diff output
     # https://github.com/dandavison/delta
     cargo install git-delta
+
+    # exa
+    # modern ls replacement
+    # https://github.com/ogham/exa
+    # https://the.exa.website/
+    cargo install exa
 }
 
 
