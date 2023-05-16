@@ -483,18 +483,30 @@ gst() {
 
 ### git diff
 # show changes between commits, commit and working tree, etc
-alias gd='git diff'
+gd() {
+    clear -x
+    git diff
+}
 ### git diff --cached
 # --cached
 # view the changes you staged for the next commit
 # --staged is a synonym of --cached
-alias gds='git diff --cached'
+gds() {
+    clear -x
+    git diff --cached
+}
 ### git difftool
 # show changes using common diff tools
-alias gdt='git difftool'
+gdt() {
+    clear -x
+    git difftool
+}
 ### git difftool --cached
 # git difftool is a frontend to git diff and accepts the same options and arguments
-alias gdst='git difftool --cached'
+gdst() {
+    clear -x
+    git difftool --cached
+}
 
 
 ### git commit
