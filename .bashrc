@@ -432,8 +432,10 @@ alias py='python'
 
 ### initialize a git repo, add and commit my default .gitignore
 gi() {
-    git init
-    git checkout -b main
+    # git init
+    # -b <branch-name>, --initial-branch=<branch-name>
+    # Use the specified name for the initial branch in the newly created repository. [...]
+    git init --initial-branch main
     cp $HOME/dotfiles/.gitignore .
     git add .gitignore
     git commit -m "add .gitignore"
@@ -442,8 +444,10 @@ gi() {
 
 ### initialize a repo, add and commit all existing files
 gii() {
-    git init
-    git checkout -b main
+    # git init
+    # -b <branch-name>, --initial-branch=<branch-name>
+    # Use the specified name for the initial branch in the newly created repository. [...]
+    git init --initial-branch main
     cp $HOME/dotfiles/.gitignore .
     git add .gitignore
     git commit -m "add .gitignore"
