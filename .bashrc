@@ -489,7 +489,13 @@ gst() {
 # show changes between commits, commit and working tree, etc
 gd() {
     clear -x
-    git diff
+    if [[ -z "$1" ]]; then
+        git diff
+    else
+        for arg in "$@"; do
+            git diff "$arg"
+        done
+    fi
 }
 ### git diff --cached
 # --cached
@@ -503,7 +509,13 @@ gds() {
 # show changes using common diff tools
 gdt() {
     clear -x
-    git difftool
+    if [[ -z "$1" ]]; then
+        git difftool
+    else
+        for arg in "$@"; do
+            git difftool "$arg"
+        done
+    fi
 }
 ### git difftool --cached
 # git difftool is a frontend to git diff and accepts the same options and arguments
