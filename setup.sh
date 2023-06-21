@@ -170,6 +170,10 @@ install_standard_packages() {
     # OpenSSH remote login client
     # https://manpages.ubuntu.com/manpages/jammy/man1/ssh.1.html
 
+    # unrar
+    # unarchiver for .rar files (non-free version)
+    # https://packages.ubuntu.com/jammy/unrar
+
     # xclip
     # command line interface to X selections (clipboard)
     # https://packages.ubuntu.com/jammy/xclip
@@ -192,6 +196,7 @@ install_standard_packages() {
         ripgrep
         sqlite3
         ssh
+        unrar
         tmux
         xclip
         zstd
