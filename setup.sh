@@ -338,18 +338,36 @@ setup_neovim() {
 
     # https://github.com/neovim/neovim/wiki/Installing-Neovim#ubuntu
 
-    sudo add-apt-repository ppa:neovim-ppa/stable
-    sudo apt install -y neovim
+    #sudo add-apt-repository ppa:neovim-ppa/stable
+    #sudo apt install -y neovim
 
     # Python modules prerequisites
-    sudo apt install -y python3-dev python3-pip
+    #sudo apt install -y python3-dev python3-pip
+
+    # https://github.com/neovim/neovim/wiki/Building-Neovim
+
+    # install build prerequisites
+    sudo apt-get install ninja-build gettext cmake unzip curl
+
+    SOFTWARE_DIRECTORY="$HOME/data/software"
+    mkdir --parents --verbose "$HOME/data/software"
+
+    NEOVIM_BUILD_DIRECTORY="${SOFTWARE_DIRECTORY}/Neovim"
+    [[ -d "$NEOVIM_BUILD_DIRECTORY" ]] && backup_datetime "$NEOVIM_BUILD_DIRECTORY"
+    git clone https://github.com/neovim/neovim "$NEOVIM_BUILD_DIRECTORY"
+    cd neovim
+    git checkout stable
+    make CMAKE_BUILD_TYPE=RelWithDebInfo
 
     # use Neovim for all editor alternatives
-    sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
+    #sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
+    sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/nvim 60
     sudo update-alternatives --config vi
-    sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
+    #sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
+    sudo update-alternatives --install /usr/bin/vim vim /usr/local/bin/nvim 60
     sudo update-alternatives --config vim
-    sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
+    #sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
+    sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/nvim 60
     sudo update-alternatives --config editor
 
     mkdir --parents --verbose "$HOME/.config/nvim"
