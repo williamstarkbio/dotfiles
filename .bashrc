@@ -1212,7 +1212,7 @@ fi
 # https://github.com/mitsuhiko/rye
 # https://rye-up.com/
 # package management solution for Python
-#source "$HOME/.rye/env"
+source "$HOME/.rye/env"
 
 
 ### direnv
