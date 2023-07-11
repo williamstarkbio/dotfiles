@@ -1217,3 +1217,10 @@ export PYTHONPYCACHEPREFIX="$HOME/.cache/pycache"
 if [[ -x "$(command -v direnv)" ]]; then
     eval "$(direnv hook bash)"
 fi
+
+
+### rye
+# https://github.com/mitsuhiko/rye
+# https://rye-up.com/
+# package management solution for Python
+source "$HOME/.rye/env"
