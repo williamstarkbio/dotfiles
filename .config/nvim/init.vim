@@ -313,8 +313,8 @@ autocmd BufNewFile,BufRead *.md set filetype=markdown
 
 " Perl
 " don't autocomplete from included files
-autocmd FileType perl set complete-=i
-autocmd FileType perl setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent
+"autocmd FileType perl set complete-=i
+"autocmd FileType perl setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent
 
 " Python
 autocmd FileType py setlocal textwidth=88 tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent
