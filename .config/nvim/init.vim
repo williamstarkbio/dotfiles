@@ -64,12 +64,12 @@ Plug 'preservim/nerdtree'
 " nextflow-vim
 " Nextflow syntax
 " https://github.com/LukeGoodsell/nextflow-vim
-Plug 'LukeGoodsell/nextflow-vim'
+"Plug 'LukeGoodsell/nextflow-vim'
 
 " vim-perl
 " support for Perl 5
 " https://github.com/vim-perl/vim-perl
-Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
+"Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
 
 " repeat.vim
 " enable repeating supported plugin maps with "."
