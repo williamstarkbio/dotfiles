@@ -1088,6 +1088,8 @@ pipx() {
 ### environment variables
 # use pudb for debugging globally
 export PYTHONBREAKPOINT="pudb.set_trace"
+## set pycache directory path
+export PYTHONPYCACHEPREFIX="$HOME/.cache/pycache"
 
 
 ## Deno
@@ -1206,8 +1208,11 @@ if [[ -d "$PYENV_ROOT" ]]; then
 fi
 
 
-## specify Python pycache directory
-export PYTHONPYCACHEPREFIX="$HOME/.cache/pycache"
+### rye
+# https://github.com/mitsuhiko/rye
+# https://rye-up.com/
+# package management solution for Python
+#source "$HOME/.rye/env"
 
 
 ### direnv
@@ -1217,10 +1222,3 @@ export PYTHONPYCACHEPREFIX="$HOME/.cache/pycache"
 if [[ -x "$(command -v direnv)" ]]; then
     eval "$(direnv hook bash)"
 fi
-
-
-### rye
-# https://github.com/mitsuhiko/rye
-# https://rye-up.com/
-# package management solution for Python
-source "$HOME/.rye/env"

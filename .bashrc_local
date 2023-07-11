@@ -8,10 +8,10 @@ export SOFTWARE_DIRECTORY="$HOME/data/software"
 
 
 ### Python pyenv
-if [[ -d "$HOME/.pyenv" ]]; then
-    export PYENV_ROOT="$HOME/.pyenv"
-elif [[ -d "/data/.pyenv" ]]; then
+if [[ -d "/data/.pyenv" ]]; then
     export PYENV_ROOT="/data/.pyenv"
+elif [[ -d "$HOME/.pyenv" ]]; then
+    export PYENV_ROOT="$HOME/.pyenv"
 fi
 
 ### Rust
