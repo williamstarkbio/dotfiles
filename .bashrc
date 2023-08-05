@@ -423,6 +423,7 @@ alias ..='cd ..'
 
 alias clip='xclip -sel clip'
 alias py='python'
+alias wiki='z wiki'
 ################################################################################
 
 
