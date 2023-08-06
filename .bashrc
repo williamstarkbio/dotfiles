@@ -248,16 +248,7 @@ alias ipa='ip -color address'
 # handle ANSI "color" escape sequences
 # -X or --no-init
 # don't clear the screen on exit
-le() {
-    clear -x
-    if [[ -z "$1" ]]; then
-        less -FRX
-    else
-        for arg in "$@"; do
-            less -FRX "$arg"
-        done
-    fi
-}
+alias le='less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init'
 
 
 ### exa
