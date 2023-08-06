@@ -394,6 +394,8 @@ alias scp='scp -p -r'
 # Open N tab pages. If [N] is not given, one tab page is opened for every file
 # given as argument.
 alias vim='vim -p'
+#alias vimdiff='nvim -d'
+alias vimdiff='nvim -d -c "set foldlevel=9999"'
 
 
 ### watch
