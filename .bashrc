@@ -646,8 +646,6 @@ gsh() {
 # download videos from YouTube and other video platforms
 # https://github.com/yt-dlp/yt-dlp
 ################################################################################
-# -f, --format FORMAT
-# Video format code, see "FORMAT SELECTION" for more details
 # https://github.com/yt-dlp/yt-dlp#format-selection
 # https://github.com/yt-dlp/yt-dlp#format-selection-examples
 # download and merge the best, but no better than 1080p, video-only format and
@@ -655,15 +653,27 @@ gsh() {
 # format if video-only format is not available
 YT_DLP_FORMAT="bestvideo[height<=1080]+bestaudio/best[height<=1080]"
 
-# use "%(title).200B" instead of "%(title)s" to truncate the title to 200 bytes
-# https://github.com/yt-dlp/yt-dlp/issues/1837#issuecomment-1100889801
-# https://github.com/yt-dlp/yt-dlp/issues/1136#issuecomment-932077195
-
 #YT_RATE_LIMIT="10M"
 YT_RATE_LIMIT="5M"
 #YT_RATE_LIMIT="2M"
 #YT_RATE_LIMIT="1M"
 
+# -r, --limit-rate RATE
+# Maximum download rate in bytes per second, e.g. 50K or 4.2M
+# --no-mtime
+# Do not use the Last-modified header to set the file modification time
+# -f, --format FORMAT
+# Video format code, see "FORMAT SELECTION" for more details
+# --embed-chapters
+# Add chapter markers to the video file (Alias: --add-chapters)
+# --merge-output-format FORMAT
+# Containers that may be used when merging formats, separated by "/", e.g. "mp4/mkv".
+# Ignored if no merge is required. (currently supported: avi, flv, mkv, mov, mp4, webm)
+# --sub-langs LANGS
+# Languages of the subtitles to download (can be regex) or "all" separated by commas,
+# e.g. --sub-langs "en.*,ja". You can prefix the language code with a "-" to exclude it
+# from the requested languages, e.g. --sub-langs all,-live_chat. Use --list-subs for
+# a list of available language tags
 YT_COMMON_ARGUMENTS=(
     --limit-rate "$YT_RATE_LIMIT"
     --no-mtime
@@ -676,17 +686,25 @@ YT_COMMON_ARGUMENTS=(
 yt() {
     # YouTube playlist
     ############################################################################
+    # using "%(title).200B" instead of "%(title)s" to truncate the title to 200 bytes
+    # https://github.com/yt-dlp/yt-dlp/issues/1837#issuecomment-1100889801
+    # https://github.com/yt-dlp/yt-dlp/issues/1136#issuecomment-932077195
+
     # TODO
     # remove or replace redundant option with its equivalent
     # --playlist-start NUMBER  ==  -I NUMBER:
-
     # -I, --playlist-items ITEM_SPEC
-    # Comma separated playlist_index of the items to download. You can specify a range using
-    # "[START]:[STOP][:STEP]". For backward compatibility, START-STOP is also supported.
-    # Use negative indices to count from the right and negative STEP to download in reverse
-    # order. E.g. "-I 1:3,7,-5::2" used on a playlist of size 15 will download the items
-    # at index 1,2,3,7,11,13,15
+    # Comma separated playlist_index of the items to download. You can specify a range
+    # using "[START]:[STOP][:STEP]". For backward compatibility, START-STOP is also
+    # supported. Use negative indices to count from the right and negative STEP
+    # to download in reverse order. E.g. "-I 1:3,7,-5::2" used on a playlist of size 15
+    # will download the items at index 1,2,3,7,11,13,15
 
+    # -i, --ignore-errors
+    # Ignore download and postprocessing errors. The download will be considered
+    # successful even if the postprocessing fails
+    # --embed-subs
+    # Embed subtitles in the video (only for mp4, webm and mkv videos)
     # -o, --output [TYPES:]TEMPLATE
     # Output filename template; see "OUTPUT TEMPLATE" for details
     if [[ "$1" == "https://www.youtube.com/playlist?list="* ]]; then
@@ -709,6 +727,10 @@ yt() {
 
 yt-auto-subs() {
     # retrieve automatically generated subtitles and save them to a file
+    # --write-subs
+    # Write subtitle file
+    # --write-auto-subs
+    # Write automatically generated subtitle file (Alias: --write-automatic-subs)
     yt-dlp ${YT_COMMON_ARGUMENTS[@]} --write-subs --write-auto-subs "$1"
 }
 ################################################################################
