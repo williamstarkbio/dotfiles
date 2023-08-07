@@ -653,16 +653,25 @@ gsh() {
 # download and merge the best, but no better than 1080p, video-only format and
 # the best audio-only format, or download the best, but no better than 1080p, combined
 # format if video-only format is not available
-YT_DLP_FORMAT="'bestvideo[height<=1080]+bestaudio/best[height<=1080]'"
+YT_DLP_FORMAT="bestvideo[height<=1080]+bestaudio/best[height<=1080]"
 
 # use "%(title).200B" instead of "%(title)s" to truncate the title to 200 bytes
 # https://github.com/yt-dlp/yt-dlp/issues/1837#issuecomment-1100889801
 # https://github.com/yt-dlp/yt-dlp/issues/1136#issuecomment-932077195
 
-YT_RATE_LIMIT="10M"
-#YT_RATE_LIMIT="5M"
+#YT_RATE_LIMIT="10M"
+YT_RATE_LIMIT="5M"
 #YT_RATE_LIMIT="2M"
 #YT_RATE_LIMIT="1M"
+
+YT_COMMON_ARGUMENTS=(
+    --limit-rate "$YT_RATE_LIMIT"
+    --no-mtime
+    --format "$YT_DLP_FORMAT"
+    --embed-chapters
+    --merge-output-format mkv
+    --sub-langs "en.*"
+)
 
 yt() {
     # YouTube playlist
@@ -681,25 +690,26 @@ yt() {
     # -o, --output [TYPES:]TEMPLATE
     # Output filename template; see "OUTPUT TEMPLATE" for details
     if [[ "$1" == "https://www.youtube.com/playlist?list="* ]]; then
-        yt-dlp --playlist-start 1 --limit-rate "$YT_RATE_LIMIT" --no-mtime --format "$YT_DLP_FORMAT" --ignore-errors --embed-chapters --embed-subs --sub-langs "en.*" --merge-output-format mkv --output "%(playlist_id)s/%(playlist_index)s. %(title).200B [%(id)s].%(ext)s" "$1"
+        yt-dlp ${YT_COMMON_ARGUMENTS[@]} --playlist-start 1 --ignore-errors --embed-subs --output "%(playlist_id)s/%(playlist_index)s. %(title).200B [%(id)s].%(ext)s" "$1"
 
     # text file with list of video links
     ############################################################################
+    # -a, --batch-file FILE
+    # File containing URLs to download ("-" for stdin), one URL per line. Lines starting
+    # with "#", ";" or "]" are considered as comments and ignored
     elif [[ "$1" == *".txt" ]]; then
-        # -a, --batch-file FILE
-        # File containing URLs to download ("-" for stdin), one URL per line. Lines starting with "#", ";" or "]" are considered as comments and ignored
-        yt-dlp --limit-rate "$YT_RATE_LIMIT" --no-mtime --format "$YT_DLP_FORMAT" --embed-chapters --embed-subs --sub-langs "en.*" --merge-output-format mkv --batch-file "$1"
+        yt-dlp ${YT_COMMON_ARGUMENTS[@]} --embed-subs --batch-file "$1"
 
     # individual YouTube or other platform video
     ############################################################################
     else
-        yt-dlp --limit-rate "$YT_RATE_LIMIT" --no-mtime --format "$YT_DLP_FORMAT" --embed-chapters --embed-subs --sub-langs "en.*" --merge-output-format mkv "$1"
+        yt-dlp ${YT_COMMON_ARGUMENTS[@]} --embed-subs "$1"
     fi
 }
 
 yt-auto-subs() {
     # retrieve automatically generated subtitles and save them to a file
-    yt-dlp --limit-rate "$YT_RATE_LIMIT" --no-mtime --format "$YT_DLP_FORMAT" --embed-chapters --write-subs --write-auto-subs --sub-langs "en.*" --merge-output-format mkv "$1"
+    yt-dlp ${YT_COMMON_ARGUMENTS[@]} --write-subs --write-auto-subs "$1"
 }
 ################################################################################
 
