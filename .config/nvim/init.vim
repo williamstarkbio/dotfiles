@@ -66,11 +66,6 @@ Plug 'preservim/nerdtree'
 " https://github.com/LukeGoodsell/nextflow-vim
 "Plug 'LukeGoodsell/nextflow-vim'
 
-" vim-perl
-" support for Perl 5
-" https://github.com/vim-perl/vim-perl
-"Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
-
 " repeat.vim
 " enable repeating supported plugin maps with "."
 " https://github.com/tpope/vim-repeat
@@ -310,11 +305,6 @@ autocmd FileType make setlocal noexpandtab
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 " syntax highlighting for fenced code blocks
 "let g:markdown_fenced_languages = ['python', 'bash=sh']
-
-" Perl
-" don't autocomplete from included files
-"autocmd FileType perl set complete-=i
-"autocmd FileType perl setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent
 
 " Python
 autocmd FileType py setlocal textwidth=88 tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent
