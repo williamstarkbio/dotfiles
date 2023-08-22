@@ -60,8 +60,7 @@ create_directories() {
 
 
 setup_dotfiles() {
-    # dotfiles
-    ############################################################################
+    # ws dotfiles
     # https://github.com/williamstark01/dotfiles
     backup_datetime dotfiles
     git clone https://github.com/williamstark01/dotfiles.git
@@ -207,6 +206,7 @@ install_standard_packages() {
 
 
 setup_python() {
+    # Python
     # https://www.python.org/
 
     # install pyenv
@@ -280,14 +280,21 @@ setup_python() {
 
 
 setup_rust() {
+    # Rust
     # https://www.rust-lang.org/
 
     export RUSTUP_HOME="$HOME/.rustup"
     export CARGO_HOME="$HOME/.cargo"
     export PATH="$CARGO_HOME/bin:$PATH"
 
-    # install Rust
+    # install
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+    # setup rustup and cargo autocompletion
+    # run "rustup completions" for details
+    mkdir --parents --verbose "$HOME/.local/share/bash-completion/completions"
+    rustup completions bash > "$HOME/.local/share/bash-completion/completions/rustup"
+    rustup completions bash cargo > "$HOME/.local/share/bash-completion/completions/cargo"
 
     # delta
     # a syntax-highlighting pager for git and diff output
@@ -332,6 +339,7 @@ setup_go() {
 
 
 setup_neovim() {
+    # Neovim
     # https://github.com/neovim/neovim
 
     backup_datetime "$HOME/.config/nvim/init.vim"
@@ -392,6 +400,7 @@ setup_neovim() {
 
 
 setup_nodejs() {
+    # Node.js
     # https://nodejs.org/
 
     # https://github.com/nvm-sh/nvm
@@ -516,6 +525,8 @@ install_desktop_packages() {
 
 
 install_google_chrome() {
+    # Google Chrome
+    # https://www.google.com/chrome
     wget https://dl-ssl.google.com/linux/linux_signing_key.pub -O /tmp/google_linux_signing_key.pub
     sudo gpg --no-default-keyring --keyring /etc/apt/keyrings/google-chrome.gpg --import /tmp/google_linux_signing_key.pub
     sudo sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list'
@@ -625,9 +636,11 @@ main() {
     YES_NO_ANSWER=$(yes_no_question "Install server software?")
     if [[ $YES_NO_ANSWER = "y" ]]; then
         # Fail2ban
+        # daemon to ban hosts that cause multiple authentication errors
         # https://github.com/fail2ban/fail2ban
 
         # ufw
+        # "uncomplicated firewall", program for managing a netfilter firewall
         # https://launchpad.net/ufw
 
         sudo apt install -y fail2ban ufw
