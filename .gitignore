@@ -11,14 +11,14 @@ poetry.lock
 # binary file formats
 *.pdf
 *.png
-*.mp4
-*.mkv
 *.jpg
 *.jpeg
+*.webm
+*.mp3
+*.mp4
+*.mkv
 *.pickle
 *.docx
-*.webm
-*.sif
 
 # archive formats
 *.zip
