@@ -35,6 +35,11 @@ HISTFILESIZE=10000
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar
 
+# extglob
+# If the extglob shell option is enabled using the shopt builtin, several extended pattern matching operators are recognized. [...]
+# !(pattern-list)
+# Matches anything except one of the given patterns
+shopt -s extglob
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -787,32 +792,39 @@ m5() {
 }
 
 
-### generate and save hashes of files
-aliased_f_hash_generate() {
+### hashdeep
+# Compute, compare, or audit multiple message digests
+# -jnn
+# Controls multi-threading. By default the program will create one producer thread to scan the file system and one hashing thread per CPU core. Multi-threading causes output filenames to be in non-deterministic order, as files that take longer to hash will be delayed while they are hashed. If a deterministic order is required, specify -j0 to disable multi-threading.
+# -r
+# Enables recursive mode. All subdirectories are traversed. [...]
+# -e
+# Displays a progress indicator and estimate of time remaining for each file being processed. [...]
+# -b
+# Enables bare mode. Strips any leading directory information from displayed filenames. [...]
+d-hash_generate() {
+    # generate and save file hashes
     if [[ -z "$1" ]]; then
-        shopt -s extglob
-        # NOTE
-        # use ">|" instead of ">" to temporarily override the noclobber option enabled in Bash
-        #hashdeep -j0 -r -e -l !(file_hashes.txt) > file_hashes.txt
-        shopt -u extglob
+        # see "extglob" above for "!(pattern)" description
+        hashdeep -j0 -r -e -b !(file_hashes.txt) > file_hashes.txt
     else
-        hashdeep -j0 -r -e -l "$@" > file_hashes.txt
+        hashdeep -j0 -r -e -b "$@" > file_hashes.txt
     fi
 }
-#alias d-hash_generate='aliased_f_hash_generate'
-
-
-### read and verify hashes of files
-aliased_f_hash_verify() {
+# -a
+# Audit mode. Each input file is compared against the set of knowns. An audit is said to pass if each input file is matched against exactly one file in set of knowns. Any collisions, new files, or missing files will make the audit fail. Using this flag alone produces a message, either "Audit passed" or "Audit Failed". Use the verbose modes, -v, for more details. Using -v prints the number of files in each category. Using -v a second time prints any discrepancies. Using -v a third time prints the results for every file examined and every known file. Due to limitations in the program, any filenames with Unicode characters will appear to have moved during an audit. See the section "UNICODE SUPPORT" below.
+# -v
+# Enables verbose mode. Use again to make the program more verbose. This mostly changes the behavior of the audit mode, -a.
+# -k
+# Load a file of known hashes. [...]
+d-hash_verify() {
+    # verify file hashes
     if [[ -z "$1" ]]; then
-        shopt -s extglob
-        #hashdeep -j0 -r -e -l -a -v -k file_hashes.txt !(file_hashes.txt)
-        shopt -u extglob
+        hashdeep -j0 -a -vvv -r -e -b -k file_hashes.txt !(file_hashes.txt)
     else
-        hashdeep -j0 -r -e -l -a -v -k file_hashes.txt "$@"
+        hashdeep -j0 -a -vvv -r -e -b -k file_hashes.txt "$@"
     fi
 }
-#alias d-hash_verify='aliased_f_hash_verify'
 
 
 ### zip
