@@ -22,6 +22,8 @@ esac
 # don't save lines starting with space and duplicate lines in the history
 HISTCONTROL=ignorespace:ignoredups:erasedups
 
+# shopt [-pqsu] [-o] [optname ...]
+# Toggle the values of settings controlling optional shell behavior. [...]
 # append to the history file, don't overwrite it
 shopt -s histappend
 
@@ -103,11 +105,11 @@ if [[ -f /usr/share/bash-completion/bash_completion ]]; then
 fi
 
 
-### The Shopt Builtin
-# https://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html
-# If set, Bash includes filenames beginning with a ‘.’ in the results of filename expansion. The filenames ‘.’ and ‘..’ must always be matched explicitly, even if dotglob is set.
+# dotglob
+# If set, bash includes filenames beginning with a `.' in the results of pathname expansion. The filenames `.' and `..' must always be matched explicitly, even if dotglob is set.
 shopt -s dotglob
-# If set, Bash matches filenames in a case-insensitive fashion when performing filename expansion.
+# nocaseglob
+# If set, bash matches filenames in a case-insensitive fashion when performing pathname expansion [...]
 shopt -s nocaseglob
 
 
