@@ -1,7 +1,5 @@
 " vim: set filetype=vim :
 
-" William Stark (william.stark.5000@gmail.com)
-
 
 set nocompatible
 

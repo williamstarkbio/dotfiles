@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# William Stark (william.stark.5000@gmail.com)
-
 
 # Exit immediately if a pipeline (see Pipelines), which may consist of a single simple command (see Simple Commands), a list (see Lists of Commands), or a compound command (see Compound Commands) returns a non-zero status. [...]
 set -e

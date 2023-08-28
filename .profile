@@ -1,8 +1,6 @@
 ### .profile
 # vim: set filetype=sh :
 
-# William Stark (william.stark.5000@gmail.com)
-
 
 # ~/.profile: executed by the command interpreter for login shells.
 

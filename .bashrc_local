@@ -1,8 +1,6 @@
 ### .bashrc_ws
 # vim: set filetype=sh :
 
-# William Stark (william.stark.5000@gmail.com)
-
 
 export SOFTWARE_DIRECTORY="$HOME/data/software"
 
