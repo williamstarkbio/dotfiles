@@ -1068,7 +1068,7 @@ d-update-and-upgrade() {
 wcc() {
     if [[ -z "$1" ]]; then
         echo "print the number of lines, words, and characters of a text file"
-        echo "usage: wcc <file_path>"
+        echo "usage: wcc <FILE> [<FILE> ...]"
     else
         for arg in "$@"; do
             wc --lines --words --chars "$arg"
@@ -1078,15 +1078,16 @@ wcc() {
 
 
 ### d-d775_f664
-# recursively set permissions for directories to 775 and for files to 664
+# recursively set directory permissions to 775 and file permissions to 664
 d-d775_f664() {
     if [[ -z "$1" ]]; then
-        find . -type d -exec chmod 775 {} \;
-        find . -type f -exec chmod 664 {} \;
+        echo "recursively set directory permissions to 775 and file permissions to 664"
+        echo "usage: d-d775_f664 <PATH> [<PATH> ...]"
     else
         for arg in "$@"; do
             if [[ -d "$arg" ]]; then
-                chmod 775 "$arg"
+                find "$arg" -type d -exec chmod 775 {} \;
+                find "$arg" -type f -exec chmod 664 {} \;
             elif [[ -f "$arg" ]]; then
                 chmod 664 "$arg"
             fi
