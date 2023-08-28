@@ -1,8 +1,8 @@
 # ws dotfiles
 
-Machine Learning development with Neovim on a 22.04 LTS Kubuntu desktop or Ubuntu server configuration and setup script.
+ML dev setup and dotfiles for Kubuntu 22.04 LTS.
 
-Bootstrap a system:
+bootstrap a system:
 ```
 wget -qO- https://github.com/williamstark01/dotfiles/raw/main/setup.sh | bash
 ```
