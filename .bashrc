@@ -1077,25 +1077,22 @@ wcc() {
 }
 
 
-### d755_f644
-# set directory permissions to 755 and file permissions to 644
-f_d755_f644() {
+### d-d775_f664
+# recursively set permissions for directories to 775 and for files to 664
+d-d775_f664() {
     if [[ -z "$1" ]]; then
-        # chmod 755 to all directories
-        find . -type d -exec chmod 755 {} \;
-        # chmod 644 to all files
-        find . -type f -exec chmod 644 {} \;
+        find . -type d -exec chmod 775 {} \;
+        find . -type f -exec chmod 664 {} \;
     else
         for arg in "$@"; do
             if [[ -d "$arg" ]]; then
-                chmod 755 "$arg"
+                chmod 775 "$arg"
             elif [[ -f "$arg" ]]; then
-                chmod 644 "$arg"
+                chmod 664 "$arg"
             fi
         done
     fi
 }
-alias d-d755_f644='f_d755_f644'
 ################################################################################
 
 
