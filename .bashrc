@@ -681,7 +681,7 @@ YT_COMMON_ARGUMENTS=(
     --format "$YT_DLP_FORMAT"
     --embed-chapters
     --merge-output-format mkv
-    --sub-langs "en.*"
+    --sub-langs "en"
 )
 
 yt() {
