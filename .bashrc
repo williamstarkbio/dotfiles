@@ -798,15 +798,15 @@ m5() {
 # Enables recursive mode. All subdirectories are traversed. [...]
 # -e
 # Displays a progress indicator and estimate of time remaining for each file being processed. [...]
-# -b
-# Enables bare mode. Strips any leading directory information from displayed filenames. [...]
+# -l
+# Enables relative file paths. Instead of printing the absolute path for each file, displays the relative file path as indicated on the command line. This flag may not be used  in  conjunction with the -b flag.
 d-hash_generate() {
     # generate and save file hashes
     if [[ -z "$1" ]]; then
         # see "extglob" above for "!(pattern)" description
-        hashdeep -j0 -r -e -b !(file_hashes.txt) > file_hashes.txt
+        hashdeep -j0 -r -e -l !(file_hashes.txt) > file_hashes.txt
     else
-        hashdeep -j0 -r -e -b "$@" > file_hashes.txt
+        hashdeep -j0 -r -e -l "$@" > file_hashes.txt
     fi
 }
 # -a
@@ -818,9 +818,9 @@ d-hash_generate() {
 d-hash_verify() {
     # verify file hashes
     if [[ -z "$1" ]]; then
-        hashdeep -j4 -a -vvv -r -e -b -k file_hashes.txt !(file_hashes.txt)
+        hashdeep -j4 -a -vvv -r -e -l -k file_hashes.txt !(file_hashes.txt)
     else
-        hashdeep -j4 -a -vvv -r -e -b -k file_hashes.txt "$@"
+        hashdeep -j4 -a -vvv -r -e -l -k file_hashes.txt "$@"
     fi
 }
 
