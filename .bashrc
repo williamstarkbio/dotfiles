@@ -265,10 +265,10 @@ la() {
     clear -x
     if [[ -x "$(command -v exa)" ]]; then
         if [[ -z "$1" ]]; then
-            exa --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git
+            exa --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git
         else
             for arg in "$@"; do
-                exa --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git "$arg"
+                exa --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git "$arg"
             done
         fi
     else
