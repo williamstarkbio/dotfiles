@@ -286,11 +286,11 @@ lla() {
     # paged la
     clear -x
     if [[ -z "$1" ]]; then
-        exa --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always | less -FRX
+        exa --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always | less -FRX
     else
         (
         for arg in "$@"; do
-            exa --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always "$arg"
+            exa --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always "$arg"
         done
         ) | less -FRX
     fi
@@ -300,9 +300,9 @@ lat() {
     # exa tree
     clear -x
     if [[ -z "$1" ]]; then
-        exa --tree --level=2 --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always | less -FRX
+        exa --tree --level=2 --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always | less -FRX
     else
-        exa --tree --level=2 --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always "$1" | less -FRX
+        exa --tree --level=2 --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always "$1" | less -FRX
     fi
 }
 
@@ -310,9 +310,9 @@ latt() {
     # exa tree level 3
     clear -x
     if [[ -z "$1" ]]; then
-        exa --tree --level=3 --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always | less -FRX
+        exa --tree --level=3 --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always | less -FRX
     else
-        exa --tree --level=3 --oneline --long --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always "$1" | less -FRX
+        exa --tree --level=3 --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always "$1" | less -FRX
     fi
 }
 
