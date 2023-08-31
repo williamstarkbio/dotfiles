@@ -734,6 +734,12 @@ yt-auto-subs() {
     # Write automatically generated subtitle file (Alias: --write-automatic-subs)
     yt-dlp ${YT_COMMON_ARGUMENTS[@]} --write-subs --write-auto-subs "$1"
 }
+
+yt-list-subs() {
+    # --list-subs
+    # List available subtitles of each video. Simulate unless --no-simulate is used.
+    yt-dlp --list-subs "$1"
+}
 ################################################################################
 
 
