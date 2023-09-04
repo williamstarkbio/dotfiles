@@ -824,9 +824,9 @@ d-hash_generate() {
 d-hash_verify() {
     # verify file hashes
     if [[ -z "$1" ]]; then
-        hashdeep -j4 -a -vvv -r -e -l -k file_hashes.txt !(file_hashes.txt)
+        hashdeep -j0 -a -vvv -r -e -l -k file_hashes.txt !(file_hashes.txt)
     else
-        hashdeep -j4 -a -vvv -r -e -l -k file_hashes.txt "$@"
+        hashdeep -j0 -a -vvv -r -e -l -k file_hashes.txt "$@"
     fi
 }
 
