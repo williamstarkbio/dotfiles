@@ -429,11 +429,10 @@ setup_additional_software() {
     SOFTWARE_DIRECTORY="$HOME/data/software"
     mkdir --parents --verbose "$HOME/data/software"
 
-    # z
-    # https://github.com/rupa/z
-    Z_ROOT_DIRECTORY="${SOFTWARE_DIRECTORY}/z"
-    [[ -d "$Z_ROOT_DIRECTORY" ]] && backup_datetime "$Z_ROOT_DIRECTORY"
-    git clone https://github.com/rupa/z.git "$Z_ROOT_DIRECTORY"
+    # zoxide
+    # a smarter cd command
+    # https://github.com/ajeetdsouza/zoxide
+    curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
 
     # tmux Bash completion
     # https://github.com/imomaliev/tmux-bash-completion

@@ -1204,23 +1204,18 @@ if [[ -f $HOME/.bashrc_temp ]]; then
 fi
 
 
-### z
-# jump around
-# https://github.com/rupa/z
-Z_ROOT_DIRECTORY="$SOFTWARE_DIRECTORY/z"
-if [[ -f "$Z_ROOT_DIRECTORY/z.sh" ]]; then
-    source "$Z_ROOT_DIRECTORY/z.sh"
-
-    _Z_NO_RESOLVE_SYMLINKS=1
-fi
-
-
 # tmux Bash completion
 # https://github.com/imomaliev/tmux-bash-completion
 TMUX_BASH_COMPLETION_DIRECTORY="$SOFTWARE_DIRECTORY/tmux-bash-completion"
 if [[ -d "$TMUX_BASH_COMPLETION_DIRECTORY" ]]; then
     source "$TMUX_BASH_COMPLETION_DIRECTORY/completions/tmux"
 fi
+
+
+# zoxide
+# a smarter cd command
+# https://github.com/ajeetdsouza/zoxide
+eval "$(zoxide init bash)"
 
 
 ### Java jenv
