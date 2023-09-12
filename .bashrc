@@ -1215,7 +1215,9 @@ fi
 # zoxide
 # a smarter cd command
 # https://github.com/ajeetdsouza/zoxide
-eval "$(zoxide init bash)"
+if [[ -x "$(command -v zoxide)" ]]; then
+    eval "$(zoxide init bash)"
+fi
 
 
 ### Java jenv
@@ -1260,7 +1262,9 @@ fi
 # https://github.com/mitsuhiko/rye
 # https://rye-up.com/
 # package management solution for Python
-source "$HOME/.rye/env"
+if [[ -f "$HOME/.rye/env" ]]; then
+    source "$HOME/.rye/env"
+fi
 
 
 ### direnv
