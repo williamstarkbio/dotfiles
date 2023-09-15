@@ -316,9 +316,6 @@ autocmd FileType sql setlocal tabstop=2 softtabstop=2 shiftwidth=2
 " yaml
 " yaml files require spaces for indentation
 autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
-
-" Treat .rss files as XML
-"autocmd BufNewFile,BufRead *.rss setfiletype xml
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -341,7 +338,7 @@ endfunction
 " strip trailing whitespace on save
 " NOTE
 " order file extensions alphabetically
-autocmd BufWritePre *.c,*.css,*.cu,*.h,*.html,*.md,*.markdown,*.nf,*.js,*.pl,*.pm,*.py,*.sh,*.sql,*.tex,*.txt :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre *.c,*.css,*.h,*.html,*.md,*.markdown,*.nf,*.js,*.py,*.sh,*.sql,*.tex,*.txt :call <SID>StripTrailingWhitespaces()
 
 " map the <SID>StripTrailingWhitespaces function to a shortcut
 nnoremap ,w :call <SID>StripTrailingWhitespaces()<CR>
