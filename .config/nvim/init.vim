@@ -338,7 +338,7 @@ endfunction
 " strip trailing whitespace on save
 " NOTE
 " order file extensions alphabetically
-autocmd BufWritePre *.c,*.css,*.h,*.html,*.md,*.markdown,*.nf,*.js,*.py,*.sh,*.sql,*.tex,*.txt :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre *.c,*.css,*.h,*.html,*.md,*.markdown,*.nf,*.js,*.py,*.rs,*.sh,*.sql,*.tex,*.txt :call <SID>StripTrailingWhitespaces()
 
 " map the <SID>StripTrailingWhitespaces function to a shortcut
 nnoremap ,w :call <SID>StripTrailingWhitespaces()<CR>
