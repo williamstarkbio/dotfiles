@@ -431,7 +431,7 @@ gi() {
     # -b <branch-name>, --initial-branch=<branch-name>
     # Use the specified name for the initial branch in the newly created repository. [...]
     git init --initial-branch main
-    cp $HOME/dotfiles/.gitignore .
+    \cp --interactive --verbose $HOME/dotfiles/.gitignore .
     git add .gitignore
     git commit -m "add .gitignore"
 }
@@ -443,7 +443,7 @@ gii() {
     # -b <branch-name>, --initial-branch=<branch-name>
     # Use the specified name for the initial branch in the newly created repository. [...]
     git init --initial-branch main
-    cp $HOME/dotfiles/.gitignore .
+    \cp --interactive --verbose $HOME/dotfiles/.gitignore .
     git add .gitignore
     git commit -m "add .gitignore"
     git add .
@@ -961,13 +961,13 @@ d-backup() {
         if [[ -L "$TARGET" ]]; then
             echo "skipping symbolic link \"$TARGET\""
         elif [[ -d "$TARGET" ]]; then
-            cp --interactive --preserve --recursive "$TARGET" "$TARGET.backup_$DATE_TIME"
+            \cp --interactive --preserve --recursive "$TARGET" "$TARGET.backup_$DATE_TIME"
         elif [[ -f "$TARGET" ]]; then
             DIRECTORY_PATH=$(dirname "$arg")
             FILENAME=$(basename "$TARGET")
             FILENAME_STEM="${FILENAME%.*}"
             FILE_EXTENSION=$([[ "$FILENAME" = *.* ]] && echo ".${FILENAME##*.}" || echo '')
-            cp --interactive --preserve --recursive "$TARGET" "$DIRECTORY_PATH/$FILENAME_STEM.backup_$DATE_TIME$FILE_EXTENSION"
+            \cp --interactive --preserve --recursive "$TARGET" "$DIRECTORY_PATH/$FILENAME_STEM.backup_$DATE_TIME$FILE_EXTENSION"
         fi
     done
 }
