@@ -137,6 +137,9 @@ install_standard_packages() {
     # securely and simply transfer data between computers
     # https://packages.ubuntu.com/jammy/magic-wormhole
     # https://github.com/magic-wormhole/magic-wormhole
+    # NOTE:
+    # can be used together with its compatible Go implementation "wormhole-william"
+    # https://github.com/psanford/wormhole-william
 
     # ncdu
     # disk usage analyzer with an ncurses interface
