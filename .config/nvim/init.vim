@@ -484,7 +484,9 @@ let g:SimpylFold_fold_import = 0
 let g:slime_target = "tmux"
 let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
 let g:slime_dont_ask_default = 1
-"let g:slime_python_ipython = 1
+" when using tmux g:slime_bracketed_paste is preferred to g:slime_python_ipython
+" https://github.com/jpalardy/vim-slime/tree/main/ftplugin/python#note-for-tmux-users
+let g:slime_bracketed_paste = 1
 let g:slime_no_mappings = 1
 xmap <c-c><c-c> <Plug>SlimeRegionSend
 "nmap <c-c><c-c> <Plug>SlimeParagraphSend
