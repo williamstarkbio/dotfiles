@@ -316,6 +316,16 @@ latt() {
     fi
 }
 
+lattt() {
+    # exa tree level 4
+    clear -x
+    if [[ -z "$1" ]]; then
+        exa --tree --level=4 --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always | less -FRX
+    else
+        exa --tree --level=4 --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always "$1" | less -FRX
+    fi
+}
+
 
 ### mkdir
 # make directories
