@@ -184,6 +184,17 @@ endfunction
 nnoremap f :call FindChar()<CR>
 
 
+function! Clear_History()
+    let undolevels_backup = &undolevels
+    let &undolevels = -1
+    exe "normal a \<BS>\<Esc>"
+    let &undolevels = undolevels_backup
+    unlet undolevels_backup
+    write
+endfunction
+command! ClearHistory call Clear_History()
+
+
 """ convert MediaWiki text format to MarkDown
 function! MediaWiki_to_Markdown()
     %s/=====$//g
