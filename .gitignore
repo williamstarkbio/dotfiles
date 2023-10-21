@@ -30,6 +30,7 @@ poetry.lock
 *.html
 *.csv
 *.ipynb
+*.epub
 
 # LaTeX
 *.aux
