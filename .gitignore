@@ -19,6 +19,7 @@ poetry.lock
 *.mkv
 *.pickle
 *.docx
+*.xlsx
 
 # archive formats
 *.zip
