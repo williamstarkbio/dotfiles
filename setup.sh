@@ -302,11 +302,11 @@ setup_rust() {
     # https://github.com/dandavison/delta
     cargo install git-delta
 
-    # exa
-    # modern ls replacement
-    # https://github.com/ogham/exa
-    # https://the.exa.website/
-    cargo install exa
+    # eza
+    # modern, maintained ls replacement
+    # https://eza.rocks/
+    # https://github.com/eza-community/eza
+    cargo install eza
 }
 
 

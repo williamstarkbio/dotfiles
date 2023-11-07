@@ -252,23 +252,24 @@ alias ipa='ip -color address'
 alias le='less --quit-if-one-screen --RAW-CONTROL-CHARS --no-init'
 
 
-### exa
-# a modern replacement for ls
-# https://github.com/ogham/exa
+### eza
+# a modern, maintained replacement for ls
+# https://eza.rocks/
+# https://github.com/eza-community/eza
 # specify timestamps color
 # https://the.exa.website/docs/colour-themes
 # black
-#export EXA_COLORS="da=1;90"
+#export EZA_COLORS="da=1;90"
 # cyan
-export EXA_COLORS="da=1;36"
+export EZA_COLORS="da=1;36"
 la() {
     clear -x
-    if [[ -x "$(command -v exa)" ]]; then
+    if [[ -x "$(command -v eza)" ]]; then
         if [[ -z "$1" ]]; then
-            exa --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git
+            eza --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git
         else
             for arg in "$@"; do
-                exa --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git "$arg"
+                eza --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git "$arg"
             done
         fi
     else
@@ -286,43 +287,43 @@ lla() {
     # paged la
     clear -x
     if [[ -z "$1" ]]; then
-        exa --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always | less -FRX
+        eza --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always | less -FRX
     else
         (
         for arg in "$@"; do
-            exa --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always "$arg"
+            eza --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always "$arg"
         done
         ) | less -FRX
     fi
 }
 
 lat() {
-    # exa tree
+    # eza tree
     clear -x
     if [[ -z "$1" ]]; then
-        exa --tree --level=2 --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always | less -FRX
+        eza --tree --level=2 --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always | less -FRX
     else
-        exa --tree --level=2 --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always "$1" | less -FRX
+        eza --tree --level=2 --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always "$1" | less -FRX
     fi
 }
 
 latt() {
-    # exa tree level 3
+    # eza tree level 3
     clear -x
     if [[ -z "$1" ]]; then
-        exa --tree --level=3 --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always | less -FRX
+        eza --tree --level=3 --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always | less -FRX
     else
-        exa --tree --level=3 --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always "$1" | less -FRX
+        eza --tree --level=3 --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always "$1" | less -FRX
     fi
 }
 
 lattt() {
-    # exa tree level 4
+    # eza tree level 4
     clear -x
     if [[ -z "$1" ]]; then
-        exa --tree --level=4 --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always | less -FRX
+        eza --tree --level=4 --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always | less -FRX
     else
-        exa --tree --level=4 --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always "$1" | less -FRX
+        eza --tree --level=4 --oneline --long --binary --group --header --time-style=long-iso --all --sort=extension --group-directories-first --git --color=always "$1" | less -FRX
     fi
 }
 
