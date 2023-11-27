@@ -361,10 +361,10 @@ setup_neovim() {
     SOFTWARE_DIRECTORY="$HOME/data/software"
     mkdir --parents --verbose "$HOME/data/software"
 
-    NEOVIM_BUILD_DIRECTORY="${SOFTWARE_DIRECTORY}/Neovim"
+    NEOVIM_BUILD_DIRECTORY="${SOFTWARE_DIRECTORY}/Neovim/neovim"
     [[ -d "$NEOVIM_BUILD_DIRECTORY" ]] && backup_datetime "$NEOVIM_BUILD_DIRECTORY"
     git clone https://github.com/neovim/neovim "$NEOVIM_BUILD_DIRECTORY"
-    cd neovim
+    cd "$NEOVIM_BUILD_DIRECTORY"
     git checkout stable
     make CMAKE_BUILD_TYPE=RelWithDebInfo
 

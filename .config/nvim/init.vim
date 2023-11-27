@@ -137,7 +137,7 @@ Plug 'preservim/vim-markdown'
 Plug 'williamstark01/vim-uppercase-sql'
 
 " load local plugins
-source ~/.config/nvim/local_plugins.vim
+"source ~/.config/nvim/local_plugins.vim
 
 call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -523,5 +523,5 @@ let g:vim_json_syntax_conceal = 0
 " more
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " load local configuration file
-source ~/.config/nvim/local.vim
+"source ~/.config/nvim/local.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
