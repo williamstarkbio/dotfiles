@@ -407,7 +407,7 @@ setup_nodejs() {
     # https://github.com/nvm-sh/nvm
     export NVM_DIR="$HOME/.nvm"
     mkdir --parents --verbose "$NVM_DIR"
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
 
     [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
 
