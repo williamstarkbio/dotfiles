@@ -16,6 +16,7 @@ fi
 # https://www.rust-lang.org/
 [[ -d "$HOME/.rustup" ]] && export RUSTUP_HOME="$HOME/.rustup"
 [[ -d "$HOME/.cargo" ]] && export CARGO_HOME="$HOME/.cargo"
+# variation of $HOME/.cargo/env
 [[ -d "$CARGO_HOME/bin" ]] && export PATH="$CARGO_HOME/bin:$PATH"
 
 ### Go
