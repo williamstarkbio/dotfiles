@@ -758,22 +758,6 @@ yt-list-subs() {
 ################################################################################
 
 
-### load GitHub SSH key
-github-ssh() {
-    #pkill ssh-agent
-    #eval "$(ssh-agent -s)"
-    ssh-add $HOME/.ssh/id_rsa_github
-}
-
-
-### load GitLab SSH key
-gitlab-ssh() {
-    #pkill ssh-agent
-    #eval "$(ssh-agent -s)"
-    ssh-add $HOME/.ssh/id_rsa_gitlab
-}
-
-
 ### calculations with Python
 calc() {
     python -c 'from math import *; import sys; print(eval(" ".join(sys.argv[1:])))' "$@"
