@@ -1,4 +1,3 @@
-### .bashrc
 # vim: set filetype=sh :
 
 
