@@ -133,8 +133,8 @@ Plug 'preservim/vim-markdown'
 " https://github.com/jsborjesson/vim-uppercase-sql
 " NOTE
 " use my fork that uses official lists of SQL keywords
-" https://github.com/williamstark01/vim-uppercase-sql
-Plug 'williamstark01/vim-uppercase-sql'
+" https://github.com/williamstarkbio/vim-uppercase-sql
+Plug 'williamstarkbio/vim-uppercase-sql'
 
 " load local plugins
 "source ~/.config/nvim/local_plugins.vim

@@ -59,9 +59,9 @@ create_directories() {
 
 setup_dotfiles() {
     # ws dotfiles
-    # https://github.com/williamstark01/dotfiles
+    # https://github.com/williamstarkbio/dotfiles
     backup_datetime dotfiles
-    git clone https://github.com/williamstark01/dotfiles.git
+    git clone https://github.com/williamstarkbio/dotfiles.git
 
     DOTFILES=(
         .bash_profile

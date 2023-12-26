@@ -4,7 +4,7 @@ ML dev setup and dotfiles for Kubuntu 22.04 LTS.
 
 bootstrap a system:
 ```
-wget -qO- https://github.com/williamstark01/dotfiles/raw/main/setup.sh | bash
+wget -qO- https://github.com/williamstarkbio/dotfiles/raw/main/setup.sh | bash
 ```
 
 
