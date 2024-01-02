@@ -62,7 +62,7 @@ Plug 'preservim/nerdtree'
 " nextflow-vim
 " Nextflow syntax
 " https://github.com/LukeGoodsell/nextflow-vim
-"Plug 'LukeGoodsell/nextflow-vim'
+Plug 'LukeGoodsell/nextflow-vim'
 
 " repeat.vim
 " enable repeating supported plugin maps with "."
