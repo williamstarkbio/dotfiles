@@ -64,14 +64,14 @@ update_prompt() {
     # if in a virtual environment, prefix the prompt with its name or a symbol
     if [[ "$VIRTUAL_ENV" != "" ]]; then
         # prefix with the virtual environment directory name
-        #VIRTUAL_ENV_BASENAME=`basename $VIRTUAL_ENV`
-        #PROMPT="$GREEN${VIRTUAL_ENV_BASENAME::-9}$COLOR_OFF "
+        VIRTUAL_ENV_BASENAME=`basename $VIRTUAL_ENV`
+        PROMPT="[$GREEN${VIRTUAL_ENV_BASENAME}$COLOR_OFF] "
 
         # prefix with a symbol
         # http://shapecatcher.com/unicode/info/9679
         BLACK_CIRCLE=$'\u25cf'
         SYMBOL=$BLACK_CIRCLE
-        PROMPT="$GREEN$SYMBOL$COLOR_OFF $PROMPT"
+        #PROMPT="$GREEN$SYMBOL$COLOR_OFF $PROMPT"
     fi
 
     # append the user, host, and current directory
