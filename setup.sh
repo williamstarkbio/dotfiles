@@ -257,6 +257,8 @@ setup_python() {
     # Python dependency manager
     # https://github.com/python-poetry/poetry
     pipx install poetry
+    # set up autocompletion / tab completion
+    poetry completions bash > "${XDG_DATA_HOME:-$HOME/.local/share}/bash-completion/completions/poetry"
 
     # IPython
     # Python interactive shell
