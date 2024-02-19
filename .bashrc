@@ -1252,15 +1252,6 @@ if [[ -d "$PYENV_ROOT" ]]; then
 fi
 
 
-### rye
-# https://github.com/mitsuhiko/rye
-# https://rye-up.com/
-# package management solution for Python
-if [[ -f "$HOME/.rye/env" ]]; then
-    source "$HOME/.rye/env"
-fi
-
-
 ### direnv
 # https://github.com/direnv/direnv
 # hook direnv to bash
