@@ -347,15 +347,23 @@ setup_neovim() {
 
     backup_datetime "$HOME/.config/nvim/init.vim"
 
-    # https://github.com/neovim/neovim/wiki/Installing-Neovim#ubuntu
+    # install from (K)ubuntu repository
+    ############################################################################
+    # https://github.com/neovim/neovim/blob/master/INSTALL.md#ubuntu
 
-    #sudo add-apt-repository ppa:neovim-ppa/stable
     #sudo apt install -y neovim
+    #sudo apt install python3-neovim
+    #sudo update-alternatives --config vi
+    #sudo update-alternatives --config vim
+    #sudo update-alternatives --config editor
+    ############################################################################
 
     # Python modules prerequisites
     #sudo apt install -y python3-dev python3-pip
 
-    # https://github.com/neovim/neovim/wiki/Building-Neovim
+    # install from source
+    ############################################################################
+    # https://github.com/neovim/neovim/blob/master/INSTALL.md#install-from-source
 
     # install build prerequisites
     sudo apt -y install ninja-build gettext cmake unzip curl
@@ -372,15 +380,13 @@ setup_neovim() {
     sudo make install
 
     # use Neovim for all editor alternatives
-    #sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
     sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/nvim 60
-    sudo update-alternatives --config vi
-    #sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
+    #sudo update-alternatives --config vi
     sudo update-alternatives --install /usr/bin/vim vim /usr/local/bin/nvim 60
-    sudo update-alternatives --config vim
-    #sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
+    #sudo update-alternatives --config vim
     sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/nvim 60
-    sudo update-alternatives --config editor
+    #sudo update-alternatives --config editor
+    ############################################################################
 
     mkdir --parents --verbose "$HOME/.config/nvim"
     ln --symbolic --force --verbose "$HOME/dotfiles/.config/nvim/init.vim" "$HOME/.config/nvim"
