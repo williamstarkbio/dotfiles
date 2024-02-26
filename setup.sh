@@ -358,7 +358,7 @@ setup_neovim() {
     # https://github.com/neovim/neovim/wiki/Building-Neovim
 
     # install build prerequisites
-    sudo apt-get install ninja-build gettext cmake unzip curl
+    sudo apt -y install ninja-build gettext cmake unzip curl
 
     SOFTWARE_DIRECTORY="$HOME/data/software"
     mkdir --parents --verbose "$HOME/data/software"
@@ -368,7 +368,8 @@ setup_neovim() {
     git clone https://github.com/neovim/neovim "$NEOVIM_BUILD_DIRECTORY"
     cd "$NEOVIM_BUILD_DIRECTORY"
     git checkout stable
-    make CMAKE_BUILD_TYPE=RelWithDebInfo
+    make CMAKE_BUILD_TYPE=Release
+    sudo make install
 
     # use Neovim for all editor alternatives
     #sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
