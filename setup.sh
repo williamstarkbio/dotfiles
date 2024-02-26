@@ -233,7 +233,7 @@ setup_python() {
     sudo apt install -y build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev curl libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 
     # install latest bugfix version of preferred Python minor version
-    PREFERRED_PYTHON_MINOR_VERSION="3.10"
+    PREFERRED_PYTHON_MINOR_VERSION="3.11"
     LATEST_PREFERRED_PYTHON_VERSION=$(pyenv latest --known "$PREFERRED_PYTHON_MINOR_VERSION")
 
     pyenv install $LATEST_PREFERRED_PYTHON_VERSION
