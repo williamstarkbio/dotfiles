@@ -192,6 +192,7 @@ install_standard_packages() {
         git-lfs
         hashdeep
         magic-wormhole
+        ncdu
         renameutils
         ripgrep
         sqlite3
