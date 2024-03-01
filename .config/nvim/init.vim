@@ -492,11 +492,16 @@ let g:SimpylFold_fold_import = 0
 
 
 """ vim-slime
+" https://github.com/jpalardy/vim-slime/blob/main/assets/doc/targets/tmux.md
 let g:slime_target = "tmux"
-let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
 let g:slime_dont_ask_default = 1
-" when using tmux g:slime_bracketed_paste is preferred to g:slime_python_ipython
-" https://github.com/jpalardy/vim-slime/tree/main/ftplugin/python#note-for-tmux-users
+"let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
+"let g:slime_default_config = {"socket_name": "default", "target_pane": "ipython"}
+let current_tmux_session = substitute(system("tmux display-message -p '#S'"), '\n\+$', '', '')
+let tmux_target_pane = substitute(current_tmux_session, 'vim', 'run', '') . ":ipython"
+let g:slime_default_config = {"socket_name": "default", "target_pane": tmux_target_pane}
+" tmux supports bracketed-paste, which is a better option than g:slime_python_ipython
+" https://github.com/jpalardy/vim-slime/tree/main/ftplugin/python#note-for-tmux-kitty-wezterm-zellij-users
 let g:slime_bracketed_paste = 1
 let g:slime_no_mappings = 1
 xmap <c-c><c-c> <Plug>SlimeRegionSend
