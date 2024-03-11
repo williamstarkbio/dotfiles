@@ -65,7 +65,7 @@ update_prompt() {
     if [[ "$VIRTUAL_ENV" != "" ]]; then
         # prefix with the virtual environment directory name
         VIRTUAL_ENV_BASENAME=`basename $VIRTUAL_ENV`
-        PROMPT="[$GREEN${VIRTUAL_ENV_BASENAME}$COLOR_OFF] "
+        PROMPT="[$GREEN${VIRTUAL_ENV_BASENAME}$COLOR_OFF] $PROMPT"
 
         # prefix with a symbol
         # http://shapecatcher.com/unicode/info/9679
