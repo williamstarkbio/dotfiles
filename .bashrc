@@ -1024,6 +1024,8 @@ d-cleanup() {
         "__MACOSX"
         "__pycache__"
         ".pytest_cache"
+        ".mypy_cache"
+        ".ruff_cache"
     )
     for FILE_PATTERN in "${UNNECESSARY_FILES[@]}"; do
         find . -type d \( -path "./.venv/*" \) -prune -o -type f -name "$FILE_PATTERN" -print -exec rm -r "{}" \;
