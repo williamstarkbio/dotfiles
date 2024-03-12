@@ -889,7 +889,7 @@ d-compress-7z() {
 ### extract an archive
 d-extract() {
     if [[ -z "$1" ]]; then
-        echo "extract any of several types of archive files (zip, 7z, tgz, tar.gz, tar, gz, bz2, xz, zst, rar)"
+        echo "extract any of several types of archive files (zip, 7z, tgz, tar.gz, tbz, tar, gz, bz2, xz, zst, rar)"
         echo "usage: d-extract <FILE> [<FILE> ...]"
         return 0
     fi
@@ -915,7 +915,7 @@ d-extract() {
 
                 7z x "${options}" "$arg"
             ;;
-            *.tgz|*.tar.gz|*.tar)
+            *.tgz|*.tar.gz|*.tbz|*.tar)
                 tar --extract --verbose --file "$arg"
             ;;
             *.gz)
