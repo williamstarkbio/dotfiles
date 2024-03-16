@@ -82,6 +82,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
+# sort branches in `git branch` by their last commit date
+[branch]
+	sort = -committerdate
+
+
 ; [commit]
 ;     ; GPG sign all commits
 ;     gpgSign = true
