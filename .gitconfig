@@ -17,7 +17,7 @@
 [core]
     ; the text editor to use for commits and tag messages
     editor = vim
-    excludesfile = ~/dotfiles/data/.gitignore
+    ;excludesfile = ~/dotfiles/data/.gitignore
 
 [init]
     defaultBranch = main
@@ -30,7 +30,6 @@
 
 [color]
     ; turn on all the default terminal coloring
-    ;ui = true
     ui = auto
 [color "diff"]
     meta = yellow bold
@@ -46,38 +45,14 @@
     ; Print out the ref names of any commits that are shown.
     decorate = true
 
-;[diff]
-;    ; http://stackoverflow.com/questions/777949/can-i-make-git-recognize-a-utf-16-file-as-text
-;    ; diff tool to be used by git-difftool
-;    tool = vimdiff
-
-;[ui]
-;    ui = auto
-
-;[merge]
-;    tool = vimdiff
-
 
 ; delta
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; https://github.com/dandavison/delta
 [core]
     ; the command that git will use to paginate output
-    ;pager = less -FRX
-    ;pager = delta
     pager = delta --diff-so-fancy --max-line-length 2048
-    ;pager = delta --light
-;[delta]
-;    syntax-theme = GitHub
-;    ;syntax-theme = Monokai Extended Light
-;    ;syntax-theme = OneHalfLight
-;    ;syntax-theme = Solarized (light)
-;    ;syntax-theme = ansi-light
-;    ;syntax-theme = gruvbox-light
-;    ;syntax-theme = gruvbox-white
 [interactive]
-    ;diffFilter = delta --color-only
-    ;diffFilter = delta --light --color-only
     diffFilter = delta --diff-so-fancy --max-line-length 2048 --color-only
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
