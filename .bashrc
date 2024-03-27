@@ -222,6 +222,10 @@ alias diff='diff --brief --recursive --no-dereference'
 # -s, --summarize
 # display only a total for each argument
 alias du='du -c -h -s'
+duu() {
+    # sort by size
+    du -h -s "$@" | sort -h
+}
 
 
 ### info
