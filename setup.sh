@@ -108,6 +108,11 @@ remove_unneeded_packages() {
 
 
 install_standard_packages() {
+    # TODO add package in 24.04 update
+    # 7zip
+    # https://packages.ubuntu.com/noble/7zip
+    # https://www.7-zip.org/
+
     # curl
     # command line tool for transferring data with URL syntax
     # https://packages.ubuntu.com/jammy/curl
