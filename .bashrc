@@ -1262,6 +1262,6 @@ fi
 # https://github.com/direnv/direnv
 # hook direnv to bash
 # NOTE: this should appear after any shell extension that manipulates the prompt
-if [[ -x "$(command -v direnv)" ]]; then
-    eval "$(direnv hook bash)"
-fi
+#if [[ -x "$(command -v direnv)" ]]; then
+#    eval "$(direnv hook bash)"
+#fi
