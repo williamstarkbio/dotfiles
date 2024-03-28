@@ -495,9 +495,22 @@ let g:SimpylFold_fold_import = 0
 " https://github.com/jpalardy/vim-slime/blob/main/assets/doc/targets/tmux.md
 let g:slime_target = "tmux"
 let g:slime_dont_ask_default = 1
+" select target tmux session and window
+" TODO do this with Lua
+" 1. current session "ipython" window
+" 2. current_session.replace("vim", "run") session "ipython" window
+" 3. first session with "ipython" window
+"     $ tmux list-windows -a
 "let g:slime_default_config = {"socket_name": "default", "target_pane": "1"}
-"let g:slime_default_config = {"socket_name": "default", "target_pane": "ipython"}
+"let g:slime_default_config = {"socket_name": "default", "target_pane": "0:ipython"}
 let current_tmux_session = substitute(system("tmux display-message -p '#S'"), '\n\+$', '', '')
+"echo strtrans(current_tmux_session)
+if "vim" =~ current_tmux_session
+    let tmux_target_session = substitute(current_tmux_session, 'vim', 'run', '') . ":ipython"
+else
+    let tmux_target_session = current_tmux_session
+endif
+"echo strtrans(tmux_target_session)
 let tmux_target_pane = substitute(current_tmux_session, 'vim', 'run', '') . ":ipython"
 let g:slime_default_config = {"socket_name": "default", "target_pane": tmux_target_pane}
 " tmux supports bracketed-paste, which is a better option than g:slime_python_ipython
