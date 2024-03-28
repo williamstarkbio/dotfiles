@@ -123,6 +123,11 @@ install_standard_packages() {
     # https://packages.ubuntu.com/jammy/fd-find
     # https://github.com/sharkdp/fd
 
+    # fzf
+    # general-purpose command-line fuzzy finder
+    # https://packages.ubuntu.com/jammy/fzf
+    # https://github.com/junegunn/fzf
+
     # git-lfs
     # Git extension for versioning large files
     # https://packages.ubuntu.com/jammy/git-lfs
@@ -189,6 +194,7 @@ install_standard_packages() {
         curl
         dos2unix
         fd-find
+        fzf
         git-lfs
         hashdeep
         magic-wormhole
