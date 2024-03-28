@@ -280,7 +280,7 @@ setup_python() {
     # Black
     # Python code formatter
     # https://github.com/psf/black
-    pipx install black
+    pipx install black[jupyter]
 
     # isort
     # Python imports organizer
