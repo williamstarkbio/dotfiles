@@ -696,6 +696,17 @@ YT_COMMON_ARGUMENTS=(
     --embed-chapters
     --merge-output-format mkv
     --sub-langs "en"
+    --sub-langs "en-US"
+    --sub-langs "en-GB"
+    #--sub-langs "en-CA"
+    #--sub-langs "English"
+    --sub-langs "zh"
+    --sub-langs "zh-CN"
+    --sub-langs "en-nP7-2PuUl7o"
+    #--sub-langs "en-eEY6OEpapPo"
+    #--sub-langs "en-uYU-mmqFLq8"
+    --sub-langs "en-ehkg1hFWq8A"
+    #--sub-langs "en-j3PyPqV-e1s"
 )
 
 yt() {
