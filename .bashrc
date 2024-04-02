@@ -772,12 +772,6 @@ yt-list-subs() {
 ################################################################################
 
 
-### calculations with Python
-calc() {
-    python -c 'from math import *; import sys; print(eval(" ".join(sys.argv[1:])))' "$@"
-}
-
-
 # open one or multiple files with the registered application
 # open a file browser on the current directory if run without arguments
 ### xdg-open
@@ -840,7 +834,7 @@ d-hash_verify() {
 }
 
 
-### zip
+### compress to zip
 # package and compress (archive) files
 # -r, --recurse-paths
 # Travel the directory structure recursively
