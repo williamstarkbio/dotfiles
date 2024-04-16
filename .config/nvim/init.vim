@@ -502,7 +502,7 @@ let g:slime_dont_ask_default = 1
 let current_tmux_session = substitute(system("tmux display-message -p '#S'"), '\n\+$', '', '')
 "echo strtrans(current_tmux_session)
 " specify target session
-if "vim" =~ current_tmux_session
+if current_tmux_session =~ "vim"
     let tmux_target_session = substitute(current_tmux_session, 'vim', 'run', '')
 else
     let tmux_target_session = current_tmux_session
@@ -510,7 +510,7 @@ endif
 "echo strtrans(tmux_target_session)
 " specify target pane; specifically, append window to target session
 " target_pane format: session:window.pane
-if "run" =~ tmux_target_session
+if tmux_target_session =~ "run"
     let tmux_target_pane = tmux_target_session . ":" . "ipython"
 else
     let tmux_target_pane = tmux_target_session . ":" . "1"
