@@ -1155,7 +1155,15 @@ pipx() {
 # use pudb for debugging globally
 export PYTHONBREAKPOINT="pudb.set_trace"
 ## set pycache directory path
-export PYTHONPYCACHEPREFIX="$HOME/.cache/pycache"
+# https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPYCACHEPREFIX
+export PYTHONPYCACHEPREFIX="$HOME/.cache/python"
+
+## Ruff cache
+# https://docs.astral.sh/ruff/settings/#cache-dir
+export RUFF_CACHE_DIR="$HOME/.cache/ruff"
+## mypy cache
+# https://mypy.readthedocs.io/en/stable/config_file.html#confval-cache_dir
+export MYPY_CACHE_DIR="$HOME/.cache/mypy"
 
 
 ## Deno
