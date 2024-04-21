@@ -1156,7 +1156,7 @@ pipx() {
 export PYTHONBREAKPOINT="pudb.set_trace"
 ## set pycache directory path
 # https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPYCACHEPREFIX
-export PYTHONPYCACHEPREFIX="$HOME/.cache/python"
+export PYTHONPYCACHEPREFIX="$HOME/.cache/pycache"
 
 ## Ruff cache
 # https://docs.astral.sh/ruff/settings/#cache-dir
