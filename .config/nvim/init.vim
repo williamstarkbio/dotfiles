@@ -126,7 +126,7 @@ Plug 'elzr/vim-json'
 Plug 'preservim/vim-markdown'
 " comment out TableFormat command:
 " $HOME/.local/share/nvim/plugged/vim-markdown/ftplugin/markdown.vim
-" command! -buffer TableFormat call s:TableFormat()
+" command! -buffer -range TableFormat call s:TableFormat()
 
 " vim-uppercase-sql
 " Automatically uppercase SQL keywords as you type
