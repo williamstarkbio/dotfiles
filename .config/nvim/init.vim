@@ -27,7 +27,7 @@ Plug 'chrisbra/Colorizer'
 " Copilot.vim
 " Neovim plugin for GitHub Copilot
 " https://github.com/github/copilot.vim
-"Plug 'github/copilot.vim'
+Plug 'github/copilot.vim'
 
 " csv.vim
 " filetype plugin for CSV files
@@ -451,11 +451,11 @@ let g:python3_host_prog = $PYENV_ROOT . '/versions/neovim/bin/python'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """ Copilot.vim
-let g:copilot_node_command = '~/.nvm/versions/node/v16.17.0/bin/node'
-let g:copilot_filetypes = {
-      \ '*': v:false,
-      \ 'python': v:false,
-      \ }
+let g:copilot_node_command = '~/.nvm/versions/node/v20.12.2/bin/node'
+"let g:copilot_filetypes = {
+"      \ '*': v:false,
+"      \ 'python': v:false,
+"      \ }
 
 
 """ EasyMotion
