@@ -1139,17 +1139,17 @@ __get_directories_color() {
 # (requires argcomplete)
 #eval "$(register-python-argcomplete pipx)"
 # run install and upgrade with the --verbose flag
-pipx() {
-    if [[ $# -gt 0 ]] && [[ "$1" == "install" ]] ; then
-        shift
-        command pipx install --verbose "$@"
-    elif [[ $# -gt 0 ]] && [[ "$1" == "upgrade" ]] ; then
-        shift
-        command pipx upgrade --verbose "$@"
-    else
-        command pipx "$@"
-    fi
-}
+#pipx() {
+#    if [[ $# -gt 0 ]] && [[ "$1" == "install" ]] ; then
+#        shift
+#        command pipx install --verbose "$@"
+#    elif [[ $# -gt 0 ]] && [[ "$1" == "upgrade" ]] ; then
+#        shift
+#        command pipx upgrade --verbose "$@"
+#    else
+#        command pipx "$@"
+#    fi
+#}
 
 ### environment variables
 # use pudb for debugging globally
