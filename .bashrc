@@ -512,7 +512,13 @@ gd() {
 # --staged is a synonym of --cached
 gds() {
     clear -x
-    git diff --cached
+    if [[ -z "$1" ]]; then
+        git diff --staged
+    else
+        for arg in "$@"; do
+            git diff --staged "$arg"
+        done
+    fi
 }
 ### git difftool
 # show changes using common diff tools
