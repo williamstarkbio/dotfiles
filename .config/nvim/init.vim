@@ -511,7 +511,7 @@ endif
 " specify target pane; specifically, append window to target session
 " target_pane format: session:window.pane
 if tmux_target_session =~ "run"
-    let tmux_target_pane = tmux_target_session . ":" . "ipython"
+    let tmux_target_pane = tmux_target_session . ":" . "run"
 else
     let tmux_target_pane = tmux_target_session . ":" . "1"
 endif
