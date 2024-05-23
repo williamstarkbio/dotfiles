@@ -17,6 +17,7 @@ poetry.lock
 *.mp3
 *.mp4
 *.mkv
+*.pkl
 *.pickle
 *.docx
 *.xlsx
