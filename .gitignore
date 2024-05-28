@@ -20,6 +20,7 @@ poetry.lock
 *.pickle
 *.docx
 *.xlsx
+*.zarrz
 
 # archive formats
 *.zip
@@ -30,6 +31,7 @@ poetry.lock
 # other file formats
 *.html
 *.csv
+*.tsv
 *.ipynb
 *.epub
 
