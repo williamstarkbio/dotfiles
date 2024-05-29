@@ -270,7 +270,7 @@ setup_python() {
     # https://github.com/python-poetry/poetry
     pipx install poetry
     # set up autocompletion / tab completion
-    poetry completions bash > "${XDG_DATA_HOME:-$HOME/.local/share}/bash-completion/completions/poetry"
+    poetry completions bash > "$HOME/.local/share/bash-completion/completions/poetry"
 
     # IPython
     # Python interactive shell
@@ -414,7 +414,7 @@ setup_neovim() {
     # setup vim-plug
     # https://github.com/junegunn/vim-plug
     # "$HOME/.local/share/nvim/site/autoload/plug.vim"
-    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    sh -c 'curl -fLo "$HOME/.local/share/nvim/site/autoload/plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
     # install packages with vim-plug
     vim +PlugInstall +qa
