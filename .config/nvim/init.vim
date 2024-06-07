@@ -453,8 +453,8 @@ let g:python3_host_prog = $PYENV_ROOT . '/versions/neovim/bin/python'
 """ Copilot.vim
 let g:copilot_node_command = '~/.nvm/versions/node/v20.12.2/bin/node'
 let g:copilot_filetypes = {
-      \ '*': v:false,
-      \ 'python': v:true,
+      \ 'text': v:false,
+      \ 'markdown': v:false,
       \ }
 
 
