@@ -513,6 +513,10 @@ install_desktop_packages() {
     # https://github.com/qbittorrent/qBittorrent
     sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable
 
+    # QDirStat
+    # https://github.com/shundhammer/qdirstat
+    # https://packages.ubuntu.com/jammy/qdirstat
+
     # SMPlayer
     # https://www.smplayer.info/
 
@@ -536,6 +540,7 @@ install_desktop_packages() {
         kdiff3
         keepassxc
         qbittorrent
+        qdirstat
         smplayer
         thunderbird
         xournalpp
