@@ -1284,3 +1284,12 @@ fi
 #if [[ -x "$(command -v direnv)" ]]; then
 #    eval "$(direnv hook bash)"
 #fi
+
+
+### SDKMAN
+# Java version manager
+# https://sdkman.io/
+# the following must be at the end of .bashrc
+SDKMAN_DIR="$HOME/.sdkman"
+[[ -s $SDKMAN_DIR ]] && export SDKMAN_DIR
+[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
