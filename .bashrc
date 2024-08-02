@@ -1181,11 +1181,13 @@ fi
 
 ## Ruby
 # http://rvm.io/
-if [[ -s "$HOME/.rvm/bin" ]]; then
-    export PATH="$PATH:$HOME/.rvm/bin"
-    # set ~/gems as Ruby Gems installation directory
-    export GEM_HOME=$HOME/gems
-    export PATH=$HOME/gems/bin:$PATH
+if [[ -s "$HOME/.rvm" ]]; then
+    # load RVM into a shell session *as a function*
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+    # export PATH="$PATH:$HOME/.rvm/bin"
+    # # set ~/gems as Ruby Gems installation directory
+    # export GEM_HOME=$HOME/gems
+    # export PATH=$HOME/gems/bin:$PATH
 fi
 
 
