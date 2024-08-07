@@ -9,32 +9,34 @@ poetry.lock
 .ipynb_checkpoints
 
 # binary file formats
-*.pdf
-*.png
-*.jpg
+*.docx
+*.gif
 *.jpeg
-*.webm
+*.jpg
+*.mkv
 *.mp3
 *.mp4
-*.mkv
-*.pkl
+*.pdf
 *.pickle
-*.docx
+*.pkl
+*.png
+*.webm
+*.webp
 *.xlsx
 *.zarrz
 
 # archive formats
-*.zip
 *.7z
-*.tgz
 *.gz
+*.tgz
+*.zip
 
 # other file formats
-*.html
 *.csv
-*.tsv
-*.ipynb
 *.epub
+*.html
+*.ipynb
+*.tsv
 
 # LaTeX
 *.aux
