@@ -112,6 +112,7 @@ install_standard_packages() {
     # 7zip
     # https://packages.ubuntu.com/noble/7zip
     # https://www.7-zip.org/
+    # TODO or this one? p7zip-full
 
     # curl
     # command line tool for transferring data with URL syntax
