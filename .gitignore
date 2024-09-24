@@ -1,11 +1,9 @@
 # Vim swap files
 *.swp
 
-# Python
+# Python and Jupyter
 *.pyc
 poetry.lock
-
-# Jupyter Notebook checkpoints
 .ipynb_checkpoints
 
 # binary file formats
@@ -16,6 +14,7 @@ poetry.lock
 *.mkv
 *.mp3
 *.mp4
+*.pdb
 *.pdf
 *.pickle
 *.pkl
