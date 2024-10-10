@@ -672,7 +672,8 @@ gsh() {
 # download and merge the best, but no better than 1080p, video-only format and
 # the best audio-only format, or download the best, but no better than 1080p, combined
 # format if video-only format is not available
-YT_DLP_FORMAT="bestvideo[height<=1080]+bestaudio/best[height<=1080]"
+YT_DLP_FORMAT_HD="bestvideo[height<=1080]+bestaudio/best[height<=1080]"
+YT_DLP_FORMAT_4K="bestvideo[height<=2160]+bestaudio/best[height<=2160]"
 
 #YT_RATE_LIMIT="10M"
 YT_RATE_LIMIT="5M"
@@ -698,7 +699,6 @@ YT_RATE_LIMIT="5M"
 YT_COMMON_ARGUMENTS=(
     --limit-rate "$YT_RATE_LIMIT"
     --no-mtime
-    --format "$YT_DLP_FORMAT"
     --embed-chapters
     --merge-output-format mkv
     --sub-langs "en"
@@ -740,7 +740,7 @@ yt() {
     # -o, --output [TYPES:]TEMPLATE
     # Output filename template; see "OUTPUT TEMPLATE" for details
     if [[ "$1" == "https://www.youtube.com/playlist?list="* ]]; then
-        yt-dlp ${YT_COMMON_ARGUMENTS[@]} --playlist-start 1 --ignore-errors --embed-subs --output "%(playlist_id)s/%(playlist_index)s. %(title).200B [%(id)s].%(ext)s" "$1"
+        yt-dlp ${YT_COMMON_ARGUMENTS[@]} --format "$YT_DLP_FORMAT_HD" --playlist-start 1 --ignore-errors --embed-subs --output "%(playlist_id)s/%(playlist_index)s. %(title).200B [%(id)s].%(ext)s" "$1"
 
     # text file with list of video links
     ############################################################################
@@ -748,13 +748,17 @@ yt() {
     # File containing URLs to download ("-" for stdin), one URL per line. Lines starting
     # with "#", ";" or "]" are considered as comments and ignored
     elif [[ "$1" == *".txt" ]]; then
-        yt-dlp ${YT_COMMON_ARGUMENTS[@]} --embed-subs --batch-file "$1"
+        yt-dlp ${YT_COMMON_ARGUMENTS[@]} --format "$YT_DLP_FORMAT_HD" --embed-subs --batch-file "$1"
 
     # individual YouTube or other platform video
     ############################################################################
     else
-        yt-dlp ${YT_COMMON_ARGUMENTS[@]} --embed-subs "$1"
+        yt-dlp ${YT_COMMON_ARGUMENTS[@]} --format "$YT_DLP_FORMAT_HD" --embed-subs "$1"
     fi
+}
+
+yt-4k() {
+    yt-dlp ${YT_COMMON_ARGUMENTS[@]} --format "$YT_DLP_FORMAT_4K" --output "%(title)s [%(id)s] 4K.%(ext)s" --embed-subs "$1"
 }
 
 yt-auto-subs() {
@@ -763,7 +767,7 @@ yt-auto-subs() {
     # Write subtitle file
     # --write-auto-subs
     # Write automatically generated subtitle file (Alias: --write-automatic-subs)
-    yt-dlp ${YT_COMMON_ARGUMENTS[@]} --write-subs --write-auto-subs "$1"
+    yt-dlp ${YT_COMMON_ARGUMENTS[@]} --format "$YT_DLP_FORMAT_HD" --write-subs --write-auto-subs "$1"
 }
 
 yt-list-subs() {
