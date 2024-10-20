@@ -154,12 +154,6 @@ alias sudo='sudo '
 ### improve utilities defaults
 ################################################################################
 
-### black
-# The uncompromising code formatter.
-# https://github.com/psf/black
-#alias black='black --line-length 90'
-
-
 ### cp
 # copy files and directories
 # -i, --interactive
@@ -431,6 +425,7 @@ alias ..='cd ..'
 
 alias clip='xclip -sel clip'
 alias py='python'
+alias format='ruff check --select I --fix && ruff format'
 alias wiki='z wiki'
 ################################################################################
 

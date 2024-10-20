@@ -278,15 +278,10 @@ setup_python() {
     # https://github.com/ipython/ipython
     pipx install ipython
 
-    # Black
-    # Python code formatter
-    # https://github.com/psf/black
-    pipx install black[jupyter]
-
-    # isort
-    # Python imports organizer
-    # https://github.com/PyCQA/isort
-    pipx install isort
+    # Ruff
+    # Python linter and code formatter
+    # https://github.com/astral-sh/ruff
+    pipx install ruff
 
     # yt-dlp
     # video downloader
