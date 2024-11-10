@@ -48,6 +48,8 @@ fi
 
 
 ### prompt command
+# TODO git-prompt.sh: test replacing with system version after upgrading to Kubuntu 24.04
+# [[ -e /usr/lib/git-core/git-sh-prompt ]] && source /usr/lib/git-core/git-sh-prompt
 [[ -f "$HOME/dotfiles/git-prompt.sh" ]] && source "$HOME/dotfiles/git-prompt.sh"
 update_prompt() {
     # define colors with ANSI escape codes
@@ -81,6 +83,7 @@ update_prompt() {
     # git prompt
     # https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
     # missing colors issue fixed in git-prompt.sh
+    # TODO git-prompt.sh: test replacing with system version after upgrading to Kubuntu 24.04
     if [[ -f "$HOME/dotfiles/git-prompt.sh" ]]; then
         source "$HOME/dotfiles/git-prompt.sh"
         GIT_PS1_SHOWDIRTYSTATE=1
@@ -138,7 +141,7 @@ VISUAL=vim
 export TERM=konsole-256color
 
 
-## safety
+# prevent output redirection using `>`, `>&`, and `<>` from overwriting existing files
 set -o noclobber
 
 
