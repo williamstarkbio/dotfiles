@@ -707,10 +707,7 @@ YT_COMMON_ARGUMENTS=(
     --sub-langs "zh"
     --sub-langs "zh-CN"
     --sub-langs "en-nP7-2PuUl7o"
-    #--sub-langs "en-eEY6OEpapPo"
-    #--sub-langs "en-uYU-mmqFLq8"
     --sub-langs "en-ehkg1hFWq8A"
-    #--sub-langs "en-j3PyPqV-e1s"
 )
 
 yt() {
@@ -720,25 +717,32 @@ yt() {
     # https://github.com/yt-dlp/yt-dlp/issues/1837#issuecomment-1100889801
     # https://github.com/yt-dlp/yt-dlp/issues/1136#issuecomment-932077195
 
-    # TODO
-    # remove or replace redundant option with its equivalent
-    # --playlist-start NUMBER  ==  -I NUMBER:
     # -I, --playlist-items ITEM_SPEC
     # Comma separated playlist_index of the items to download. You can specify a range
     # using "[START]:[STOP][:STEP]". For backward compatibility, START-STOP is also
     # supported. Use negative indices to count from the right and negative STEP
     # to download in reverse order. E.g. "-I 1:3,7,-5::2" used on a playlist of size 15
     # will download the items at index 1,2,3,7,11,13,15
-
+    #
     # -i, --ignore-errors
     # Ignore download and postprocessing errors. The download will be considered
     # successful even if the postprocessing fails
+    #
+    # --write-subs
+    # Write subtitle file
+    # --write-auto-subs
+    # Write automatically generated subtitle file (Alias: --write-automatic-subs)
     # --embed-subs
     # Embed subtitles in the video (only for mp4, webm and mkv videos)
+    #
     # -o, --output [TYPES:]TEMPLATE
     # Output filename template; see "OUTPUT TEMPLATE" for details
     if [[ "$1" == "https://www.youtube.com/playlist?list="* ]]; then
-        yt-dlp ${YT_COMMON_ARGUMENTS[@]} --format "$YT_DLP_FORMAT_HD" --playlist-start 1 --ignore-errors --embed-subs --output "%(playlist_id)s/%(playlist_index)s. %(title).200B [%(id)s].%(ext)s" "$1"
+        # download videos including saving automatically generated subtitles to separate files
+        yt-dlp ${YT_COMMON_ARGUMENTS[@]} --format "$YT_DLP_FORMAT_HD" --playlist-items 1: --ignore-errors --write-subs --write-auto-subs --output "%(playlist_id)s/%(playlist_index)s. %(title).200B [%(id)s].%(ext)s" "$1"
+
+        # fetch manual subtitles and embed to the video files
+        yt-dlp ${YT_COMMON_ARGUMENTS[@]} --format "$YT_DLP_FORMAT_HD" --playlist-items 1: --ignore-errors --embed-subs --output "%(playlist_id)s/%(playlist_index)s. %(title).200B [%(id)s].%(ext)s" "$1"
 
     # text file with list of video links
     ############################################################################
@@ -746,26 +750,26 @@ yt() {
     # File containing URLs to download ("-" for stdin), one URL per line. Lines starting
     # with "#", ";" or "]" are considered as comments and ignored
     elif [[ "$1" == *".txt" ]]; then
+        # download videos including saving automatically generated subtitles to separate files
+        yt-dlp ${YT_COMMON_ARGUMENTS[@]} --format "$YT_DLP_FORMAT_HD" --write-subs --write-auto-subs --batch-file "$1"
+        # fetch manual subtitles and embed to the video files
         yt-dlp ${YT_COMMON_ARGUMENTS[@]} --format "$YT_DLP_FORMAT_HD" --embed-subs --batch-file "$1"
 
     # individual YouTube or other platform video
     ############################################################################
     else
+        # download video and save automatically generated subtitles to a separate file
+        yt-dlp ${YT_COMMON_ARGUMENTS[@]} --format "$YT_DLP_FORMAT_HD" --write-subs --write-auto-subs "$1"
+        # fetch manual subtitles and embed to the video files
         yt-dlp ${YT_COMMON_ARGUMENTS[@]} --format "$YT_DLP_FORMAT_HD" --embed-subs "$1"
     fi
 }
 
 yt-4k() {
+    # download video and save automatically generated subtitles to a separate file
+    yt-dlp ${YT_COMMON_ARGUMENTS[@]} --format "$YT_DLP_FORMAT_4K" --output "%(title)s [%(id)s] 4K.%(ext)s" --write-subs --write-auto-subs "$1"
+    # fetch manual subtitles and embed to the video files
     yt-dlp ${YT_COMMON_ARGUMENTS[@]} --format "$YT_DLP_FORMAT_4K" --output "%(title)s [%(id)s] 4K.%(ext)s" --embed-subs "$1"
-}
-
-yt-auto-subs() {
-    # retrieve automatically generated subtitles and save them to a file
-    # --write-subs
-    # Write subtitle file
-    # --write-auto-subs
-    # Write automatically generated subtitle file (Alias: --write-automatic-subs)
-    yt-dlp ${YT_COMMON_ARGUMENTS[@]} --format "$YT_DLP_FORMAT_HD" --write-subs --write-auto-subs "$1"
 }
 
 yt-list-subs() {
