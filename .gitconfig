@@ -51,9 +51,16 @@
 ; https://github.com/dandavison/delta
 [core]
     ; the command that git will use to paginate output
-    pager = delta --diff-so-fancy --max-line-length 2048
+    ;pager = delta --diff-so-fancy --max-line-length 2048
+    pager = delta
 [interactive]
-    diffFilter = delta --diff-so-fancy --max-line-length 2048 --color-only
+    ;diffFilter = delta --diff-so-fancy --max-line-length 2048 --color-only
+    diffFilter = delta --color-only
+[delta]
+    ; use n and N to move between diff sections
+    navigate = true
+[merge]
+    conflictstyle = zdiff3
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 

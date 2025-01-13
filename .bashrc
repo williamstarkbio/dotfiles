@@ -428,7 +428,7 @@ alias ..='cd ..'
 
 alias clip='xclip -sel clip'
 alias py='python'
-alias format='ruff check --select I --fix && ruff format'
+alias format='ruff check --extend-select I --fix && ruff format'
 alias wiki='z wiki'
 ################################################################################
 
@@ -1237,6 +1237,9 @@ TMUX_BASH_COMPLETION_DIRECTORY="$SOFTWARE_DIRECTORY/tmux-bash-completion"
 if [[ -d "$TMUX_BASH_COMPLETION_DIRECTORY" ]]; then
     source "$TMUX_BASH_COMPLETION_DIRECTORY/completions/tmux"
 fi
+
+
+#eval "$(uv generate-shell-completion bash)"
 
 
 # zoxide

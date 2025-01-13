@@ -404,7 +404,7 @@ setup_neovim() {
     pyenv virtualenv neovim
     pyenv activate neovim
     pip install --upgrade pip
-    pip install neovim
+    pip install pynvim
     pyenv deactivate
 
     # setup vim-plug

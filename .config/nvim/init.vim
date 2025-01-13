@@ -451,11 +451,8 @@ let g:python3_host_prog = $PYENV_ROOT . '/versions/neovim/bin/python'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """ Copilot.vim
-let g:copilot_node_command = '~/.nvm/versions/node/v20.12.2/bin/node'
-let g:copilot_filetypes = {
-      \ 'text': v:false,
-      \ 'markdown': v:false,
-      \ }
+let g:copilot_node_command = '~/.nvm/versions/node/v22.13.0/bin/node'
+let g:copilot_filetypes = {'text': v:false, 'markdown': v:false}
 
 
 """ EasyMotion
@@ -510,11 +507,12 @@ endif
 "echo strtrans(tmux_target_session)
 " specify target pane; specifically, append window to target session
 " target_pane format: session:window.pane
-if tmux_target_session =~ "run"
-    let tmux_target_pane = tmux_target_session . ":" . "run"
-else
-    let tmux_target_pane = tmux_target_session . ":" . "1"
-endif
+"if tmux_target_session =~ "run"
+"    let tmux_target_pane = tmux_target_session . ":" . "run"
+"else
+"    let tmux_target_pane = tmux_target_session . ":" . "1"
+"endif
+let tmux_target_pane = tmux_target_session
 "echo strtrans(tmux_target_pane)
 let g:slime_default_config = {"socket_name": "default", "target_pane": tmux_target_pane}
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
