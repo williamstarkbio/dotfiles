@@ -467,15 +467,14 @@ set diffopt+=vertical
 
 
 """ vim-gitgutter
+" always show the sign column
+set signcolumn=yes
 " reduce update time of diff markers
 set updatetime=200
 " set sign colors
-highlight GitGutterAdd ctermfg=green
-highlight GitGutterChange ctermfg=yellow
-highlight GitGutterDelete ctermfg=red
-"highlight GitGutterChangeDelete ctermfg=yellow
-" always show the sign column
-set signcolumn=yes
+highlight GitGutterAdd guifg=#009900 ctermfg=2
+highlight GitGutterChange guifg=#bbbb00 ctermfg=3
+highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
 
 """ NERD Tree
